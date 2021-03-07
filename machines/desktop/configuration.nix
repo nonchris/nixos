@@ -7,7 +7,7 @@ let
   mayniklas = builtins.fetchGit {
     # Updated 2020-03-07
     url = "https://github.com/mayniklas/nixos";
-    rev = "f2c2b2b8481bffa2f0d083fef9d827f4f717f27c";
+    rev = "8a44df21d8cfc166fc522bbc8fd433a1b729eceb";
   };
 in {
   imports = [
@@ -37,6 +37,7 @@ in {
 
   mainUser = "chris";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
+  uuid = "b99b7086-f4ab-4953-8966-e720abcd6aa2";
 
   networking = { hostName = "nixos"; };
 
