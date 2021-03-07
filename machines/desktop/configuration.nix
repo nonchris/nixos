@@ -5,9 +5,9 @@
 
 let
   mayniklas = builtins.fetchGit {
-    # Updated 2020-03-07
+    # Updated 2020-03-08
     url = "https://github.com/mayniklas/nixos";
-    rev = "cc396cc08e803bf13127a7382e50f08e3e206dbd";
+    rev = "b41eb613ac628302e09ef8e04882fc0175472b57";
   };
 in {
   imports = [
@@ -39,7 +39,12 @@ in {
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
 
   # Get UUID from blkid /dev/nvme0n1p2
-  boot.initrd.luks.devices.boot.device = "/dev/disk/by-uuid/b99b7086-f4ab-4953-8966-e720abcd6aa2";
+  mayniklas = {
+    grub-luks = {
+      enable = true;
+      uuid = "b99b7086-f4ab-4953-8966-e720abcd6aa2";
+    };
+  };
 
   networking = { hostName = "nixos"; };
 
