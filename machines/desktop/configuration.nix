@@ -32,7 +32,7 @@ in {
     "${mayniklas}/modules/yubikey.nix"
 
     # Modules
-    ./modules/networking.nix
+    ../../modules/networking.nix
   ];
 
   mainUser = "chris";
