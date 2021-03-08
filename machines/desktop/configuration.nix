@@ -7,7 +7,7 @@ let
   mayniklas = builtins.fetchGit {
     # Updated 2020-03-08
     url = "https://github.com/mayniklas/nixos";
-    rev = "b41eb613ac628302e09ef8e04882fc0175472b57";
+    rev = "6f4ebf31980c69ad766237fbd706a6f503e0a799";
   };
 in {
   imports = [
@@ -30,6 +30,7 @@ in {
     "${mayniklas}/modules/options.nix"
     "${mayniklas}/modules/sound.nix"
     "${mayniklas}/modules/yubikey.nix"
+    "${mayniklas}/modules/zsh.nix"
 
     # Modules
     ../../modules/networking.nix
