@@ -5,9 +5,9 @@
 
 let
   mayniklas = builtins.fetchGit {
-    # Updated 2020-03-08
+    # Updated 2020-03-14
     url = "https://github.com/mayniklas/nixos";
-    rev = "6f4ebf31980c69ad766237fbd706a6f503e0a799";
+    rev = "bc05167e9221088531f1b03978bd4fdb8a86cbee";
   };
 in {
   imports = [
