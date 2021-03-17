@@ -1,15 +1,8 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, ... }:
+{ config, pkgs, ... }: {
 
-let
-  mayniklas = builtins.fetchGit {
-    # Updated 2020-03-14
-    url = "https://github.com/mayniklas/nixos";
-    rev = "bc05167e9221088531f1b03978bd4fdb8a86cbee";
-  };
-in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -19,18 +12,18 @@ in {
     ../../users/root.nix
 
     # Modules imported from MayNiklas
-    "${mayniklas}/modules/bluetooth.nix"
-    "${mayniklas}/modules/docker.nix"
-    "${mayniklas}/modules/grub-luks.nix"
-    "${mayniklas}/modules/kde.nix"
-    "${mayniklas}/modules/locale.nix"
-    "${mayniklas}/modules/nix-common.nix"
-    "${mayniklas}/modules/nvidia.nix"
-    "${mayniklas}/modules/openssh.nix"
-    "${mayniklas}/modules/options.nix"
-    "${mayniklas}/modules/sound.nix"
-    "${mayniklas}/modules/yubikey.nix"
-    "${mayniklas}/modules/zsh.nix"
+    ../../modules/bluetooth.nix
+    ../../modules/docker.nix
+    ../../modules/grub-luks.nix
+    ../../modules/kde.nix
+    ../../modules/locale.nix
+    ../../modules/nix-common.nix
+    ../../modules/nvidia.nix
+    ../../modules/openssh.nix
+    ../../modules/options.nix
+    ../../modules/sound.nix
+    ../../modules/yubikey.nix
+    ../../modules/zsh.nix
 
     # Modules
     ../../modules/networking.nix

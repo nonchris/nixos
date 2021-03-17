@@ -1,0 +1,37 @@
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.mayniklas.grub-luks;
+in {
+
+  options.mayniklas.grub-luks = {
+    enable = mkEnableOption "grub lvm";
+    uuid = mkOption {
+      type = types.str;
+      default = "NULL";
+    };
+  };
+
+  config = mkIf cfg.enable {
+    boot = {
+      loader = {
+        grub = {
+          enable = true;
+          version = 2;
+          device = "nodev";
+          efiSupport = true;
+          useOSProber = true;
+        };
+        efi.canTouchEfiVariables = true;
+      };
+      cleanTmpDir = true;
+      initrd.luks.devices = {
+        root = {
+          # Get UUID from blkid /dev/sda2
+          device = "/dev/disk/by-uuid/${cfg.uuid}";
+          preLVM = true;
+          allowDiscards = true;
+        };
+      };
+    };
+  };
+}
