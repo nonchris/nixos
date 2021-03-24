@@ -24,7 +24,6 @@ in {
     "${mayniklas}/modules/grub-luks.nix"
     "${mayniklas}/modules/kde.nix"
     "${mayniklas}/modules/locale.nix"
-    "${mayniklas}/modules/nix-common.nix"
     "${mayniklas}/modules/nvidia.nix"
     "${mayniklas}/modules/openssh.nix"
     "${mayniklas}/modules/options.nix"
@@ -34,6 +33,7 @@ in {
 
     # Modules
     ../../modules/networking.nix
+    ../../modules/nix-common.nix
   ];
 
   mainUser = "chris";
