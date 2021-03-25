@@ -1,0 +1,14 @@
+kind: pipeline
+type: exec
+name: Build all Hosts
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: Build desktop
+  environment:
+    NIX_PATH: nixpkgs=channel:nixos-unstable
+  commands:
+  - nix-shell -p '(nixos{}).nixos-rebuild' --run "nixos-rebuild build -I nixos-config=./machines/desktop/configuration.nix.nix"
