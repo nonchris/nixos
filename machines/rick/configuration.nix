@@ -45,5 +45,9 @@ in {
   };
 
   virtualisation.vmware.guest.enable = true;
+  
+  networking = { hostName = "rick"; };
+
+  environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
 }
