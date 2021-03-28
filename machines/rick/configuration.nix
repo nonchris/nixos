@@ -16,6 +16,7 @@ in {
     # Modules imported from MayNiklas
     "${mayniklas}/modules/locale.nix"
     "${mayniklas}/modules/openssh.nix"
+    "${mayniklas}/modules/options.nix"
     "${mayniklas}/modules/zsh.nix"
 
     # Modules
@@ -23,6 +24,9 @@ in {
     ../../modules/networking.nix
     ../../modules/nix-common.nix
   ];
+  
+  mainUser = "chris";
+  mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
