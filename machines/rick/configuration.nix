@@ -1,4 +1,29 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }:
+let
+  mayniklas = builtins.fetchGit {
+    # Updated 2020-03-14
+    url = "https://github.com/mayniklas/nixos";
+    rev = "bc05167e9221088531f1b03978bd4fdb8a86cbee";
+  };
+
+in {
+  imports = [
+
+    # Users
+    ../../users/chris.nix
+    ../../users/root.nix
+
+    # Modules imported from MayNiklas
+    "${mayniklas}/modules/locale.nix"
+    "${mayniklas}/modules/openssh.nix"
+    "${mayniklas}/modules/zsh.nix"
+
+    # Modules
+    ../../modules/hosts.nix
+    ../../modules/networking.nix
+    ../../modules/nix-common.nix
+  ];
+
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     autoResize = true;
@@ -21,27 +46,4 @@
 
   virtualisation.vmware.guest.enable = true;
 
-  programs.ssh.startAgent = false;
-
-  services.openssh = {
-    enable = true;
-    passwordAuthentication = false;
-    startWhenNeeded = true;
-    challengeResponseAuthentication = false;
-  };
-
-  users = {
-    users.root = {
-      password = "root";
-      openssh.authorizedKeys.keyFiles =
-        [ (builtins.fetchurl { url = "https://github.com/nonchris.keys"; }) ];
-    };
-  };
-
-  time.timeZone = "Europe/Berlin";
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "de";
-  };
 }
