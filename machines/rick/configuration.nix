@@ -5,6 +5,10 @@ let
     url = "https://github.com/mayniklas/nixos";
     rev = "c0cda4acecaac8b4d335d6d82f92e7c39d3aa41b";
   };
+  home-manager = builtins.fetchGit {
+    url = "https://github.com/nix-community/home-manager.git";
+    ref = "master";
+  };
 
 in {
   imports = [
@@ -24,6 +28,9 @@ in {
     ../../modules/hosts.nix
     ../../modules/networking.nix
     ../../modules/nix-common.nix
+    
+    # home-manager
+    (import "${home-manager}/nixos")
   ];
   
   mainUser = "chris";
