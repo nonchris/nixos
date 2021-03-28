@@ -32,6 +32,7 @@ in {
     "${mayniklas}/modules/zsh.nix"
 
     # Modules
+    ../../modules/hosts.nix
     ../../modules/networking.nix
     ../../modules/nix-common.nix
   ];
