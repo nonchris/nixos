@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
   mayniklas = builtins.fetchGit {
-    # Updated 2020-03-14
+    # Updated 2020-03-28
     url = "https://github.com/mayniklas/nixos";
-    rev = "bc05167e9221088531f1b03978bd4fdb8a86cbee";
+    rev = "c0cda4acecaac8b4d335d6d82f92e7c39d3aa41b";
   };
 
 in {
@@ -17,6 +17,7 @@ in {
     "${mayniklas}/modules/locale.nix"
     "${mayniklas}/modules/openssh.nix"
     "${mayniklas}/modules/options.nix"
+    "${mayniklas}/modules/vmware-guest.nix
     "${mayniklas}/modules/zsh.nix"
 
     # Modules
@@ -27,28 +28,6 @@ in {
   
   mainUser = "chris";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    autoResize = true;
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/ESP";
-    fsType = "vfat";
-  };
-
-  boot.growPartition = true;
-
-  boot.loader.grub = {
-    version = 2;
-    device = "nodev";
-    efiSupport = true;
-    efiInstallAsRemovable = true;
-  };
-
-  virtualisation.vmware.guest.enable = true;
   
   networking = { hostName = "rick"; };
 
