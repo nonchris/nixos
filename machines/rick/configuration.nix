@@ -17,7 +17,7 @@ in {
     "${mayniklas}/modules/locale.nix"
     "${mayniklas}/modules/openssh.nix"
     "${mayniklas}/modules/options.nix"
-    "${mayniklas}/modules/vmware-guest.nix
+    "${mayniklas}/modules/vmware-guest.nix"
     "${mayniklas}/modules/zsh.nix"
 
     # Modules
