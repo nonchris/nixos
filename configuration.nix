@@ -1,1 +1,0 @@
-machines/desktop/configuration.nix
