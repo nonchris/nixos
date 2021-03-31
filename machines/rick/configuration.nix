@@ -33,16 +33,19 @@ in {
     ../../modules/networking.nix
     ../../modules/nix-common.nix
     ../../modules/thelounge.nix
-    
+
+    # Containers
+    ../../modules/containers/certificate_bot.nix
+
     # home-manager
     (import "${home-manager}/nixos")
   ];
-  
+
   mainUser = "chris";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
 
   home-manager.users.chris = import "${home}/home-server.nix";
-  
+
   networking = { hostName = "rick"; };
 
   environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
