@@ -26,6 +26,11 @@ let
     target = "root@nixos";
   };
   
+  flap = pkgs.krops.writeDeploy "flap" {
+    source = source "flap";
+    target = "root@flap";
+  };
+  
   rick = pkgs.krops.writeDeploy "rick" {
     source = source "rick";
     target = "root@rick";
@@ -36,10 +41,12 @@ in {
 
   # nix-build ./krops.nix -A desktop && ./result -j12
   desktop = desktop;
-  
+
+  # nix-build ./krops.nix -A flap && ./result -j4
+  flap = flap;
+
   # nix-build ./krops.nix -A rick && ./result -j4
   rick = rick;
-
 
   # nix-build ./krops.nix -A all && ./result -j12
   all = pkgs.writeScript "deploy-all-servers"
