@@ -22,6 +22,7 @@ in {
     ../../users/root.nix
 
     # Modules imported from MayNiklas
+    "${mayniklas}/modules/docker.nix"
     "${mayniklas}/modules/locale.nix"
     "${mayniklas}/modules/openssh.nix"
     "${mayniklas}/modules/options.nix"
