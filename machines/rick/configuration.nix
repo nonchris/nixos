@@ -32,6 +32,7 @@ in {
     ../../modules/hosts.nix
     ../../modules/networking.nix
     ../../modules/nix-common.nix
+    ../../modules/thelounge.nix
     
     # home-manager
     (import "${home-manager}/nixos")
