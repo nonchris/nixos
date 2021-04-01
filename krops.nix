@@ -35,6 +35,11 @@ let
     source = source "rick";
     target = "root@rick";
   };
+  
+  rick = pkgs.krops.writeDeploy "vps" {
+    source = source "vps";
+    target = "root@vps";
+  };
 
 
 in {
@@ -47,6 +52,9 @@ in {
 
   # nix-build ./krops.nix -A rick && ./result -j4
   rick = rick;
+
+  # nix-build ./krops.nix -A vps && ./result
+  vps = vps;
 
   # nix-build ./krops.nix -A all && ./result -j12
   all = pkgs.writeScript "deploy-all-servers"
