@@ -14,6 +14,9 @@
 
       # local
       192.168.5.15 vsphere.local
+
+      # external
+      202.61.248.243 mobi  # currently pointing to vps aka mobi2
     '';
   };
 }
