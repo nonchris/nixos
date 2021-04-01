@@ -38,7 +38,7 @@ let
   
   vps = pkgs.krops.writeDeploy "vps" {
     source = source "vps";
-    target = "root@vps";
+    target = "root@mobi";
   };
 
 
