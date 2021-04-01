@@ -36,7 +36,7 @@ in {
     ../../modules/thelounge.nix
 
     # Containers
-    ../../modules/containers/certificate_bot.nix
+#    ../../modules/containers/certificate_bot.nix
 
     # home-manager
     (import "${home-manager}/nixos")
