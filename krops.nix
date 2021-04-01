@@ -36,7 +36,7 @@ let
     target = "root@rick";
   };
   
-  rick = pkgs.krops.writeDeploy "vps" {
+  vps = pkgs.krops.writeDeploy "vps" {
     source = source "vps";
     target = "root@vps";
   };
