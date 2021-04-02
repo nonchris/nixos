@@ -36,8 +36,8 @@ let
     target = "root@rick";
   };
   
-  vps = pkgs.krops.writeDeploy "vps" {
-    source = source "vps";
+  mobi = pkgs.krops.writeDeploy "mobi" {
+    source = source "mobi";
     target = "root@mobi";
   };
 
@@ -54,10 +54,10 @@ in {
   rick = rick;
 
   # nix-build ./krops.nix -A vps && ./result
-  vps = vps;
+  mobi = mobi;
 
   # nix-build ./krops.nix -A all && ./result -j12
   all = pkgs.writeScript "deploy-all-servers"
-    (lib.concatStringsSep "\n" [ desktop rick ]);
+    (lib.concatStringsSep "\n" [ desktop rick mobi ]);
 
 }

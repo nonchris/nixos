@@ -44,7 +44,7 @@ in {
 
   home-manager.users.chris = import "${home}/home-server.nix";
 
-  networking = { hostName = "vps"; };
+  networking = { hostName = "mobi"; };
 
   environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
