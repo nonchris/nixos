@@ -25,11 +25,11 @@ steps:
   commands:
   - nix-shell -p '(nixos{}).nixos-rebuild' --run "nixos-rebuild build -I nixos-config=./machines/rick/configuration.nix  -v"
 
-- name: Build vps
+- name: Build mobi
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
   commands:
-  - nix-shell -p '(nixos{}).nixos-rebuild' --run "nixos-rebuild build -I nixos-config=./machines/vps/configuration.nix  -v"
+  - nix-shell -p '(nixos{}).nixos-rebuild' --run "nixos-rebuild build -I nixos-config=./machines/mobi/configuration.nix  -v"
 
 trigger:
   branch:
