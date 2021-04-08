@@ -1,24 +1,35 @@
-{ config, pkgs, lib, ... }: {
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.nonchris.common;
+in {
 
-  nixpkgs = { config.allowUnfree = true; };
+  options.nonchris.common = { enable = mkEnableOption "activate nix-common"; };
 
-  nix = {
+  config = mkIf cfg.enable {
 
-    binaryCachePublicKeys = [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
-    binaryCaches = lib.mkForce [ "https://cache.nixos.org" "https://cache.lounge.rocks" ];
-    trustedBinaryCaches = [ "https://cache.nixos.org" "https://cache.lounge.rocks" ];
+    nixpkgs = { config.allowUnfree = true; };
 
-    # Save space by hardlinking store files
-    autoOptimiseStore = true;
+    nix = {
 
-    # Clean up old generations after 30 days
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
+      binaryCachePublicKeys =
+        [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
+      binaryCaches =
+        lib.mkForce [ "https://cache.nixos.org" "https://cache.lounge.rocks" ];
+      trustedBinaryCaches =
+        [ "https://cache.nixos.org" "https://cache.lounge.rocks" ];
+
+      # Save space by hardlinking store files
+      autoOptimiseStore = true;
+
+      # Clean up old generations after 30 days
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 30d";
+      };
+
+      # Users allowed to run nix
+      allowedUsers = [ "root" ];
     };
-
-    # Users allowed to run nix
-    allowedUsers = [ "root" ];
   };
 }

@@ -51,6 +51,9 @@ in {
 
   environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
-  nonchris = { thelounge.enable = true; };
+  nonchris = {
+    thelounge.enable = true;
+    common.enable = true;
+  };
 
 }

@@ -48,4 +48,8 @@ in {
 
   environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
+  nonchris = {
+    common.enable = true;
+  };
+
 }
