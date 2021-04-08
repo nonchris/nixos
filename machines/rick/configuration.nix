@@ -36,7 +36,7 @@ in {
     ../../modules/thelounge
 
     # Containers
-#    ../../modules/containers/certificate_bot.nix
+    #    ../../modules/containers/certificate_bot.nix
 
     # home-manager
     (import "${home-manager}/nixos")
@@ -50,5 +50,7 @@ in {
   networking = { hostName = "rick"; };
 
   environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
+
+  nonchris = { thelounge.enable = true; };
 
 }
