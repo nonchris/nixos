@@ -30,7 +30,7 @@ in {
     "${mayniklas}/modules/zsh.nix"
 
     # Modules
-    ../../modules/nix-common.nix
+    ../../modules/nix-common
 
     # Containers
     ../../modules/containers/certificate_bot.nix

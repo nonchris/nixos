@@ -31,9 +31,9 @@ in {
     "${mayniklas}/modules/zsh.nix"
 
     # Modules
-    ../../modules/hosts.nix
-    ../../modules/networking.nix
-    ../../modules/nix-common.nix
+    ../../modules/hosts
+    ../../modules/networking
+    ../../modules/nix-common
   ];
 
   mainUser = "chris";
