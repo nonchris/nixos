@@ -34,6 +34,7 @@ in {
 
     # Containers
     ../../modules/containers/certificate_bot.nix
+    ../../modules/containers/util-bot.nix
 
     # home-manager
     (import "${home-manager}/nixos")
