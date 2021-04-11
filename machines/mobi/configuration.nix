@@ -5,10 +5,6 @@ let
     url = "https://github.com/mayniklas/nixos";
     rev = "d4fa719e8a3b7bc7d6e2ddde7b4c84e1a011becf";
   };
-  home = builtins.fetchGit {
-    url = "https://github.com/nonchris/nixos-home";
-    ref = "main";
-  };
   home-manager = builtins.fetchGit {
     url = "https://github.com/nix-community/home-manager.git";
     ref = "master";
@@ -43,7 +39,7 @@ in {
   mainUser = "chris";
   mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
 
-  home-manager.users.chris = import "${home}/home-server.nix";
+  home-manager.users.chris = { imports = [ ../../home-manager/home-server.nix ]; };
 
   networking = { hostName = "mobi"; };
 
