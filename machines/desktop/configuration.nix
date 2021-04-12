@@ -9,6 +9,10 @@ let
     url = "https://github.com/mayniklas/nixos";
     rev = "bc05167e9221088531f1b03978bd4fdb8a86cbee";
   };
+  home-manager = builtins.fetchGit {
+    url = "https://github.com/nix-community/home-manager.git";
+    ref = "master";
+  };
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -35,6 +39,9 @@ in {
     ../../modules/hosts
     ../../modules/networking
     ../../modules/nix-common
+
+    # home-manager
+    (import "${home-manager}/nixos")
   ];
 
   mainUser = "chris";
@@ -57,6 +64,8 @@ in {
   nonchris = {
     common.enable = true;
   };
+
+  home-manager.users.chris = { imports = [ ../../home-manager/home.nix ]; };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
