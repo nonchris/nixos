@@ -37,9 +37,12 @@ in {
     atom
     discord
     gcc
+    gccStdenv
     htop
     hugo
+    maven
     mpv
+    ncurses
     nvtop
     obs-studio
     pstree
