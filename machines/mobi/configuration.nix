@@ -10,7 +10,6 @@
     # Modules
     ../../modules/hosts
     ../../modules/networking
-    ../../modules/thelounge
 
     # Containers
     #    ../../modules/containers/certificate_bot.nix
