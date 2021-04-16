@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   mayniklas = builtins.fetchGit {
-    # Updated 2020-04-06
+    # Updated 2020-04-16
     url = "https://github.com/mayniklas/nixos";
     rev = "2710a8adf4e74f3d2e396aae5b3259612ae91766";
   };
