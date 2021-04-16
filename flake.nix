@@ -66,6 +66,7 @@
       nixosModules = {
         # modules
         nix-common = import ./modules/nix-common;
+        thelounge = import ./modules/thelounge;
       };
 
       # Each subdirectory in ./machins is a host. Add them all to
