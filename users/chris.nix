@@ -10,5 +10,6 @@
        sha256 = "sha256:15j5mb0v4di6gqbqxa1kl29g0g4zfbi2xmylpc6cagfk4z2jnk3w";
      })
    ];
+  };
   nix.allowedUsers = [ "chris" ];
 }
