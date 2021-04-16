@@ -18,13 +18,13 @@
 
   ];
 
-  home-manager.users.chris = {
-    imports = [ ../../home-manager/home-server.nix ];
-  };
+  # home-manager.users.chris = {
+  #   imports = [ ../../home-manager/home-server.nix ];
+  # };
 
   networking = { hostName = "rick"; };
 
-  environment.systemPackages = with self.inputs.nixpkgs.legacyPackages.x86_64-linux;; [ bash-completion git nixfmt wget ];
+  environment.systemPackages = with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [ bash-completion git nixfmt wget ];
 
   nonchris = {
     thelounge.enable = true;
