@@ -24,8 +24,8 @@
   environment.systemPackages = with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [ bash-completion git nixfmt wget ];
 
   nonchris = {
-    thelounge.enable = true;
     common.enable = true;
+    thelounge.enable = true;
     networking.enable = true;
   };
 
@@ -33,7 +33,6 @@
     var.mainUser = "chris";
     docker.enable = true;
     locale.enable = true;
-    networking.enable = true;
     openssh.enable = true;
     vmware-guest.enable = true;
     zsh.enable = true;

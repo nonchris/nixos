@@ -31,9 +31,8 @@
     var.mainUser = "chris";
     docker.enable = true;
     locale.enable = true;
-    networking.enable = true;
     openssh.enable = true;
-    vmware-guest.enable = true;
+    kvm-guest.enable = true;
     zsh.enable = true;
   };
 
