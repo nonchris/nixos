@@ -1,12 +1,5 @@
 { config, pkgs, ... }:
-
-let
-  mayniklas = builtins.fetchGit {
-    # Updated 2020-03-07
-    url = "https://github.com/mayniklas/nixos-home";
-    rev = "cb1517d09b0995d4c7bad8424e7baa56b68c31c4";
-  };
-in {
+{
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
