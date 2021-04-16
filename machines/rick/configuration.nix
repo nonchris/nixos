@@ -10,7 +10,6 @@
     # Modules
     ../../modules/hosts
     ../../modules/networking
-    ../../modules/nix-common
     ../../modules/thelounge
 
     # Containers
