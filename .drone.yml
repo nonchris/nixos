@@ -64,6 +64,10 @@ steps:
 - name: flake update
   commands:
   - nix --experimental-features "nix-command flakes" flake update --inputs-from nixpkgs
+  
+- name: Show git diff
+  commands:
+  - git diff
 
 - name: Show flake info
   commands:
