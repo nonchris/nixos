@@ -9,7 +9,6 @@
 
     # Modules
     ../../modules/hosts
-    ../../modules/networking
 
     # Containers
     #    ../../modules/containers/certificate_bot.nix
@@ -32,6 +31,7 @@
     var.mainUser = "chris";
     docker.enable = true;
     locale.enable = true;
+    networking.enable = true;
     openssh.enable = true;
     vmware-guest.enable = true;
     zsh.enable = true;

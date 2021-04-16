@@ -1,11 +1,23 @@
-{ config, pkgs, lib, ... }: {
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.nonchris.networking;
+in {
 
-  networking = {
-    # Define the DNS servers
-    nameservers = [ "192.168.88.10" "192.168.88.1" "1.1.1.1" ];
-
-    # Enable networkmanager
-    networkmanager.enable = true;
+  options.nonchris.networking = {
+    enable = mkEnableOption "activate networking";
   };
-  users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups = [ "networkmanager" ];
+
+  config = mkIf cfg.enable {
+
+    networking = {
+      # Define the DNS servers
+      nameservers = [ "192.168.88.10" "192.168.88.1" "1.1.1.1" ];
+
+      # Enable networkmanager
+      networkmanager.enable = true;
+    };
+    users.extraUsers.${config.mayniklas.var.mainUser}.extraGroups =
+      [ "networkmanager" ];
+
+  };
 }

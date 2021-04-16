@@ -14,7 +14,6 @@
 
     # Modules
     ../../modules/hosts
-    ../../modules/networking
 
   ];
 
@@ -41,7 +40,10 @@
   # $ nix search wget
   environment.systemPackages = with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [ bash-completion git nixfmt wget ];
 
-  nonchris = { common.enable = true; };
+  nonchris = {
+    common.enable = true;
+    networking.enable = true;
+  };
 
   home-manager.users.chris = { imports = [ ../../home-manager/home.nix ]; };
 
