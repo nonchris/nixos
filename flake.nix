@@ -33,6 +33,7 @@
                 mayniklas.nixosModules.openssh
                 mayniklas.nixosModules.options
                 mayniklas.nixosModules.sound
+                mayniklas.nixosModules.vmware-guest
                 mayniklas.nixosModules.yubikey
                 mayniklas.nixosModules.zsh
                 {
