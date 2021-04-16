@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
   mayniklas = builtins.fetchGit {
-    # Updated 2020-04-01
+    # Updated 2020-04-06
     url = "https://github.com/mayniklas/nixos";
-    rev = "d4fa719e8a3b7bc7d6e2ddde7b4c84e1a011becf";
+    rev = "2710a8adf4e74f3d2e396aae5b3259612ae91766";
   };
   home-manager = builtins.fetchGit {
     url = "https://github.com/nix-community/home-manager.git";
@@ -18,12 +18,12 @@ in {
     ../../users/root.nix
 
     # Modules imported from MayNiklas
-    "${mayniklas}/modules/docker.nix"
-    "${mayniklas}/modules/locale.nix"
-    "${mayniklas}/modules/openssh.nix"
-    "${mayniklas}/modules/kvm-guest.nix"
-    "${mayniklas}/modules/options.nix"
-    "${mayniklas}/modules/zsh.nix"
+    "${mayniklas}/modules/docker"
+    "${mayniklas}/modules/locale"
+    "${mayniklas}/modules/openssh"
+    "${mayniklas}/modules/kvm-guest"
+    "${mayniklas}/modules/options"
+    "${mayniklas}/modules/zsh"
 
     # Modules
     ../../modules/nix-common
@@ -47,6 +47,15 @@ in {
 
   nonchris = {
     common.enable = true;
+  };
+
+  mayniklas = {
+    docker.enable = true;
+    locale.enable = true;
+    openssh.enable = true;
+    kvm-guest.enable = true;
+    options.enable = true;
+    zsh.enable = true;
   };
   
   users.users.root.openssh.authorizedKeys.keyFiles = [
