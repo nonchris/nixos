@@ -52,7 +52,6 @@ in {
     locale.enable = true;
     openssh.enable = true;
     kvm-guest.enable = true;
-    options.enable = true;
     zsh.enable = true;
   };
   
