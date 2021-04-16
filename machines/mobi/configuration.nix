@@ -24,7 +24,7 @@
 
   networking = { hostName = "rick"; };
 
-  environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
+  environment.systemPackages = with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [ bash-completion git nixfmt wget ];
 
   nonchris = {
     thelounge.enable = true;
