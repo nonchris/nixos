@@ -7,9 +7,6 @@
     ../../users/chris.nix
     ../../users/root.nix
 
-    # Modules
-    ../../modules/hosts
-
     # Containers
     #    ../../modules/containers/certificate_bot.nix
 
@@ -25,6 +22,7 @@
 
   nonchris = {
     common.enable = true;
+    hosts.enable = true;
     thelounge.enable = true;
     networking.enable = true;
   };

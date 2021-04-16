@@ -7,9 +7,6 @@
     ../../users/chris.nix
     ../../users/root.nix
 
-    # Modules
-    ../../modules/hosts
-
     # Containers
     ../../modules/containers/certificate_bot.nix
     ../../modules/containers/util-bot.nix

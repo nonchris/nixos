@@ -11,10 +11,6 @@
     # Users
     ../../users/chris.nix
     ../../users/root.nix
-
-    # Modules
-    ../../modules/hosts
-
   ];
 
   # Get UUID from blkid /dev/sda2
@@ -42,6 +38,7 @@
 
   nonchris = {
     common.enable = true;
+    hosts.enable = true;
     networking.enable = true;
   };
 

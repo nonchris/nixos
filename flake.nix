@@ -65,6 +65,7 @@
 
       nixosModules = {
         # modules
+        hosts = import ./modules/hosts;
         networking = import ./modules/networking;
         nix-common = import ./modules/nix-common;
         thelounge = import ./modules/thelounge;
