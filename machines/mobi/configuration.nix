@@ -20,7 +20,7 @@
     imports = [ ../../home-manager/home-server.nix ];
   };
 
-  networking = { hostName = "rick"; };
+  networking = { hostName = "mobi"; };
 
   environment.systemPackages = with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [ bash-completion git nixfmt wget ];
 
