@@ -5,9 +5,9 @@
 
 let
   mayniklas = builtins.fetchGit {
-    # Updated 2020-03-14
+    # Updated 2020-04-16
     url = "https://github.com/mayniklas/nixos";
-    rev = "bc05167e9221088531f1b03978bd4fdb8a86cbee";
+    rev = "2710a8adf4e74f3d2e396aae5b3259612ae91766";
   };
   home-manager = builtins.fetchGit {
     url = "https://github.com/nix-community/home-manager.git";
@@ -23,16 +23,16 @@ in {
     ../../users/root.nix
 
     # Modules imported from MayNiklas
-    "${mayniklas}/modules/bluetooth.nix"
-    "${mayniklas}/modules/docker.nix"
-    "${mayniklas}/modules/grub-luks.nix"
-    "${mayniklas}/modules/kde.nix"
-    "${mayniklas}/modules/locale.nix"
-    "${mayniklas}/modules/openssh.nix"
-    "${mayniklas}/modules/options.nix"
-    "${mayniklas}/modules/sound.nix"
-    "${mayniklas}/modules/yubikey.nix"
-    "${mayniklas}/modules/zsh.nix"
+    "${mayniklas}/modules/bluetooth"
+    "${mayniklas}/modules/docker"
+    "${mayniklas}/modules/grub-luks"
+    "${mayniklas}/modules/kde"
+    "${mayniklas}/modules/locale"
+    "${mayniklas}/modules/openssh"
+    "${mayniklas}/modules/options"
+    "${mayniklas}/modules/sound"
+    "${mayniklas}/modules/yubikey"
+    "${mayniklas}/modules/zsh"
 
     # Modules
     ../../modules/hosts
@@ -43,15 +43,21 @@ in {
     (import "${home-manager}/nixos")
   ];
 
-  mainUser = "chris";
-  mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
-
   # Get UUID from blkid /dev/sda2
   mayniklas = {
+    var.mainUser = "chris";
+    bluetooth.enable = true;
+    docker.enable = true;
     grub-luks = {
       enable = true;
       uuid = "6d09ef0e-d2ce-4c0a-845e-59dd32145d65";
     };
+    kde.enable = true;
+    locale.enable = true;
+    openssh.enable = true;
+    sound.enable = true;
+    yubikey.enable = true;
+    zsh.enable = true;
   };
 
   networking = { hostName = "flap"; };
@@ -60,9 +66,7 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
-  nonchris = {
-    common.enable = true;
-  };
+  nonchris = { common.enable = true; };
 
   home-manager.users.chris = { imports = [ ../../home-manager/home.nix ]; };
 
