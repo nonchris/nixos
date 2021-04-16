@@ -14,8 +14,6 @@
     # Containers
     #    ../../modules/containers/certificate_bot.nix
 
-    # home-manager
-    (import "${home-manager}/nixos")
   ];
 
   home-manager.users.chris = {

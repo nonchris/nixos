@@ -14,8 +14,6 @@
     ../../modules/hosts
     ../../modules/networking
 
-    # home-manager
-    (import "${home-manager}/nixos")
   ];
 
   # Get UUID from blkid /dev/sda2
