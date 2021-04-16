@@ -1,19 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, ... }:
-
-let
-  mayniklas = builtins.fetchGit {
-    # Updated 2020-04-16
-    url = "https://github.com/mayniklas/nixos";
-    rev = "2710a8adf4e74f3d2e396aae5b3259612ae91766";
-  };
-  home-manager = builtins.fetchGit {
-    url = "https://github.com/nix-community/home-manager.git";
-    ref = "master";
-  };
-in {
+{ config, pkgs, ... }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -22,23 +10,9 @@ in {
     ../../users/chris.nix
     ../../users/root.nix
 
-    # Modules imported from MayNiklas
-    "${mayniklas}/modules/bluetooth"
-    "${mayniklas}/modules/docker"
-    "${mayniklas}/modules/grub-luks"
-    "${mayniklas}/modules/kde"
-    "${mayniklas}/modules/locale"
-    "${mayniklas}/modules/nvidia"
-    "${mayniklas}/modules/openssh"
-    "${mayniklas}/modules/options"
-    "${mayniklas}/modules/sound"
-    "${mayniklas}/modules/yubikey"
-    "${mayniklas}/modules/zsh"
-
     # Modules
     ../../modules/hosts
     ../../modules/networking
-    ../../modules/nix-common
 
     # home-manager
     (import "${home-manager}/nixos")
@@ -68,9 +42,7 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [ bash-completion git nixfmt wget ];
 
-  nonchris = {
-    common.enable = true;
-  };
+  nonchris = { common.enable = true; };
 
   home-manager.users.chris = { imports = [ ../../home-manager/home.nix ]; };
 

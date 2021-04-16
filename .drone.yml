@@ -1,39 +1,48 @@
+---
 kind: pipeline
 type: exec
-name: Build all Hosts
+name: Build all hosts
 
 platform:
   os: linux
   arch: amd64
 
+clone:
+  depth: 1
+
 steps:
-- name: Build desktop
-  environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
-  commands:
-  - nix-shell -p '(nixos{}).nixos-rebuild' --run "nixos-rebuild build -I nixos-config=./machines/desktop/configuration.nix  -v"
 
-- name: Build flap
-  environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
+- name: Show flake info
   commands:
-  - nix-shell -p '(nixos{}).nixos-rebuild' --run "nixos-rebuild build -I nixos-config=./machines/flap/configuration.nix  -v"
+  - nix --experimental-features "nix-command flakes" flake show
+  - nix --experimental-features "nix-command flakes" flake metadata
+  - nix --experimental-features "nix-command flakes" flake check
 
-- name: Build rick
-  environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
+- name: Run flake checks
   commands:
-  - nix-shell -p '(nixos{}).nixos-rebuild' --run "nixos-rebuild build -I nixos-config=./machines/rick/configuration.nix  -v"
+  - nix --experimental-features "nix-command flakes" flake check --show-trace
 
 - name: Build mobi
-  environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
   commands:
-  - nix-shell -p '(nixos{}).nixos-rebuild' --run "nixos-rebuild build -I nixos-config=./machines/mobi/configuration.nix  -v"
+  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel'
+
+- name: Build rick
+  commands:
+  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel'
+
+- name: Build desktop
+  commands:
+  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel'
+
+- name: Build flap
+  commands:
+  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel'
 
 trigger:
   branch:
   - main
+  - update-flake
   event:
   - push
+  - pull_request
   - cron

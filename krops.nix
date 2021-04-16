@@ -3,61 +3,53 @@
 
 let
 
-  krops = (import <nixpkgs> { }).fetchgit {
-    url = "https://cgit.krebsco.de/krops/";
-    rev = "v1.17.0";
-    sha256 = "150jlz0hlb3ngf9a1c9xgcwzz1zz8v2lfgnzw08l3ajlaaai8smd";
-  };
-
+  # Basic krops setup
+  krops = builtins.fetchGit { url = "https://cgit.krebsco.de/krops/"; };
   lib = import "${krops}/lib";
   pkgs = import "${krops}/pkgs" { };
 
   source = name:
     lib.evalSource [{
-      nixos-config.symlink =
-        "machine-config/machines/${name}/configuration.nix";
 
-      # Copy repository to /var/src
+      # Copy over the whole repo. By default nixos-rebuild will use the
+      # currents system hostname to lookup the right nixos configuration in
+      # `nixosConfigurations` from flake.nix
       machine-config.file = toString ./.;
     }];
 
-  desktop = pkgs.krops.writeDeploy "desktop" {
-    source = source "desktop";
-    target = "root@nixos";
-  };
-  
-  flap = pkgs.krops.writeDeploy "flap" {
-    source = source "flap";
-    target = "root@flap";
-  };
-  
-  rick = pkgs.krops.writeDeploy "rick" {
-    source = source "rick";
-    target = "root@rick";
-  };
-  
-  mobi = pkgs.krops.writeDeploy "mobi" {
-    source = source "mobi";
-    target = "root@mobi";
-  };
+  command = targetPath: ''
+    nix-shell -p git --run '
+      nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config || \
+        nixos-rebuild switch -v --show-trace --flake ${targetPath}/machine-config
+    '
+  '';
 
+  # Convenience function to define machines with connection parameters and
+  # configuration source
+  createHost = name: target:
+    pkgs.krops.writeCommand "deploy-${name}" {
+      inherit command;
+      source = source name;
+      target = target;
+    };
 
-in {
+in rec {
 
-  # nix-build ./krops.nix -A desktop && ./result -j12
-  desktop = desktop;
+  # Define deployments
 
-  # nix-build ./krops.nix -A flap && ./result -j4
-  flap = flap;
+  # Run with (e.g.):
+  # nix-build ./krops.nix -A all && ./result
 
-  # nix-build ./krops.nix -A rick && ./result -j4
-  rick = rick;
+  # Individual machines
+  desktop = createHost "desktop" "root@nixos";
+  flap = createHost "flap" "root@flap";
+  rick = createHost "rick" "root@rick";
+  mobi = createHost "mobi" "root@mobi";
 
-  # nix-build ./krops.nix -A vps && ./result
-  mobi = mobi;
+  # Groups
+  all = pkgs.writeScript "deploy-all"
+    (lib.concatStringsSep "\n" [ desktop flap rick mobi ]);
 
-  # nix-build ./krops.nix -A all && ./result -j12
-  all = pkgs.writeScript "deploy-all-servers"
-    (lib.concatStringsSep "\n" [ desktop rick mobi ]);
-
+  servers =
+    pkgs.writeScript "deploy-servers" (lib.concatStringsSep "\n" [ rick mobi ]);
 }

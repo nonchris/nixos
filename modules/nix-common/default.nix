@@ -11,6 +11,11 @@ in {
 
     nix = {
 
+      package = pkgs.nixFlakes;
+      extraOptions = ''
+        experimental-features = nix-command flakes ca-references
+      '';
+
       binaryCachePublicKeys =
         [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
       binaryCaches =
