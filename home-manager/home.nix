@@ -13,11 +13,9 @@
 
   # Imports
   imports = [
-    # imports from MayNiklas
-    "${mayniklas}/modules/chromium.nix"
-    
     # imports
     ./modules/alacritty.nix
+    ./modules/chromium.nix
     ./modules/firefox.nix
     ./modules/git.nix
     ./modules/jetbrains.nix
