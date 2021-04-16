@@ -36,9 +36,6 @@ in {
     (import "${home-manager}/nixos")
   ];
 
-  mainUser = "chris";
-  mainUserHome = "${config.users.extraUsers.${config.mainUser}.home}";
-
   home-manager.users.chris = { imports = [ ../../home-manager/home-server.nix ]; };
 
   networking = { hostName = "mobi"; };
@@ -50,6 +47,7 @@ in {
   };
 
   mayniklas = {
+    var.mainUser = "chris";
     docker.enable = true;
     locale.enable = true;
     openssh.enable = true;
