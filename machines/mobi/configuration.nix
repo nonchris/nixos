@@ -17,9 +17,9 @@
 
   ];
 
-  # home-manager.users.chris = {
-  #   imports = [ ../../home-manager/home-server.nix ];
-  # };
+  home-manager.users.chris = {
+    imports = [ ../../home-manager/home-server.nix ];
+  };
 
   networking = { hostName = "rick"; };
 
