@@ -41,7 +41,7 @@ in rec {
   # nix-build ./krops.nix -A all && ./result
 
   # Individual machines
-  desktop = createHost "desktop" "root@nixos";
+  desktop = createHost "desktop" "root@desktop";
   flap = createHost "flap" "root@flap";
   rick = createHost "rick" "root@rick";
   mobi = createHost "mobi" "root@mobi";
