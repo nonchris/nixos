@@ -31,7 +31,7 @@
     zsh.enable = true;
   };
 
-  networking = { hostName = "nixos"; };
+  networking = { hostName = "desktop"; };
 
   environment.systemPackages = with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [ bash-completion git nixfmt wget ];
 
