@@ -27,6 +27,7 @@
     _1password-gui
     atom
     discord
+    dotnet-sdk_5
     gcc
     gccStdenv
     htop
