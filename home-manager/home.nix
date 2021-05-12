@@ -32,25 +32,35 @@
     gccStdenv
     htop
     hugo
+#    linuxPackages.v4l2loopback
     maven
+    mono
     mpv
     ncurses
     nvtop
     obs-studio
+#    obs-v4l2sink
+    omnisharp-roslyn
+    okular
+    postman
     pstree
     python3
+#    python38Packages.ipykernel
     ruby
     signal-desktop
     spotify
     sublime-merge
     sublime3
     tdesktop
+    texstudio
+    texlive.combined.scheme-full
     thunderbird
     unzip
     vim
     vlc
     whois
     youtube-dl
+    zip
   ];
 
   # This value determines the Home Manager release that your
