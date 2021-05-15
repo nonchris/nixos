@@ -9,6 +9,7 @@
 
     mayniklas.url = "github:mayniklas/nixos";
     mayniklas.inputs.nixpkgs.follows = "nixpkgs";
+    mayniklas.inputs.home-manager.follows = "home-manager";
 
   };
 
