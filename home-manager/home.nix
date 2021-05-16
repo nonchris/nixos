@@ -25,10 +25,13 @@
   home.packages = with pkgs; [
     _1password-gui
     atom
+    cargo
     discord
     dotnet-sdk_5
     gcc
     gccStdenv
+    gradle
+    gnuplot
     htop
     hugo
     #    linuxPackages.v4l2loopback
@@ -46,6 +49,7 @@
     python3
     #    python38Packages.ipykernel
     ruby
+    rustc
     signal-desktop
     spotify
     sublime-merge
