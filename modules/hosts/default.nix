@@ -13,11 +13,13 @@ in {
         #
         192.168.88.1 unifi
         192.168.88.17 rick
+        192.168.88.150 flap
         192.168.5.15 vsphere
 
         # home
         192.168.88.1 unifi.home
         192.168.88.17 rick.home
+        192.168.88.150 flap.home
         # local
         192.168.5.15 vsphere.local
         # external
