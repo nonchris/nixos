@@ -13,12 +13,7 @@
   nixpkgs.config = { allowUnfree = true; };
 
   # Install these packages for my user
-  home.packages = with pkgs; [
-    htop
-    iperf3
-    nmap
-    unzip
-  ];
+  home.packages = with pkgs; [ htop iperf3 nmap unzip ];
 
   # Imports
   imports = [ ./modules/git.nix ./modules/zsh.nix ];

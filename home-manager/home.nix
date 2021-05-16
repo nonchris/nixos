@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -32,20 +31,20 @@
     gccStdenv
     htop
     hugo
-#    linuxPackages.v4l2loopback
+    #    linuxPackages.v4l2loopback
     maven
     mono
     mpv
     ncurses
     nvtop
     obs-studio
-#    obs-v4l2sink
+    #    obs-v4l2sink
     omnisharp-roslyn
     okular
     postman
     pstree
     python3
-#    python38Packages.ipykernel
+    #    python38Packages.ipykernel
     ruby
     signal-desktop
     spotify
