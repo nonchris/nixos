@@ -7,9 +7,10 @@
       ms-dotnettools.csharp
       ms-python.python
       ms-vscode.cpptools
-#      ms-vsliveshare.vsliveshare
-      vscodevim.vim
+      ms-vsliveshare.vsliveshare
+      #      vscodevim.vim
       james-yu.latex-workshop
+      zhuangtongfa.material-theme
     ];
   };
 }
