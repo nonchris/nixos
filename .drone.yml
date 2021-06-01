@@ -40,6 +40,7 @@ steps:
 
 trigger:
   branch:
+  - nixos-21.05
   - main
   - update-flake
   event:
@@ -97,6 +98,7 @@ steps:
 
 trigger:
   branch:
+  - nixos-21.05
   - main
   event:
   - push
