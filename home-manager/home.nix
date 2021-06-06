@@ -63,6 +63,7 @@
     whois
     youtube-dl
     zip
+    zoom-us
   ];
 
   # This value determines the Home Manager release that your
