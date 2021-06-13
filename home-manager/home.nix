@@ -24,6 +24,7 @@
 
   home.packages = with pkgs; [
     _1password-gui
+    ansible
     atom
     cargo
     discord
@@ -32,6 +33,7 @@
     gccStdenv
     gradle
     gnuplot
+    gparted
     htop
     hugo
     #    linuxPackages.v4l2loopback
