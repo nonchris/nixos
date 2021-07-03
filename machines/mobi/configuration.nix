@@ -9,7 +9,6 @@
 
     # Containers
     ../../modules/containers/certificate_bot.nix
-    ../../modules/containers/util-bot.nix
     ../../modules/containers/discord-fury.nix
 
   ];
