@@ -5,12 +5,19 @@ in {
 
   options.nonchris.discord-fury = {
     enable = mkEnableOption "activate discord-fury";
+    version = mkOption {
+      type = types.str;
+      default = "2.0.0";
+      description = ''
+        Version of docker image
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
     virtualisation.oci-containers.containers.discord-fury_app = {
       autoStart = true;
-      image = "nonchris/discord-fury:2.0.0";
+      image = "nonchris/discord-fury:${cfg.port}";
       environment = {
         UID = "1000";
         GID = "1000";
