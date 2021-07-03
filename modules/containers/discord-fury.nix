@@ -25,6 +25,7 @@ in {
     virtualisation.oci-containers.containers.discord-fury_app = {
       autoStart = true;
       image = "nonchris/discord-fury:${cfg.version}";
+      dependsOn = [ "discord-fury_db" ];
       environment = {
         UID = "1000";
         GID = "1000";
