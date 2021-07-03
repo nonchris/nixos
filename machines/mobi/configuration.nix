@@ -10,6 +10,7 @@
     # Containers
     ../../modules/containers/certificate_bot.nix
     ../../modules/containers/util-bot.nix
+    ../../modules/discord-fury.nix
 
   ];
 
@@ -23,6 +24,7 @@
 
   nonchris = {
     common.enable = true;
+    discord-fury.enable = true;
   };
 
   mayniklas = {
