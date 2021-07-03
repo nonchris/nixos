@@ -10,7 +10,7 @@
     # Containers
     ../../modules/containers/certificate_bot.nix
     ../../modules/containers/util-bot.nix
-    ../../modules/discord-fury.nix
+    ../../modules/containers/discord-fury.nix
 
   ];
 
