@@ -23,7 +23,10 @@
 
   nonchris = {
     common.enable = true;
-    discord-fury.enable = true;
+    discord-fury = {
+      enable = true;
+      version = "2.0.0";
+    };
   };
 
   mayniklas = {
