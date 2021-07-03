@@ -12,6 +12,13 @@ in {
         Version of docker image
       '';
     };
+    timezone = mkOption {
+      type = types.str;
+      default = "Europe/Berlin";
+      description = ''
+        Set timezone
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
@@ -21,6 +28,7 @@ in {
       environment = {
         UID = "1000";
         GID = "1000";
+        TZ = "${cfg.timezone}";
       };
       extraOptions = [
         "--env-file=/docker/discord-fury/envfile"
