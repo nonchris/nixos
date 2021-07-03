@@ -17,7 +17,7 @@ in {
   config = mkIf cfg.enable {
     virtualisation.oci-containers.containers.discord-fury_app = {
       autoStart = true;
-      image = "nonchris/discord-fury:${cfg.port}";
+      image = "nonchris/discord-fury:${cfg.version}";
       environment = {
         UID = "1000";
         GID = "1000";
