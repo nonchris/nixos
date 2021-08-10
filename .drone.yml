@@ -61,6 +61,17 @@ clone:
 
 steps:
 
+- name: create result-old files
+  commands:
+  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result mobi-old
+  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result rick-old
+  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result desktop-old
+  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - mv result flap-old
+
 - name: flake update
   commands:
   - nix --experimental-features "nix-command flakes" flake update --inputs-from nixpkgs
@@ -82,18 +93,29 @@ steps:
 - name: Build mobi
   commands:
   - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel'
+  - mv result mobi-new
 
 - name: Build rick
   commands:
   - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel'
+  - mv result rick-new
 
 - name: Build desktop
   commands:
   - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel'
+  - mv result desktop-new
 
 - name: Build flap
   commands:
   - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel'
+  - mv result flap-new
+
+- name: Print report
+  commands:
+  - echo "mobi:" && nix store diff-closures $(readlink -f mobi-old) $(readlink -f mobi-new)
+  - echo "rick:" && nix store diff-closures $(readlink -f rick-old) $(readlink -f rick-new)
+  - echo "desktop:" && nix store diff-closures $(readlink -f desktop-old) $(readlink -f desktop-new)
+  - echo "flap:" && nix store diff-closures $(readlink -f flap-old) $(readlink -f flap-new)
 
 trigger:
   branch:
