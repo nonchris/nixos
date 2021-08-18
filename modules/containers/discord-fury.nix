@@ -34,6 +34,7 @@ in {
       extraOptions = [
         "--env-file=/docker/discord-fury/envfile"
         "--network=discord-fury-br"
+        "-t"
       ];
       volumes = [ "/docker/discord-fury/data/app:/app/data" ];
     };
