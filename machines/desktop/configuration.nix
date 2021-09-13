@@ -24,6 +24,10 @@
     };
     kde.enable = true;
     locale.enable = true;
+    metrics = {
+      node.enable = true;
+      blackbox.enable = true;
+    };
     nvidia.enable = true;
     openssh.enable = true;
     sound.enable = true;
@@ -31,7 +35,10 @@
     zsh.enable = true;
   };
 
-  networking = { hostName = "desktop"; };
+  networking = {
+    hostName = "desktop";
+    firewall = { allowedTCPPorts = [ 9100 9115 ]; };
+  };
 
   environment.systemPackages =
     with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [
