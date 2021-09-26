@@ -2,7 +2,9 @@
   description = "A very basic flake";
 
   inputs = {
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager/release-21.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -19,8 +21,15 @@
       # Function to create defult (common) system config options
       defFlakeSystem = systemArch: baseCfg:
         nixpkgs.lib.nixosSystem {
+
           system = "${systemArch}";
           modules = [
+
+            # Make inputs and overlay accessible as module parameters
+            { _module.args.inputs = inputs; }
+            { _module.args.self-overlay = self.overlay; }
+            { _module.args.overlay-unstable = self.overlay-unstable; }
+
             # Add home-manager option to all configs
             ({ ... }: {
               imports = builtins.attrValues self.nixosModules
@@ -34,6 +43,7 @@
                     # and root e.g. `nix-channel --remove nixos`. `nix-channel
                     # --list` should be empty for all users afterwards
                     nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+                    nixpkgs.overlays = [ self.overlay self.overlay-unstable ];
                   }
                   baseCfg
                   home-manager.nixosModules.home-manager
@@ -51,6 +61,16 @@
         };
 
     in {
+
+      # Expose overlay to flake outputs, to allow using it from other flakes.
+      overlay = final: prev: (import ./overlays) final prev;
+
+      overlay-unstable = final: prev: {
+        unstable = import nixpkgs-unstable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+      };
 
       nixosModules = {
         # modules

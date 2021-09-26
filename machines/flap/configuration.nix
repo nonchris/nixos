@@ -48,7 +48,12 @@
     networking.enable = true;
   };
 
-  home-manager.users.chris = { imports = [ ../../home-manager/home.nix ]; };
+  home-manager.users.chris = {
+    imports = [
+      ../../home-manager/home.nix
+      { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
