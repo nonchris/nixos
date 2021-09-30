@@ -40,6 +40,7 @@
       enable = true;
       version = "2.1.2";
     };
+    verification-listener-vk.enable = true;
   };
 
   mayniklas = {
