@@ -13,6 +13,7 @@
     ../../modules/containers/sheriffs-bot.nix
     ../../modules/containers/verification-listener.nix
     ../../modules/containers/verification-listener-uni-bonn-connect.nix
+    ../../modules/containers/verification-listener-vk.nix
 
   ];
 
