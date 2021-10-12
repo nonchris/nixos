@@ -38,7 +38,7 @@
     common.enable = true;
     discord-fury = {
       enable = true;
-      version = "2.1.2";
+      version = "2.1.3";
     };
     verification-listener-vk.enable = true;
   };
