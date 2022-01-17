@@ -10,6 +10,7 @@
     # Containers
     ../../modules/containers/certificate_bot.nix
     ../../modules/containers/discord-fury.nix
+    ../../modules/containers/frinder.nix
     ../../modules/containers/sheriffs-bot.nix
     ../../modules/containers/verification-listener.nix
     ../../modules/containers/verification-listener-uni-bonn-connect.nix
