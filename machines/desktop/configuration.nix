@@ -27,6 +27,7 @@
     metrics = {
       node.enable = true;
       blackbox.enable = true;
+      flake.enable = true;
     };
     nvidia.enable = true;
     openssh.enable = true;
