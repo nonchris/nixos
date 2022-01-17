@@ -33,7 +33,7 @@
     dotnet-sdk_5
     gcc
     gccStdenv
-    gradle
+    gradle_6
     gnuplot
     gparted
     htop
