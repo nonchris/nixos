@@ -41,7 +41,6 @@ steps:
 trigger:
   branch:
   - main
-  - update-flake
   event:
   - push
   - pull_request
@@ -123,7 +122,6 @@ trigger:
   event:
   - push
   - pull_request
-  - cron
 
 ---
 kind: pipeline
@@ -159,7 +157,6 @@ trigger:
   - main
   event:
   - push
-  - cron
 
 ---
 kind: pipeline
