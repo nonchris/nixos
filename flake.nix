@@ -28,7 +28,9 @@
             # Make inputs and overlay accessible as module parameters
             { _module.args.inputs = inputs; }
             { _module.args.self-overlay = self.overlay; }
-            { _module.args.overlay-unstable = self.overlay-unstable; }
+            {
+              _module.args.overlay-unstable = self.overlay-unstable;
+            }
 
             # Add home-manager option to all configs
             ({ ... }: {
