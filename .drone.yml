@@ -24,19 +24,19 @@ steps:
 
 - name: Build mobi
   commands:
-  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: Build rick
   commands:
-  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: Build desktop
   commands:
-  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 - name: Build flap
   commands:
-  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
 
 trigger:
   branch:
@@ -62,13 +62,13 @@ steps:
 
 - name: create result-old files
   commands:
-  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result mobi-old
-  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result rick-old
-  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result desktop-old
-  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel' --option binary-caches "https://cache.nixos.org"
+  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result flap-old
 
 - name: flake update
@@ -91,22 +91,22 @@ steps:
 
 - name: Build mobi
   commands:
-  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result mobi-new
 
 - name: Build rick
   commands:
-  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result rick-new
 
 - name: Build desktop
   commands:
-  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result desktop-new
 
 - name: Build flap
   commands:
-  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel'
+  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
   - mv result flap-new
 
 - name: Print report
