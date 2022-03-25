@@ -1,0 +1,64 @@
+---
+kind: pipeline
+type: exec
+name: flake info
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: show flake info
+  commands:
+  - nix --experimental-features "nix-command flakes" flake show
+  - nix --experimental-features "nix-command flakes" flake metadata
+
+- name: run flake checks
+  commands:
+  - nix --experimental-features "nix-command flakes" flake check --show-trace
+{{#hosts}}
+
+---
+kind: pipeline
+type: exec
+name: build {{name}}
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: build {{name}}
+  commands:
+  - nix build -v '.#nixosConfigurations.{{name}}.config.system.build.toplevel'
+
+- name: show closure size
+  commands:
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: upload {{name}} to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
+
+trigger:
+  branch:
+  - main
+  - update-flake
+  event:
+  - cron
+  - push
+  - pull_request
+{{/hosts}}

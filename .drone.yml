@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: exec
-name: Build all hosts
+name: flake info
 
 platform:
   os: linux
@@ -12,44 +12,19 @@ clone:
 
 steps:
 
-- name: Show flake info
+- name: show flake info
   commands:
   - nix --experimental-features "nix-command flakes" flake show
   - nix --experimental-features "nix-command flakes" flake metadata
-  - nix --experimental-features "nix-command flakes" flake check
 
-- name: Run flake checks
+- name: run flake checks
   commands:
   - nix --experimental-features "nix-command flakes" flake check --show-trace
-
-- name: Build mobi
-  commands:
-  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: Build rick
-  commands:
-  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: Build desktop
-  commands:
-  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-- name: Build flap
-  commands:
-  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-
-trigger:
-  branch:
-  - main
-  event:
-  - push
-  - pull_request
-  - cron
 
 ---
 kind: pipeline
 type: exec
-name: flake update
+name: build desktop
 
 platform:
   os: linux
@@ -60,143 +35,148 @@ clone:
 
 steps:
 
-- name: create result-old files
+- name: build desktop
   commands:
-  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result mobi-old
-  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result rick-old
-  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result desktop-old
-  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result flap-old
+  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel'
 
-- name: flake update
+- name: show closure size
   commands:
-  - nix --experimental-features "nix-command flakes" flake update --inputs-from nixpkgs
-  
-- name: Show git diff
-  commands:
-  - git diff
+  - nix path-info --closure-size -h $(readlink -f result)
 
-- name: Show flake info
+- name: upload desktop to binary cache via s3
   commands:
-  - nix --experimental-features "nix-command flakes" flake show
-  - nix --experimental-features "nix-command flakes" flake metadata
-  - nix --experimental-features "nix-command flakes" flake check
-
-- name: Run flake checks
-  commands:
-  - nix --experimental-features "nix-command flakes" flake check --show-trace
-
-- name: Build mobi
-  commands:
-  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result mobi-new
-
-- name: Build rick
-  commands:
-  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result rick-new
-
-- name: Build desktop
-  commands:
-  - nix build -v '.#nixosConfigurations.desktop.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result desktop-new
-
-- name: Build flap
-  commands:
-  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel' --option binary-caches "https://cache.lounge.rocks https://cache.nixos.org"
-  - mv result flap-new
-
-- name: Print report
-  commands:
-  - echo "mobi:" && nix store diff-closures $(readlink -f mobi-old) $(readlink -f mobi-new)
-  - echo "rick:" && nix store diff-closures $(readlink -f rick-old) $(readlink -f rick-new)
-  - echo "desktop:" && nix store diff-closures $(readlink -f desktop-old) $(readlink -f desktop-new)
-  - echo "flap:" && nix store diff-closures $(readlink -f flap-old) $(readlink -f flap-new)
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 trigger:
   branch:
   - main
+  - update-flake
   event:
+  - cron
   - push
   - pull_request
 
 ---
 kind: pipeline
-name: push flake update
-type: docker
+type: exec
+name: build flap
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
 
 steps:
-- name: Update flake.lock
-  image: nixpkgs/nix-flakes
-  commands:
-  - nix flake update --inputs-from nixpkgs
-  - nix flake show
-  - nix flake metadata
-  - nix flake check
-  - nix flake check --show-trace
-  environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
 
-- name: Push updated flake.lock
-  image: appleboy/drone-git-push
-  settings:
-    branch: update-flake
-    remote: git@github.com:nonchris/nixos.git
-    force: true
-    commit: true
-    force: true
-    commit_message: "❄️ Update flake.lock"
-    ssh_key:
-      from_secret: deploy_key
+- name: build flap
+  commands:
+  - nix build -v '.#nixosConfigurations.flap.config.system.build.toplevel'
+
+- name: show closure size
+  commands:
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: upload flap to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 trigger:
   branch:
   - main
+  - update-flake
   event:
+  - cron
   - push
+  - pull_request
 
 ---
 kind: pipeline
-name: nixfmt
-type: docker
+type: exec
+name: build mobi
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
 
 steps:
-- name: nixfmt
-  image: nixpkgs/nix-flakes
-  commands:
-  - nix-shell -p nixfmt --command "nixfmt *.nix"
-  - nix-shell -p nixfmt --command "nixfmt home-manager/*.nix"
-  - nix-shell -p nixfmt --command "nixfmt home-manager/*/*.nix"
-  - nix-shell -p nixfmt --command "nixfmt machines/*/*.nix"
-  - nix-shell -p nixfmt --command "nixfmt modules/*/*.nix"
-  - nix-shell -p nixfmt --command "nixfmt users/*.nix"
-  environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
 
-- name: git diff
-  image: nixpkgs/nix-flakes
+- name: build mobi
   commands:
-  - git diff
-  environment:
-    NIX_PATH: nixpkgs=channel:nixos-unstable
+  - nix build -v '.#nixosConfigurations.mobi.config.system.build.toplevel'
 
-- name: Push updated flake.lock
-  image: appleboy/drone-git-push
-  settings:
-    branch: nixfmt
-    remote: git@github.com:nonchris/nixos.git
-    force: true
-    commit: true
-    force: true
-    commit_message: "nixfmt */*.nix"
-    ssh_key:
-      from_secret: deploy_key
+- name: show closure size
+  commands:
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: upload mobi to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
 
 trigger:
   branch:
   - main
+  - update-flake
   event:
+  - cron
   - push
+  - pull_request
+
+---
+kind: pipeline
+type: exec
+name: build rick
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: build rick
+  commands:
+  - nix build -v '.#nixosConfigurations.rick.config.system.build.toplevel'
+
+- name: show closure size
+  commands:
+  - nix path-info --closure-size -h $(readlink -f result)
+
+- name: upload rick to binary cache via s3
+  commands:
+  - nix copy --to 's3://example-nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: aws_key
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: aws_secret
+
+trigger:
+  branch:
+  - main
+  - update-flake
+  event:
+  - cron
+  - push
+  - pull_request

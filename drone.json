@@ -1,0 +1,16 @@
+{
+    "hosts": [
+        {
+            "name": "desktop"
+        },
+        {
+            "name": "flap"
+        },
+        {
+            "name": "mobi"
+        },
+        {
+            "name": "rick"
+        }
+    ]
+}
