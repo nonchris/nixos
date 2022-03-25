@@ -20,12 +20,11 @@ steps:
 - name: run flake checks
   commands:
   - nix --experimental-features "nix-command flakes" flake check --show-trace
-{{#hosts}}
 
 ---
 kind: pipeline
 type: exec
-name: build {{name}}
+name: build amd64 hosts
 
 platform:
   os: linux
@@ -36,14 +35,19 @@ clone:
 
 steps:
 
+{{#hosts}}
 - name: build {{name}}
   commands:
   - nix build -v '.#nixosConfigurations.{{name}}.config.system.build.toplevel'
 
-- name: show closure size
+{{/hosts}}
+{{#hosts}}
+- name: build {{name}} for upload
+  commands:
+  - nix build -v '.#nixosConfigurations.{{name}}.config.system.build.toplevel'
+- name: show closure size {{name}}
   commands:
   - nix path-info --closure-size -h $(readlink -f result)
-
 - name: upload {{name}} to binary cache via s3
   commands:
   - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L
@@ -53,6 +57,7 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: aws_secret
 
+{{/hosts}}
 trigger:
   branch:
   - main
@@ -61,4 +66,3 @@ trigger:
   - cron
   - push
   - pull_request
-{{/hosts}}
