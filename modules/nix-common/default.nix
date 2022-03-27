@@ -3,7 +3,10 @@ with lib;
 let cfg = config.nonchris.common;
 in {
 
-  options.nonchris.common = { enable = mkEnableOption "activate nix-common"; };
+  options.nonchris.common = {
+    enable = mkEnableOption "activate nix-common";
+    disable-cache = mkEnableOption "not use binary-cache";
+  };
 
   config = mkIf cfg.enable {
 
@@ -15,12 +18,18 @@ in {
         experimental-features = nix-command flakes ca-references
       '';
 
-      # binaryCachePublicKeys =
-      #   [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
-      # binaryCaches =
-      #   [ "https://cache.nixos.org" "https://cache.lounge.rocks?priority=50" ];
-      # trustedBinaryCaches =
-      #   [ "https://cache.nixos.org" "https://cache.lounge.rocks" ];
+      binaryCachePublicKeys = mkIf (cfg.disable-cache != true)
+        [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
+      binaryCaches = mkIf (cfg.disable-cache != true) [
+        "https://cache.nixos.org"
+        "https://cache.lounge.rocks?priority=100"
+        "https://s3.lounge.rocks/nix-cache?priority=50"
+      ];
+      trustedBinaryCaches = mkIf (cfg.disable-cache != true) [
+        "https://cache.nixos.org"
+        "https://cache.lounge.rocks"
+        "https://s3.lounge.rocks/nix-cache/"
+      ];
 
       # Save space by hardlinking store files
       autoOptimiseStore = true;
