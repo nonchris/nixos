@@ -37,66 +37,27 @@ steps:
 
 - name: build desktop
   commands:
-  - nix build '.#nixosConfigurations.desktop.config.system.build.toplevel'
-- name: show closure size desktop
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
-  - mv result result-desktop
+  - nix build '.#nixosConfigurations.desktop.config.system.build.toplevel' --out-link result-desktop
+  - nix path-info --closure-size -h $(readlink -f result-desktop)
 
 - name: build flap
   commands:
-  - nix build '.#nixosConfigurations.flap.config.system.build.toplevel'
-- name: show closure size flap
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
-  - mv result result-flap
+  - nix build '.#nixosConfigurations.flap.config.system.build.toplevel' --out-link result-flap
+  - nix path-info --closure-size -h $(readlink -f result-flap)
 
 - name: build mobi
   commands:
-  - nix build '.#nixosConfigurations.mobi.config.system.build.toplevel'
-- name: show closure size mobi
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
-  - mv result result-mobi
+  - nix build '.#nixosConfigurations.mobi.config.system.build.toplevel' --out-link result-mobi
+  - nix path-info --closure-size -h $(readlink -f result-mobi)
 
 - name: build rick
   commands:
-  - nix build '.#nixosConfigurations.rick.config.system.build.toplevel'
-- name: show closure size rick
-  commands:
-  - nix path-info --closure-size -h $(readlink -f result)
-  - mv result result-rick
+  - nix build '.#nixosConfigurations.rick.config.system.build.toplevel' --out-link result-rick
+  - nix path-info --closure-size -h $(readlink -f result-rick)
 
-- name: upload desktop to binary cache via s3
+- name: upload to binary cache via s3
   commands:
-  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result-desktop/) -L
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-
-- name: upload flap to binary cache via s3
-  commands:
-  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result-flap/) -L
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-
-- name: upload mobi to binary cache via s3
-  commands:
-  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result-mobi/) -L
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
-
-- name: upload rick to binary cache via s3
-  commands:
-  - nix copy --to 's3://nix-cache?scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result-rick/) -L
+  - nix run 'github:lounge-rocks/the-lounge#s3uploader'
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -109,3 +70,5 @@ trigger:
   event:
   - cron
   - push
+  - pull_request
+

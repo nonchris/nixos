@@ -1,16 +1,22 @@
 {
     "hosts": [
         {
-            "name": "desktop"
-        },
-        {
-            "name": "flap"
-        },
-        {
-            "name": "mobi"
-        },
-        {
-            "name": "rick"
+            "arch": "amd64",
+            "machines": [
+                {
+                    "name": "desktop"
+                },
+                {
+                    "name": "flap"
+                },
+                {
+                    "name": "mobi"
+                },
+                {
+                    "name": "rick"
+                }
+            ]
         }
-    ]
+    ],
+    "packages": []
 }
