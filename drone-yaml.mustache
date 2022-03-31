@@ -1,4 +1,5 @@
 ---
+# nix run nixpkgs#mustache-go -- drone.json drone-yaml.mustache > .drone.yml
 kind: pipeline
 type: exec
 name: flake info
@@ -45,7 +46,7 @@ steps:
 {{/machines}}
 - name: upload to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader'
+  - nix run 'github:mayniklas/nixos'#s3uploader
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
@@ -90,7 +91,7 @@ steps:
 {{/apps}}
 - name: upload to binary cache via s3
   commands:
-  - nix run 'github:lounge-rocks/the-lounge#s3uploader'
+  - nix run 'github:mayniklas/nixos'#s3uploader
   environment:
     AWS_ACCESS_KEY_ID:
       from_secret: aws_key
