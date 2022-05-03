@@ -8,6 +8,7 @@
     ../../users/root.nix
 
     # Containers
+    ../../modules/containers/boulder-scraper.nix
     ../../modules/containers/certificate_bot.nix
     ../../modules/containers/discord-fury.nix
     ../../modules/containers/frinder.nix
@@ -42,6 +43,7 @@
       version = "2.1.3";
     };
     verification-listener-vk.enable = true;
+    boulder-scraper.enable = true;
   };
 
   mayniklas = {
