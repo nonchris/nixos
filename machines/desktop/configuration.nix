@@ -32,6 +32,7 @@
     nvidia.enable = true;
     openssh.enable = true;
     sound.enable = true;
+    virtualisation.enable = true;
     yubikey.enable = true;
     zsh.enable = true;
   };
@@ -49,6 +50,8 @@
       ncurses
       wget
     ];
+
+  services.openssh.forwardX11 = true;
 
   nonchris = {
     common.enable = true;
