@@ -19,7 +19,7 @@ in {
     services = {
       thelounge = {
         enable = true;
-        private = true;
+        public = false;
         port = cfg.port;
         extraConfig = { theme = "${cfg.theme}"; };
       };

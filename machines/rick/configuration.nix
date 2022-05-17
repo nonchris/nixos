@@ -12,13 +12,6 @@
 
   ];
 
-  home-manager.users.chris = {
-    imports = [
-      ../../home-manager/home-server.nix
-      { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
-    ];
-  };
-
   networking = { hostName = "rick"; };
 
   environment.systemPackages =
@@ -32,8 +25,9 @@
   nonchris = {
     common.enable = true;
     hosts.enable = true;
-    thelounge.enable = true;
     networking.enable = true;
+    thelounge.enable = true;
+    user.chris.home-manager.enable = true;
   };
 
   mayniklas = {

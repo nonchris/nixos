@@ -57,13 +57,7 @@
     common.enable = true;
     hosts.enable = true;
     networking.enable = true;
-  };
-
-  home-manager.users.chris = {
-    imports = [
-      ../../home-manager/home.nix
-      { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
-    ];
+    user.chris.home-manager.desktop = true;
   };
 
   # This value determines the NixOS release from which the default

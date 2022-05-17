@@ -19,13 +19,6 @@
 
   ];
 
-  home-manager.users.chris = {
-    imports = [
-      ../../home-manager/home-server.nix
-      { nixpkgs.overlays = [ self.overlay self.overlay-unstable ]; }
-    ];
-  };
-
   networking = { hostName = "mobi"; };
 
   environment.systemPackages =
@@ -37,13 +30,14 @@
     ];
 
   nonchris = {
+    boulder-scraper.enable = true;
     common.enable = true;
     discord-fury = {
       enable = true;
       version = "2.1.3";
     };
+    user.chris.home-manager.enable = true;
     verification-listener-vk.enable = true;
-    boulder-scraper.enable = true;
   };
 
   mayniklas = {
