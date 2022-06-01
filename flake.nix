@@ -24,7 +24,8 @@
   };
 
   outputs = { self, ... }@inputs:
-    with inputs; {
+    with inputs;
+    {
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
       # Flake inputs are passed to the overlay so that the packages defined in
@@ -48,27 +49,46 @@
       # Each subdirectory in ./machines is a host. Add them all to
       # nixosConfiguratons. Host configurations need a file called
       # configuration.nix that will be read first
-      nixosConfigurations = builtins.listToAttrs (map (x: {
-        name = x;
-        value = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = builtins.listToAttrs (map
+        (x: {
+          name = x;
+          value = nixpkgs.lib.nixosSystem {
 
-          # Make inputs and the flake itself accessible as module parameters.
-          # Technically, adding the inputs is redundant as they can be also
-          # accessed with flake-self.inputs.X, but adding them individually
-          # allows to only pass what is needed to each module.
-          specialArgs = { flake-self = self; } // inputs;
+            # Make inputs and the flake itself accessible as module parameters.
+            # Technically, adding the inputs is redundant as they can be also
+            # accessed with flake-self.inputs.X, but adding them individually
+            # allows to only pass what is needed to each module.
+            specialArgs = { flake-self = self; } // inputs;
 
-          system = "x86_64-linux";
+            system = "x86_64-linux";
 
-          modules = [
-            (./machines + "/${x}/configuration.nix")
-            {
-              imports = builtins.attrValues self.nixosModules
+            modules = [
+              (./machines + "/${x}/configuration.nix")
+              {
+                imports = builtins.attrValues self.nixosModules
                 ++ builtins.attrValues mayniklas.nixosModules;
-            }
-            { nixpkgs.overlays = [ self.overlays.default ]; }
-          ];
+              }
+              { nixpkgs.overlays = [ self.overlays.default ]; }
+            ];
+          };
+        })
+        (builtins.attrNames (builtins.readDir ./machines)));
+    }
+
+    //
+
+    # flake-utils is used for this part to make each package available for each
+    # system. This works as all packages are compatible with all architectures
+    (flake-utils.lib.eachSystem [ "aarch64-linux" "x86_64-linux" ]) (system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ self.overlays.default ];
+          config = { allowUnfree = true; };
         };
-      }) (builtins.attrNames (builtins.readDir ./machines)));
-    };
+      in
+      rec {
+        # Use nixpkgs-fmt for `nix fmt'
+        formatter = pkgs.nixpkgs-fmt;
+      });
 }
