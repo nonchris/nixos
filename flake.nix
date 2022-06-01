@@ -3,10 +3,12 @@
 
   inputs = {
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
 
-    home-manager.url = "github:nix-community/home-manager/release-21.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-22.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     mayniklas.url = "github:mayniklas/nixos";
     mayniklas.inputs.nixpkgs.follows = "nixpkgs";
