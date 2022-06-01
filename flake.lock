@@ -44,21 +44,38 @@
         "home-manager": [
           "home-manager"
         ],
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "shelly-prometheus-exporter": "shelly-prometheus-exporter"
       },
       "locked": {
-        "lastModified": 1652724261,
-        "narHash": "sha256-MWqHSZid3RK6B4UaxVE6xdYwwFDeKWffUzI4b0tsbjE=",
+        "lastModified": 1654076397,
+        "narHash": "sha256-XbiBqVQhz41/zowtrtu19KAXjkQurkSgC5RCMYo5ipg=",
         "owner": "mayniklas",
         "repo": "nixos",
-        "rev": "466a660b47be2b72b181b4153a16244197347a8d",
+        "rev": "e433ed41f7d52a451f67c108f0be4f5050498b34",
         "type": "github"
       },
       "original": {
         "owner": "mayniklas",
         "repo": "nixos",
+        "type": "github"
+      }
+    },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1653463224,
+        "narHash": "sha256-bUxKhqZhki2vPzFTl8HOo1m7pagF7WzY1MZiso8U5ws=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "39a7bfc496d2ddfce73fe9542af1f2029ba4fe39",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
         "type": "github"
       }
     },
@@ -84,6 +101,31 @@
         "home-manager": "home-manager",
         "mayniklas": "mayniklas",
         "nixpkgs": "nixpkgs"
+      }
+    },
+    "shelly-prometheus-exporter": {
+      "inputs": {
+        "flake-utils": [
+          "mayniklas",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "mayniklas",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1654012284,
+        "narHash": "sha256-f2eFvUE9YzCQKvsf/bWxI4TSga39jstTaZs3qKYFW8s=",
+        "owner": "MayNiklas",
+        "repo": "shelly-plug-s-prometheus-exporter",
+        "rev": "5777b0eabaa0d4baf7f52c8883a5862e47539a7d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MayNiklas",
+        "repo": "shelly-plug-s-prometheus-exporter",
+        "type": "github"
       }
     }
   },
