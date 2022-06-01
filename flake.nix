@@ -10,9 +10,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mayniklas.url = "github:mayniklas/nixos";
-    mayniklas.inputs.nixpkgs.follows = "nixpkgs";
-    mayniklas.inputs.home-manager.follows = "home-manager";
+    flake-utils.url = "github:numtide/flake-utils";
+
+    mayniklas = {
+      url = "github:mayniklas/nixos";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        flake-utils.follows = "flake-utils";
+      };
+    };
 
   };
 
