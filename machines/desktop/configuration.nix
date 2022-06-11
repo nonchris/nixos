@@ -25,9 +25,10 @@
     kde.enable = true;
     locale.enable = true;
     metrics = {
-      node.enable = true;
-      blackbox.enable = true;
-      flake.enable = true;
+      node = {
+        enable = true;
+        flake = true;
+      };
     };
     nvidia.enable = true;
     openssh.enable = true;
