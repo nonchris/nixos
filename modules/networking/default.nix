@@ -10,9 +10,6 @@ in {
   config = mkIf cfg.enable {
 
     networking = {
-      # Define the DNS servers
-      nameservers = [ "1.1.1.1" ];
-
       # Enable networkmanager
       networkmanager.enable = true;
     };

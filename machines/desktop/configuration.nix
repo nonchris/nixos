@@ -38,6 +38,31 @@
     zsh.enable = true;
   };
 
+  # Unbound is a validating, recursive, and caching DNS resolver.
+  # It won't use any noticable ressources.
+  # By using a DNS server running on the same host, 
+  # we gain a lot of performance compared to the old router!
+  #
+  # Unbound is really powerful and gives us a lot of control!
+  # It's only accessable to localhost.
+  # We use Cloudflare through HTTPS -> DNS sniffing / manipulation by the ISP won't be possible
+  #
+  services.unbound = {
+    enable = true;
+    settings = {
+      server = {
+        interface = [ "127.0.0.1" ];
+        access-control = [ "127.0.0.0/8 allow" ];
+      };
+      forward-zone = [{
+        name = ".";
+        forward-addr =
+          [ "1.1.1.1@853#cloudflare-dns.com" "1.0.0.1@853#cloudflare-dns.com" ];
+        forward-tls-upstream = "yes";
+      }];
+    };
+  };
+
   networking = {
     hostName = "desktop";
     firewall = { allowedTCPPorts = [ 9100 9115 ]; };
