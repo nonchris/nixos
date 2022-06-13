@@ -21,6 +21,14 @@
       };
     };
 
+    adblock-unbound = {
+      url = "github:MayNiklas/nixos-adblock-unbound";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
   };
 
   outputs = { self, ... }@inputs:

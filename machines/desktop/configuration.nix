@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ self, ... }:
+{ pkgs, adblock-unbound, ... }:
 
 {
   imports = [
@@ -51,6 +51,10 @@
     enable = true;
     settings = {
       server = {
+        # Adblocking!
+        # For reference: https://github.com/MayNiklas/nixos-adblock-unbound
+        # List being used: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+        include = [ "\"${adblock-unbound.packages.${pkgs.system}.unbound-adblockStevenBlack}\"" ];
         interface = [ "127.0.0.1" ];
         access-control = [ "127.0.0.0/8 allow" ];
       };
@@ -69,7 +73,7 @@
   };
 
   environment.systemPackages =
-    with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [
+    with pkgs; [
       bash-completion
       git
       nixfmt

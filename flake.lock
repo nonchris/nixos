@@ -1,5 +1,45 @@
 {
   "nodes": {
+    "adblock-unbound": {
+      "inputs": {
+        "adblockStevenBlack": "adblockStevenBlack",
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1655134585,
+        "narHash": "sha256-6xs7n7y2A/mrN8Y6Z/xYKbbzsmkW8P3bXdPo31MdjWk=",
+        "owner": "MayNiklas",
+        "repo": "nixos-adblock-unbound",
+        "rev": "adeeab00bc2b99c7ffb45b754650bbfcd2bc4f9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MayNiklas",
+        "repo": "nixos-adblock-unbound",
+        "type": "github"
+      }
+    },
+    "adblockStevenBlack": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1654831104,
+        "narHash": "sha256-qybp7aELcGKZjcPBR3ouXEoUgMKlfcxGecvCalMvT2w=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "11b8c3d9ac5b154ff4a5f5ff203b822e9fc27d11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1653893745,
@@ -97,6 +137,7 @@
     },
     "root": {
       "inputs": {
+        "adblock-unbound": "adblock-unbound",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "mayniklas": "mayniklas",
