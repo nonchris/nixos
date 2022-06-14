@@ -11,6 +11,7 @@ in {
     virtualisation.oci-containers.containers.mssr-role-bot = {
       autoStart = true;
       image = "discord-role-selection_role-selection";
+      extraOptions = [ "--env-file=/docker/discord-role-selection/envfile" ];
       volumes = [ "/docker/discord-role-selection/data:/app/data:rw" ];
     };
   };
