@@ -29,6 +29,14 @@
       };
     };
 
+    domain-check = {
+      url = "github:nonchris/domain-check";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
   };
 
   outputs = { self, ... }@inputs:
@@ -76,7 +84,7 @@
                 imports = builtins.attrValues self.nixosModules
                 ++ builtins.attrValues mayniklas.nixosModules;
               }
-              { nixpkgs.overlays = [ self.overlays.default ]; }
+              { nixpkgs.overlays = [ self.overlays.default mayniklas.overlays.mayniklas ]; }
             ];
           };
         })
@@ -91,7 +99,7 @@
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ self.overlays.default ];
+          overlays = [ self.overlays.default mayniklas.overlays.mayniklas ];
           config = { allowUnfree = true; };
         };
       in

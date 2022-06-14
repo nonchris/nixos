@@ -2,7 +2,8 @@
 with lib;
 let cfg = config.nonchris.user.chris.home-manager;
 
-in {
+in
+{
 
   options.nonchris.user.chris.home-manager = {
     desktop = mkEnableOption "activate desktop home-manager profile for chris";
@@ -67,6 +68,9 @@ in {
         youtube-dl
         zip
         zoom-us
+
+        #mayniklas
+        mayniklas.vs-fix
       ];
 
       # This value determines the Home Manager release that your

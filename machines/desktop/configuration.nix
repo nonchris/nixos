@@ -1,9 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, adblock-unbound, ... }:
+{ pkgs, config, adblock-unbound, domain-check, ... }:
 
 {
+
+  nixpkgs.overlays = [
+    (_self: _super: {
+      adblock = adblock-unbound.packages.${pkgs.system};
+      domain-check = domain-check.packages.${pkgs.system}.domain-check;
+    })
+  ];
+
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -54,7 +62,7 @@
         # Adblocking!
         # For reference: https://github.com/MayNiklas/nixos-adblock-unbound
         # List being used: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-        include = [ "\"${adblock-unbound.packages.${pkgs.system}.unbound-adblockStevenBlack}\"" ];
+        include = [ "\"${pkgs.adblock.unbound-adblockStevenBlack}\"" ];
         interface = [ "127.0.0.1" ];
         access-control = [ "127.0.0.0/8 allow" ];
       };
@@ -70,6 +78,13 @@
   networking = {
     hostName = "desktop";
     firewall = { allowedTCPPorts = [ 9100 9115 ]; };
+  };
+
+  home-manager.users.chris = {
+    home.packages = with pkgs;
+      [
+        domain-check
+      ];
   };
 
   environment.systemPackages =

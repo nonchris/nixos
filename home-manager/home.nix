@@ -27,7 +27,13 @@ in {
       nixpkgs.config = { allowUnfree = true; };
 
       # Install these packages for my user
-      home.packages = with pkgs; [ htop iperf3 nmap unzip ];
+      home.packages = with pkgs; [
+        htop
+        iperf3
+        nmap
+        unzip
+        mayniklas.vs-fix
+      ];
 
       # Imports
       imports = [ ./modules/git.nix ./modules/zsh.nix ];

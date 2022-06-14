@@ -24,6 +24,32 @@
         "type": "github"
       }
     },
+    "adblock-unbound_2": {
+      "inputs": {
+        "adblockStevenBlack": "adblockStevenBlack_2",
+        "flake-utils": [
+          "mayniklas",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "mayniklas",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1655134585,
+        "narHash": "sha256-6xs7n7y2A/mrN8Y6Z/xYKbbzsmkW8P3bXdPo31MdjWk=",
+        "owner": "MayNiklas",
+        "repo": "nixos-adblock-unbound",
+        "rev": "adeeab00bc2b99c7ffb45b754650bbfcd2bc4f9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MayNiklas",
+        "repo": "nixos-adblock-unbound",
+        "type": "github"
+      }
+    },
     "adblockStevenBlack": {
       "flake": false,
       "locked": {
@@ -37,6 +63,45 @@
       "original": {
         "owner": "StevenBlack",
         "repo": "hosts",
+        "type": "github"
+      }
+    },
+    "adblockStevenBlack_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1654831104,
+        "narHash": "sha256-qybp7aELcGKZjcPBR3ouXEoUgMKlfcxGecvCalMvT2w=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "11b8c3d9ac5b154ff4a5f5ff203b822e9fc27d11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "type": "github"
+      }
+    },
+    "domain-check": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1653941814,
+        "narHash": "sha256-vGMep7V7JYxYMrhD0ltq+26T5ziu8llp340ZJTiHnEs=",
+        "owner": "nonchris",
+        "repo": "domain-check",
+        "rev": "b19ea2ebadbcaff6671f7f6c83db6b409a4e182f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nonchris",
+        "repo": "domain-check",
         "type": "github"
       }
     },
@@ -78,6 +143,7 @@
     },
     "mayniklas": {
       "inputs": {
+        "adblock-unbound": "adblock-unbound_2",
         "flake-utils": [
           "flake-utils"
         ],
@@ -91,11 +157,11 @@
         "shelly-exporter": "shelly-exporter"
       },
       "locked": {
-        "lastModified": 1654938984,
-        "narHash": "sha256-K3/1EuY8FGLPF7GSlMQkL0xJINr9fWWccle4KKT9324=",
+        "lastModified": 1655198001,
+        "narHash": "sha256-zZZTy3Iu+wgS98c+FfdD3Kd19x4gG9i1c9cx+oRyB0k=",
         "owner": "mayniklas",
         "repo": "nixos",
-        "rev": "eb0584d06221cd8f5014c4ee1920a927a7d82425",
+        "rev": "5e3f9b630fdc2e7044027a19d8955957e2fa93c5",
         "type": "github"
       },
       "original": {
@@ -138,6 +204,7 @@
     "root": {
       "inputs": {
         "adblock-unbound": "adblock-unbound",
+        "domain-check": "domain-check",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "mayniklas": "mayniklas",
