@@ -48,15 +48,11 @@
     locale.enable = true;
     openssh.enable = true;
     kvm-guest.enable = true;
+    user = {
+      root.enable = true;
+    };
     zsh.enable = true;
   };
-
-  users.users.root.openssh.authorizedKeys.keyFiles = [
-    (builtins.fetchurl {
-      url = "https://github.com/MayNiklas.keys";
-      sha256 = "sha256:174dbx0kkrfdfdjswdny25nf7phgcb9k8i6z3rqqcy9l24f8xcp3";
-    })
-  ];
 
   system.stateVersion = "20.09";
 

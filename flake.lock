@@ -37,11 +37,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1655134585,
-        "narHash": "sha256-6xs7n7y2A/mrN8Y6Z/xYKbbzsmkW8P3bXdPo31MdjWk=",
+        "lastModified": 1655220242,
+        "narHash": "sha256-rWPK2ya7PyB4n+Kbf6sfv1RUzeAl20F6Z+bH13SHNBw=",
         "owner": "MayNiklas",
         "repo": "nixos-adblock-unbound",
-        "rev": "adeeab00bc2b99c7ffb45b754650bbfcd2bc4f9e",
+        "rev": "a05f34f74e315d539fe40882f65978ad5279aebd",
         "type": "github"
       },
       "original": {
@@ -105,6 +105,31 @@
         "type": "github"
       }
     },
+    "dyson-exporter": {
+      "inputs": {
+        "flake-utils": [
+          "mayniklas",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "mayniklas",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1655643732,
+        "narHash": "sha256-eHxAuLbzytsAOWk8y3XrlWqb/3SiJBoJ9JBp3s0hQlI=",
+        "owner": "MayNiklas",
+        "repo": "dyson-exporter",
+        "rev": "01cfa3ad1cbf359bda10fb10be01e4408452978c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MayNiklas",
+        "repo": "dyson-exporter",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1653893745,
@@ -144,6 +169,7 @@
     "mayniklas": {
       "inputs": {
         "adblock-unbound": "adblock-unbound_2",
+        "dyson-exporter": "dyson-exporter",
         "flake-utils": [
           "flake-utils"
         ],
@@ -154,14 +180,15 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "shelly-exporter": "shelly-exporter"
+        "shelly-exporter": "shelly-exporter",
+        "valorant-exporter": "valorant-exporter"
       },
       "locked": {
-        "lastModified": 1655198001,
-        "narHash": "sha256-zZZTy3Iu+wgS98c+FfdD3Kd19x4gG9i1c9cx+oRyB0k=",
+        "lastModified": 1656144635,
+        "narHash": "sha256-eYRPBCn/B4t3C0PNGPDZIHwaHg1f+moUq6wRwwKAdT8=",
         "owner": "mayniklas",
         "repo": "nixos",
-        "rev": "5e3f9b630fdc2e7044027a19d8955957e2fa93c5",
+        "rev": "507d319f15723203a5f5a031b994add5770c9961",
         "type": "github"
       },
       "original": {
@@ -172,11 +199,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1654057797,
-        "narHash": "sha256-mXo7C4v7Jj2feBzcReu1Eu/3Rnw5b023E9kOyFsHZQw=",
+        "lastModified": 1655789751,
+        "narHash": "sha256-DbL2gn7YwkuX10OdlWfZ/A7zEJztwHh9NMeau1JMTdk=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "0cab18a48de7914ef8cad35dca0bb36868f3e1af",
+        "rev": "f9d8dff4e621f2d7f2b84d9e84bc6359715f971c",
         "type": "github"
       },
       "original": {
@@ -223,16 +250,41 @@
         ]
       },
       "locked": {
-        "lastModified": 1654867274,
-        "narHash": "sha256-dsrOvEtZY+OaKKNKF9ERnTK0ekFi9LtSY8eGa/ypbOk=",
+        "lastModified": 1655803837,
+        "narHash": "sha256-ZkOH6XTPkb6iIyV8GWTvJGvGXBAtVghNc1dbEKK1S5w=",
         "owner": "MayNiklas",
         "repo": "shelly-exporter",
-        "rev": "b4c00fb945de560ecb947c847d064fe392145e6a",
+        "rev": "90a9eb6df1abebfe5c262779e1c71edd5d24b0d3",
         "type": "github"
       },
       "original": {
         "owner": "MayNiklas",
         "repo": "shelly-exporter",
+        "type": "github"
+      }
+    },
+    "valorant-exporter": {
+      "inputs": {
+        "flake-utils": [
+          "mayniklas",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "mayniklas",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1656144261,
+        "narHash": "sha256-DpXjRzynD3NaN91DbGvx1Wn62qRYaHHhKiZOexbxBmU=",
+        "owner": "MayNiklas",
+        "repo": "valorant-exporter",
+        "rev": "bd4a8f0b2c002af1296610367301d3a6ac156837",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MayNiklas",
+        "repo": "valorant-exporter",
         "type": "github"
       }
     }
