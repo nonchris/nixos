@@ -82,6 +82,27 @@
         "type": "github"
       }
     },
+    "discord-bot-valorant": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1657031781,
+        "narHash": "sha256-Aip7ivMILVY3/NAuZ1CdG821rp6f/i71Ojc7eCEhFwc=",
+        "owner": "make-or-break",
+        "repo": "valorant-discord-bot",
+        "rev": "a9d3633ac8cf1161e5004b307f2207d7572b1d7f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "make-or-break",
+        "repo": "valorant-discord-bot",
+        "type": "github"
+      }
+    },
     "domain-check": {
       "inputs": {
         "flake-utils": [
@@ -214,6 +235,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1656835607,
+        "narHash": "sha256-zONMAG6JSfGyW20AsVWGnlZwNWws6Q/7IT0oDNGc1xY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "18b14a254dca6b68ca0ce2ce885ce2b550065799",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1654758790,
         "narHash": "sha256-bXimktlkjL9s8ldMzMBslxEs80cjZDqrof1g8MbhmQI=",
         "owner": "nixos",
@@ -231,11 +268,12 @@
     "root": {
       "inputs": {
         "adblock-unbound": "adblock-unbound",
+        "discord-bot-valorant": "discord-bot-valorant",
         "domain-check": "domain-check",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "mayniklas": "mayniklas",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "shelly-exporter": {

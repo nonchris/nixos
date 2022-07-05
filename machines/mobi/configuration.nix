@@ -1,4 +1,4 @@
-{ self, ... }:
+{ pkgs, lib, config, discord-bot-valorant, ... }:
 
 {
   imports = [
@@ -18,17 +18,26 @@
     ../../modules/containers/verification-listener-uni-bonn-connect.nix
     ../../modules/containers/verification-listener-vk.nix
 
+    # A discord bot for valorant communities
+    # https://github.com/make-or-break/valorant-discord-bot
+    discord-bot-valorant.nixosModules.default
+
   ];
 
   networking = { hostName = "mobi"; };
 
   environment.systemPackages =
-    with self.inputs.nixpkgs.legacyPackages.x86_64-linux; [
+    with pkgs; [
       bash-completion
       git
       nixfmt
       wget
     ];
+
+  services.valorant-discord-bot = {
+    enable = true;
+    envfile = "/var/src/secrets/valorant-discord-bot/envfile";
+  };
 
   nonchris = {
     boulder-scraper.enable = true;

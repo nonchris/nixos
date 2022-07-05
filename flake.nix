@@ -29,6 +29,17 @@
       };
     };
 
+    # A discord bot for valorant communities
+    # https://github.com/make-or-break/valorant-discord-bot
+    discord-bot-valorant = {
+      type = "github";
+      owner = "make-or-break";
+      repo = "valorant-discord-bot";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
     domain-check = {
       url = "github:nonchris/domain-check";
       inputs = {
