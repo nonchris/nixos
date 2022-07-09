@@ -1,4 +1,4 @@
-{ pkgs, lib, config, discord-bot-valorant, ... }:
+{ pkgs, lib, config, discord-bot-valorant, valorant-match-history, ... }:
 
 {
   imports = [
@@ -21,6 +21,7 @@
     # A discord bot for valorant communities
     # https://github.com/make-or-break/valorant-discord-bot
     discord-bot-valorant.nixosModules.default
+    valorant-match-history.nixosModules.default
 
   ];
 
@@ -34,9 +35,18 @@
       wget
     ];
 
-  services.valorant-discord-bot = {
-    enable = true;
-    envfile = "/var/src/secrets/valorant-discord-bot/envfile";
+  services = {
+    # nix flake lock --update-input discord-bot-valorant
+    valorant-discord-bot = {
+      enable = true;
+      dataDir = "/var/lib/valorant";
+      envfile = "/var/src/secrets/valorant/envfile";
+    };
+    # nix flake lock --update-input valorant-match-history
+    valorant-match-history = {
+      enable = true;
+      dataDir = "/var/lib/valorant";
+    };
   };
 
   nonchris = {
