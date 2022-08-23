@@ -6,7 +6,7 @@
       chris = {
         isDefault = true;
         settings = {
-          "browser.startup.homepage" = "https://github.com/MayNiklas";
+          "browser.startup.homepage" = "https://github.com/nonchris";
           "devtools.theme" = "dark";
         };
       };
