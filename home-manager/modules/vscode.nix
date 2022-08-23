@@ -15,6 +15,7 @@
       #      vscodevim.vim
       james-yu.latex-workshop
       # spmeesseman.vscode-taskexplorer  # not existing
+      yzhang.markdown-all-in-one
       zhuangtongfa.material-theme
     ];
   };
