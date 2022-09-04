@@ -1,8 +1,8 @@
 { config, pkgs, ... }: {
-  virtualisation.oci-containers.containers.verification-listener = {
+  virtualisation.oci-containers.containers.welcome-dialogue = {
     autoStart = true;
-    image = "nonchris/verification-listener";
-    extraOptions = [ "--env-file=/docker/verification-listener/envfile" ];
-    volumes = [ "/docker/verification-listener:/app/data:rw" ];
+    image = "/nonchris/welcome-dialogue";
+    extraOptions = [ "--env-file=/docker/welcome-dialogue/envfile" ];
+    volumes = [ "/docker/welcome-dialogue:/app/data:rw" ];
   };
 }
