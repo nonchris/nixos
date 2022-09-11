@@ -92,11 +92,11 @@
         "valorant-utils": "valorant-utils"
       },
       "locked": {
-        "lastModified": 1661091479,
-        "narHash": "sha256-3/PO7rh19RXoUQbblhdAwnKdxe+8dNS432k9k6+yUVQ=",
+        "lastModified": 1662886737,
+        "narHash": "sha256-QwbwifJkKwTtmRGLnAJHt6ovGINZkMVlmrU0LCHe2w4=",
         "owner": "make-or-break",
         "repo": "valorant-discord-bot",
-        "rev": "dd8a6c125a8ca5a5c882821452e20e1a20c0cb63",
+        "rev": "40905085c46eb8718e424880fe9b4e9f09724cf6",
         "type": "github"
       },
       "original": {
@@ -312,11 +312,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1660998696,
-        "narHash": "sha256-N5eDv9THZz5pFn7NR1swaFrAJYByfrA5gU5L7JONItA=",
+        "lastModified": 1662732537,
+        "narHash": "sha256-iqxa+38SRU+SwNsKDyP8rZt79yPFGSgTe+K4Ujbb/uw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "13711c9ab9f5a160a44affb7a6221be53318a873",
+        "rev": "74a1793c659d09d7cf738005308b1f86c90cb59b",
         "type": "github"
       },
       "original": {
