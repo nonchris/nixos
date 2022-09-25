@@ -25,6 +25,9 @@
   swapDevices =
     [{ device = "/dev/disk/by-uuid/4fb10d7c-63e1-473d-924f-ae88f4f0d05b"; }];
 
+  # set cpu frequency scaling_governor (schedutil reduces power consumption)
+  powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
+
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 }
