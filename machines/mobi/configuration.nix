@@ -17,6 +17,7 @@
     ../../modules/containers/verification-listener.nix
     ../../modules/containers/verification-listener-uni-bonn-connect.nix
     ../../modules/containers/verification-listener-vk.nix
+    ../../modules/containers/verification-listener-intermedia.nix
 
     # A discord bot for valorant communities
     # https://github.com/make-or-break/valorant-discord-bot
