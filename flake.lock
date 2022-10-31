@@ -92,11 +92,11 @@
         "valorant-utils": "valorant-utils"
       },
       "locked": {
-        "lastModified": 1663072645,
-        "narHash": "sha256-VwFBh4ck/r0fQspqjJKkeqEOuvHNJ1EgH4sld5oSzlo=",
+        "lastModified": 1666771046,
+        "narHash": "sha256-O5fJ8QEMsewUm/9if75c43ei/YasVNGKzpdLu3YQCeI=",
         "owner": "make-or-break",
         "repo": "valorant-discord-bot",
-        "rev": "b17cd3cd70a52ace52e149c2ea6e2b74c0de0724",
+        "rev": "4ff32ac863c61f3a43911cc0bf9905d516b24fb9",
         "type": "github"
       },
       "original": {
@@ -171,11 +171,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "lastModified": 1667077288,
+        "narHash": "sha256-bdC8sFNDpT0HK74u9fUkpbf1MEzVYJ+ka7NXCdgBoaA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "rev": "6ee9ebb6b1ee695d2cacc4faa053a7b9baa76817",
         "type": "github"
       },
       "original": {
@@ -206,11 +206,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1665996265,
-        "narHash": "sha256-/k9og6LDBQwT+f/tJ5ClcWiUl8kCX5m6ognhsAxOiCY=",
+        "lastModified": 1667216695,
+        "narHash": "sha256-xz6IKKXP/wQUUXUJGwWNpXqNc9x/zq0K+KZLXj47rx0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b81e128fc053ab3159d7b464d9b7dedc9d6a6891",
+        "rev": "d8b233ad03dd3d82424561512b40971569b2e5d2",
         "type": "github"
       },
       "original": {
@@ -259,11 +259,11 @@
         "valorant-exporter": "valorant-exporter"
       },
       "locked": {
-        "lastModified": 1666205345,
-        "narHash": "sha256-8/hzhLY8zp8Z991hfXPD/xbxDSwOthFYOn+vDmYdUhk=",
+        "lastModified": 1667159512,
+        "narHash": "sha256-BXYd5d4o8dY4hv+WgQl0IaX/oqbXY3rJNuEZTcrkNOk=",
         "owner": "mayniklas",
         "repo": "nixos",
-        "rev": "2704129d2224894cbdc16f8c64e0751235b68914",
+        "rev": "e1b7bc66151354133c719d07b421f7c03a4d002f",
         "type": "github"
       },
       "original": {
@@ -297,11 +297,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1665987993,
-        "narHash": "sha256-MvlaIYTRiqefG4dzI5p6vVCfl+9V8A1cPniUjcn6Ngc=",
+        "lastModified": 1666851028,
+        "narHash": "sha256-e6DpqCMGzlpkhZDuS2fdDX1DsauFk8NARqQ1DDF42VY=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "0e6593630071440eb89cd97a52921497482b22c6",
+        "rev": "dfd91284332a4882c504b4807b1922e0fe386621",
         "type": "github"
       },
       "original": {
@@ -312,11 +312,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1662732537,
-        "narHash": "sha256-iqxa+38SRU+SwNsKDyP8rZt79yPFGSgTe+K4Ujbb/uw=",
+        "lastModified": 1666539104,
+        "narHash": "sha256-jeuC+d375wHHxMOFLgu7etseCQVJuPNKoEc9X9CsErg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "74a1793c659d09d7cf738005308b1f86c90cb59b",
+        "rev": "0e6df35f39651504249a05191f9a78d251707e22",
         "type": "github"
       },
       "original": {
@@ -395,11 +395,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1666164185,
-        "narHash": "sha256-5v+YB4ijeUfg5LCz9ck4gIpCPhIS+qn02OyPJO48bCE=",
+        "lastModified": 1667125965,
+        "narHash": "sha256-z/OLvPwIhwdN9J+ED/0rPz/Wh/0sPuvczURwsiEENSQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c5203abb1329f7ea084c04acda330ca75d5b9fb5",
+        "rev": "26eb67abc9a7370a51fcb86ece18eaf19ae9207f",
         "type": "github"
       },
       "original": {
@@ -449,11 +449,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1666114200,
-        "narHash": "sha256-9BfOuUjjGOqE3XfXQqGbJWj+LIBmoxjf58yWd43pWC0=",
+        "lastModified": 1666519847,
+        "narHash": "sha256-3rJjAa0zvxzpsKRhlUq/18tGoRNk+8kY50mABc5FosA=",
         "owner": "MayNiklas",
         "repo": "shelly-exporter",
-        "rev": "ee4fd9f02060edfbf362926f9635d4894cf71b39",
+        "rev": "5e6b7816b82cb863497dd43483177891eab87398",
         "type": "github"
       },
       "original": {
