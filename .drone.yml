@@ -1,5 +1,4 @@
 ---
-# nix run nixpkgs#mustache-go -- drone.json drone-yaml.mustache > .drone.yml
 kind: pipeline
 type: exec
 name: flake info
@@ -13,14 +12,17 @@ clone:
 
 steps:
 
-- name: show flake info
-  commands:
-  - nix --experimental-features "nix-command flakes" flake show
-  - nix --experimental-features "nix-command flakes" flake metadata
+  - name: show flake show
+    commands:
+      - nix flake show
 
-- name: run flake checks
-  commands:
-  - nix --experimental-features "nix-command flakes" flake check --show-trace
+  - name: show flake info
+    commands:
+      - nix flake info
+
+  - name: run flake checks
+    commands:
+      - nix flake check
 
 ---
 kind: pipeline
@@ -73,3 +75,46 @@ trigger:
   - push
   - pull_request
 
+---
+kind: pipeline
+type: exec
+name: nix flake update - amd64
+
+platform:
+  os: linux
+  arch: amd64
+
+clone:
+  depth: 1
+
+steps:
+
+- name: nix flake update
+  commands:
+  - nix flake update
+
+- name: build desktop
+  commands:
+  - nix build '.#nixosConfigurations.desktop.config.system.build.toplevel' --out-link result-desktop
+  - nix path-info --closure-size -h $(readlink -f result-desktop)
+
+- name: build flap
+  commands:
+  - nix build '.#nixosConfigurations.flap.config.system.build.toplevel' --out-link result-flap
+  - nix path-info --closure-size -h $(readlink -f result-flap)
+
+- name: build mobi
+  commands:
+  - nix build '.#nixosConfigurations.mobi.config.system.build.toplevel' --out-link result-mobi
+  - nix path-info --closure-size -h $(readlink -f result-mobi)
+
+- name: build rick
+  commands:
+  - nix build '.#nixosConfigurations.rick.config.system.build.toplevel' --out-link result-rick
+  - nix path-info --closure-size -h $(readlink -f result-rick)
+
+trigger:
+  branch:
+  - main
+  event:
+  - cron
