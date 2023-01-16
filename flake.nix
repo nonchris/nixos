@@ -37,6 +37,7 @@
       repo = "valorant-discord-bot";
       inputs = {
         flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
       };
     };
 
@@ -46,6 +47,7 @@
       repo = "valorant-match-history";
       inputs = {
         flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
       };
     };
 
