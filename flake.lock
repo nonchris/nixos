@@ -2,7 +2,9 @@
   "nodes": {
     "adblock-unbound": {
       "inputs": {
-        "adblockStevenBlack": "adblockStevenBlack",
+        "adblockStevenBlack": [
+          "adblockStevenBlack"
+        ],
         "flake-utils": [
           "flake-utils"
         ],
@@ -56,11 +58,11 @@
     "adblockStevenBlack": {
       "flake": false,
       "locked": {
-        "lastModified": 1665337238,
-        "narHash": "sha256-LYYjWMy4xXXqnM3ROKseS7y0faNLYyyDPqUe1+Uf+RE=",
+        "lastModified": 1677202941,
+        "narHash": "sha256-u7mh9tmIw3dIwb5wyYqXiJxrdk+AMzl7vImxc84i7MY=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "ff7d9bed83732bd3980ae452927541c6c4b15382",
+        "rev": "6d4674abda33850fb0d0b7ce436e36cdc341b506",
         "type": "github"
       },
       "original": {
@@ -261,6 +263,7 @@
     "root": {
       "inputs": {
         "adblock-unbound": "adblock-unbound",
+        "adblockStevenBlack": "adblockStevenBlack",
         "discord-bot-valorant": "discord-bot-valorant",
         "domain-check": "domain-check",
         "flake-utils": "flake-utils",
