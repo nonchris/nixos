@@ -12,9 +12,17 @@
     })
   ];
 
-  nixpkgs.config = {
-    cudaSupport = true;
-  };
+  # note:
+  # cudaSupport = true; would build all packages that offer cuda with CUDA support
+  # Unfortunately, this would have some big drawbacks:
+  # - CUDA stuff is not in cache.nixos.org (since unfree)
+  # - would have to build everything from source
+  # - CUDA stuff is not build by Hydra -> builds tend to fail more often since it's not tested
+  # - packages like webkitgtk receive a lot of updates, and take a long time to build!
+  # -> CUDA support enabled for the whole system does not seem to be practical
+  # -> we should find a solution to enable CUDA support for specific packages only!
+  # -> many packages offer different versions of the same package, one with CUDA support, one without
+  nixpkgs.config.cudaSupport = pkgs.lib.mkForce false;
 
   imports = [
     # Include the results of the hardware scan.
