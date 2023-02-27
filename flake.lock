@@ -74,11 +74,11 @@
     "adblockStevenBlack_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1676842571,
-        "narHash": "sha256-OyJo0zhPFlQeOa34uqjNtFW24FnN1nRQwmLHmDWgxzc=",
+        "lastModified": 1677202941,
+        "narHash": "sha256-u7mh9tmIw3dIwb5wyYqXiJxrdk+AMzl7vImxc84i7MY=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "52ade02448ed085e70d73ce9b4ba06ff8c80225a",
+        "rev": "6d4674abda33850fb0d0b7ce436e36cdc341b506",
         "type": "github"
       },
       "original": {
@@ -364,11 +364,11 @@
         "valorant-exporter": "valorant-exporter"
       },
       "locked": {
-        "lastModified": 1677170946,
-        "narHash": "sha256-DU2n8QFPQpB+uHnTZ0Y7fkotkXL9ukvFkuBq8WUZ5C4=",
+        "lastModified": 1677335658,
+        "narHash": "sha256-0GG0xawPVGbB/MqDtxJhH+N1ghJbANg8HR61acyoY3A=",
         "owner": "mayniklas",
         "repo": "nixos",
-        "rev": "1820fe82495bba3da4b5dcb0bce63617990d7e06",
+        "rev": "36d4472a8790e4d51bebc11b4ff45180d1dda13b",
         "type": "github"
       },
       "original": {
@@ -405,11 +405,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1676886000,
-        "narHash": "sha256-t7nxEvJb4ISR7u54YADZiZi9EaKHJKbXQjyyf00Q8TA=",
+        "lastModified": 1677232326,
+        "narHash": "sha256-rAk2/80kLvA3yIMmSV86T1B4kNvwCFMSQ1FxXndaUB0=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "26c9dbdc92abc370510be78889942f38a272d705",
+        "rev": "2d44015779cced4eec9df5b8dab238b9f6312cb2",
         "type": "github"
       },
       "original": {

@@ -32,6 +32,8 @@ in {
         iperf3
         nmap
         unzip
+
+        mayniklas.update-input
         mayniklas.vs-fix
       ];
 
