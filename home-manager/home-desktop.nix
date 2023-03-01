@@ -27,7 +27,6 @@ in
       home.packages = with pkgs; [
         _1password-gui
         ansible
-        atom
         cargo
         discord
         dotnet-sdk_5
