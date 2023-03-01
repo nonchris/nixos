@@ -45,10 +45,6 @@
       type = "github";
       owner = "make-or-break";
       repo = "valorant-discord-bot";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
     };
 
     domain-check = {
