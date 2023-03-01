@@ -142,11 +142,11 @@
         "valorant-utils": "valorant-utils"
       },
       "locked": {
-        "lastModified": 1676285327,
-        "narHash": "sha256-0lllj8ZBa0g5xSfdntRHbQHb6x4Yjl2rogsTyC+Nih0=",
+        "lastModified": 1677666128,
+        "narHash": "sha256-UzB06V1PKkffeMr/9SOUpONvcydLXgl2O3I5RLlGI14=",
         "owner": "make-or-break",
         "repo": "valorant-discord-bot",
-        "rev": "60ab68a12b52f2d650fed8daf4441eb8888d33c7",
+        "rev": "43ab7d6d2399874854f22a59d4dbcc31c10cbf98",
         "type": "github"
       },
       "original": {
@@ -537,8 +537,7 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "mayniklas": "mayniklas",
-        "nixpkgs": "nixpkgs_3",
-        "valorant-match-history": "valorant-match-history_2"
+        "nixpkgs": "nixpkgs_3"
       }
     },
     "shelly-exporter": {
@@ -622,35 +621,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1673879381,
-        "narHash": "sha256-lwJpxsIvG3joEtDPvYLbQML8xX8gsW78dl5QSPGR6XM=",
+        "lastModified": 1677580082,
+        "narHash": "sha256-Dor4v9OJwoiMHwrEMkIY2sYgvJrYIrM9921EffyrWm4=",
         "owner": "make-or-break",
         "repo": "valorant-match-history",
-        "rev": "f0a8fea7b7c7b50ee0b7215bb5ceca8c6124de33",
-        "type": "github"
-      },
-      "original": {
-        "owner": "make-or-break",
-        "repo": "valorant-match-history",
-        "type": "github"
-      }
-    },
-    "valorant-match-history_2": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "valorant-utils": "valorant-utils_2"
-      },
-      "locked": {
-        "lastModified": 1673879381,
-        "narHash": "sha256-lwJpxsIvG3joEtDPvYLbQML8xX8gsW78dl5QSPGR6XM=",
-        "owner": "make-or-break",
-        "repo": "valorant-match-history",
-        "rev": "f0a8fea7b7c7b50ee0b7215bb5ceca8c6124de33",
+        "rev": "fb83c2e0310b6247633901c5e7db6b20d3075088",
         "type": "github"
       },
       "original": {
@@ -667,31 +642,6 @@
         ],
         "nixpkgs": [
           "discord-bot-valorant",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1673879305,
-        "narHash": "sha256-E7PV6nYSQcgQqO5ndIPQTjLu17jgIFFyz7EAQ8bad+c=",
-        "owner": "make-or-break",
-        "repo": "valorant-utils",
-        "rev": "709649cf7b865b97aff2aa48901991e995fe21c6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "make-or-break",
-        "repo": "valorant-utils",
-        "type": "github"
-      }
-    },
-    "valorant-utils_2": {
-      "inputs": {
-        "flake-utils": [
-          "valorant-match-history",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "valorant-match-history",
           "nixpkgs"
         ]
       },

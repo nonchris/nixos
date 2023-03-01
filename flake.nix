@@ -51,16 +51,6 @@
       };
     };
 
-    valorant-match-history = {
-      type = "github";
-      owner = "make-or-break";
-      repo = "valorant-match-history";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     domain-check = {
       url = "github:nonchris/domain-check";
       inputs = {
