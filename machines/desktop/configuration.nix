@@ -109,6 +109,7 @@
     home.packages = with pkgs;
       [
         domain-check
+        whisper_cli
       ];
   };
 

@@ -55,6 +55,8 @@
       };
     };
 
+    whisper_api.url = "github:MayNiklas/whisper_api";
+
   };
 
   outputs = { self, ... }@inputs:
@@ -102,7 +104,13 @@
                 imports = builtins.attrValues self.nixosModules
                 ++ builtins.attrValues mayniklas.nixosModules;
               }
-              { nixpkgs.overlays = [ self.overlays.default mayniklas.overlays.mayniklas ]; }
+              {
+                nixpkgs.overlays = [
+                  self.overlays.default
+                  mayniklas.overlays.mayniklas
+                  (self: super: { whisper_cli = whisper_api.packages.x86_64-linux.whisper_cli; })
+                ];
+              }
             ];
           };
         })
