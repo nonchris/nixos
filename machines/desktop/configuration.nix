@@ -89,7 +89,20 @@
 
   networking = {
     hostName = "desktop";
-    firewall = { allowedTCPPorts = [ 9100 9115 ]; };
+    firewall = {
+      checkReversePath = "loose";
+      allowedTCPPorts = [ 9100 9115 ];
+    };
+  };
+
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+    "net.ipv6.conf.all.forwarding" = 1;
+  };
+
+  services.tailscale = {
+    enable = true;
+    interfaceName = "tailscale0";
   };
 
   home-manager.users.chris = {
