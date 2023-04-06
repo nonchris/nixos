@@ -30,6 +30,7 @@ in
         cargo
         discord
         dotnet-sdk_5
+        element-desktop
         gcc
         gccStdenv
         gradle_6
@@ -54,6 +55,7 @@ in
         rustc
         signal-desktop
         spotify
+        staruml
         sublime-merge
         sublime3
         tdesktop
