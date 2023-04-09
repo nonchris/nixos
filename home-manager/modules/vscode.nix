@@ -8,6 +8,7 @@
       brettm12345.nixfmt-vscode
       # lextudio.restructuredtext  # not existing
       # ms-dotnettools.csharp
+      github.copilot
       ms-python.python
       ms-vscode.cpptools
       ms-vscode-remote.remote-ssh
