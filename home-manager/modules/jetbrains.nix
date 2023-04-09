@@ -2,9 +2,13 @@
   home.packages = with pkgs.jetbrains; [
     jdk
     clion
-#    rider
-#    ruby-mine
+    # rider
+    # ruby-mine
     idea-ultimate
     pycharm-professional
+
+    # see https://github.com/NixOS/nixpkgs/pull/201518
+    # see https://github.com/not-matthias/dotfiles-nix/issues/23
+    (pkgs.callPackage ./copilot-agent.nix { })
   ];
 }
