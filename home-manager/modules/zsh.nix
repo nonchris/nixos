@@ -1,10 +1,14 @@
 { config, pkgs, lib, ... }: {
 
+  programs.tmux = {
+    enable = true;
+  };
+
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    autocd = true;
+    # autocd = true;
     dotDir = ".config/zsh";
 
     sessionVariables = { ZDOTDIR = "/home/chris/.config/zsh"; };
@@ -51,6 +55,8 @@
       clean = "${pkgs.git}/bin/git clean -xdn";
       destroy = "${pkgs.git}/bin/git clean -xdf";
 
+      sm = "${pkgs.sublime-merge}/bin/smerge .";
+
       # nix
 
       # switching within a flake repository
@@ -87,6 +93,13 @@
       }
     ];
   };
+
+  programs.zsh.oh-my-zsh = {
+    enable = true;
+    theme = "agnoster";
+    plugins = [ "git" "sudo" "docker" ];
+  };
+
   programs.dircolors = {
     enable = true;
     enableZshIntegration = true;
