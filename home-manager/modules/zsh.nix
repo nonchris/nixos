@@ -57,6 +57,10 @@
 
       sm = "${pkgs.sublime-merge}/bin/smerge .";
 
+      # navigation
+      cg = "cd ~/git/";
+      cn = "cd ~/nixos/";
+
       # nix
 
       # switching within a flake repository
@@ -97,7 +101,7 @@
   programs.zsh.oh-my-zsh = {
     enable = true;
     theme = "agnoster";
-    plugins = [ "git" "sudo" "docker" ];
+    plugins = [ "sudo" "docker" ];
   };
 
   programs.dircolors = {
