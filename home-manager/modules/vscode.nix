@@ -3,6 +3,8 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
+    enableUpdateCheck = false;
+    enableExtensionUpdateCheck = false;
     extensions = with pkgs.vscode-extensions; [
       # bbenoist.Nix
       brettm12345.nixfmt-vscode
@@ -13,11 +15,12 @@
       ms-vscode.cpptools
       ms-vscode-remote.remote-ssh
       ms-vsliveshare.vsliveshare
-      #      vscodevim.vim
+      # vscodevim.vim
       james-yu.latex-workshop
       # spmeesseman.vscode-taskexplorer  # not existing
       yzhang.markdown-all-in-one
       zhuangtongfa.material-theme
     ];
   };
+
 }
