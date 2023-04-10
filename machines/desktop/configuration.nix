@@ -56,6 +56,12 @@
     virtualisation.enable = true;
     yubikey.enable = true;
     zsh.enable = true;
+    # for tmux
+    home-manager.enable = true;
+    user = {
+      root.enable = true;
+      nik = { enable = true; };
+    };
   };
 
   # Unbound is a validating, recursive, and caching DNS resolver.
