@@ -24,55 +24,68 @@ in
         ./modules/vscode.nix
       ];
 
-      home.packages = with pkgs; [
-        _1password-gui
-        ansible
-        cargo
-        discord
-        dotnet-sdk_5
-        element-desktop
-        gcc
-        gccStdenv
-        gradle_6
-        gnuplot
-        gparted
-        htop
-        hugo
-        #    linuxPackages.v4l2loopback
-        maven
-        mono
-        mpv
-        nvtop
-        obs-studio
-        #    obs-v4l2sink
-        omnisharp-roslyn
-        okular
-        postman
-        pstree
-        python3
-        #    python38Packages.ipykernel
-        ruby
-        rustc
-        signal-desktop
-        spotify
-        staruml
-        sublime-merge
-        sublime3
-        tdesktop
-        texstudio
-        texlive.combined.scheme-full
-        thunderbird
-        unzip
-        vim
-        vlc
-        whois
-        youtube-dl
-        zip
-        zoom-us
+      home.packages =
+        let
+          # https://github.com/NixOS/nixpkgs/pull/223988
+          pkgs-postman = import
+            (builtins.fetchTarball {
+              url = "https://github.com/johnrichardrinehart/nixpkgs/archive/7fe340e404b82e7890686e2a14990c465d06e797.tar.gz";
+              sha256 = "sha256:076hr2pp8sgdinvdjmd13m7757adxr0abfy8mf1a1w6406ilf92k";
+            })
+            {
+              system = "${pkgs.system}";
+              config.allowUnfree = true;
+            };
+        in
+        with pkgs; [
+          _1password-gui
+          ansible
+          cargo
+          discord
+          dotnet-sdk_5
+          element-desktop
+          gcc
+          gccStdenv
+          gradle_6
+          gnuplot
+          gparted
+          htop
+          hugo
+          # linuxPackages.v4l2loopback
+          maven
+          mono
+          mpv
+          nvtop
+          obs-studio
+          # obs-v4l2sink
+          omnisharp-roslyn
+          okular
+          pkgs-postman.postman
+          pstree
+          python3
+          # python38Packages.ipykernel
+          ruby
+          rustc
+          signal-desktop
+          spotify
+          staruml
+          sublime-merge
+          sublime3
+          tdesktop
+          texstudio
+          texlive.combined.scheme-full
+          thunderbird
+          unzip
+          vim
+          vlc
+          whois
+          youtube-dl
+          zip
+          zoom-us
 
-        #mayniklas
-        mayniklas.vs-fix
-      ];
+          # mayniklas
+          mayniklas.vs-fix
+        ];
 
       # This value determines the Home Manager release that your
       # configuration is compatible with. This helps avoid breakage
