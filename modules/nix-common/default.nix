@@ -1,4 +1,4 @@
-{ config, pkgs, lib, flake-self, nixpkgs, ... }:
+{ config, pkgs, lib, flake-self, nixpkgs, nixpkgs-unstable, ... }:
 with lib;
 let cfg = config.nonchris.common;
 in {
@@ -18,7 +18,15 @@ in {
     # and root e.g. `nix-channel --remove nixos`. `nix-channel
     # --list` should be empty for all users afterwards
     nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-    nixpkgs.overlays = [ flake-self.overlays.default ];
+    nixpkgs.overlays = [
+      flake-self.overlays.default
+      (final: prev: {
+        unstable = import nixpkgs-unstable {
+          system = "${pkgs.system}";
+          config.allowUnfree = true;
+        };
+      })
+    ];
 
     nixpkgs = { config.allowUnfree = true; };
 

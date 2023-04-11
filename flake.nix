@@ -68,13 +68,6 @@
       # it can use the sources pinned in flake.lock
       overlays.default = final: prev: (import ./overlays inputs) final prev;
 
-      overlays.unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-      };
-
       # Output all modules in ./modules to flake. Modules should be in
       # individual subdirectories and contain a default.nix file
       nixosModules = {
@@ -114,7 +107,6 @@
               {
                 nixpkgs.overlays = [
                   self.overlays.default
-                  self.overlays.unstable
                   mayniklas.overlays.mayniklas
                   (self: super: { })
                 ];
