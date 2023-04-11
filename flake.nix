@@ -57,8 +57,6 @@
       };
     };
 
-    whisper_api.url = "github:MayNiklas/whisper_api";
-
   };
 
   outputs = { self, ... }@inputs:
@@ -118,9 +116,7 @@
                   self.overlays.default
                   self.overlays.unstable
                   mayniklas.overlays.mayniklas
-                  (self: super: {
-                    whisper_cli = whisper_api.packages.x86_64-linux.whisper_cli;
-                  })
+                  (self: super: { })
                 ];
               }
             ];
