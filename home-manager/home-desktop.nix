@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, flake-self, nixpkgs-unstable, ... }:
 with lib;
 let cfg = config.nonchris.user.chris.home-manager;
 
@@ -22,6 +22,17 @@ in
         ./modules/firefox.nix
         ./modules/jetbrains.nix
         ./modules/vscode.nix
+        {
+          nixpkgs.overlays = [
+            flake-self.overlays.default
+            (final: prev: {
+              unstable = import nixpkgs-unstable {
+                system = "${pkgs.system}";
+                config.allowUnfree = true;
+              };
+            })
+          ];
+        }
       ];
 
       home.packages =

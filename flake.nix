@@ -76,7 +76,7 @@
         networking = import ./modules/networking;
         nix-common = import ./modules/nix-common;
         thelounge = import ./modules/thelounge;
-        home-manager = { pkgs, ... }: {
+        home-manager = { pkgs, nixpkgs-unstable, ... }: {
           imports = [ ./home-manager/home.nix ./home-manager/home-desktop.nix ];
         };
 
