@@ -37,16 +37,15 @@ in
 
       home.packages =
         let
-          # https://github.com/NixOS/nixpkgs/pull/223988
-          pkgs-postman = import
-            (builtins.fetchTarball {
-              url = "https://github.com/johnrichardrinehart/nixpkgs/archive/7fe340e404b82e7890686e2a14990c465d06e797.tar.gz";
-              sha256 = "sha256:076hr2pp8sgdinvdjmd13m7757adxr0abfy8mf1a1w6406ilf92k";
-            })
-            {
-              system = "${pkgs.system}";
-              config.allowUnfree = true;
-            };
+          # pkgs-postman = import
+          #   (builtins.fetchTarball {
+          #     url = "https://github.com/johnrichardrinehart/nixpkgs/archive/7fe340e404b82e7890686e2a14990c465d06e797.tar.gz";
+          #     sha256 = "sha256:076hr2pp8sgdinvdjmd13m7757adxr0abfy8mf1a1w6406ilf92k";
+          #   })
+          #   {
+          #     system = "${pkgs.system}";
+          #     config.allowUnfree = true;
+          #   };
         in
         with pkgs; [
           _1password-gui
@@ -71,7 +70,7 @@ in
           # obs-v4l2sink
           omnisharp-roslyn
           okular
-          pkgs-postman.postman
+          postman
           pstree
           python3
           # python38Packages.ipykernel
