@@ -13,6 +13,7 @@
     ../../modules/containers/discord-fury.nix
     ../../modules/containers/frinder.nix
     ../../modules/containers/mssr-role-bot.nix
+    ../../modules/containers/discord-replacement-case.nix
     ../../modules/containers/sheriffs-bot.nix
     ../../modules/containers/verification-listener.nix
     ../../modules/containers/verification-listener-uni-bonn-connect.nix
