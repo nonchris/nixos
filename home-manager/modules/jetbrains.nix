@@ -27,6 +27,9 @@
 
     # see https://github.com/NixOS/nixpkgs/pull/201518
     # see https://github.com/not-matthias/dotfiles-nix/issues/23
+    #
+    # cd ~/.local/share/JetBrains/PyCharm2022.2/github-copilot-intellij/copilot-agent/bin
+    # ln -s $(realpath $(which copilot-agent)) $(pwd)/copilot-agent-linux
     (pkgs.callPackage ./copilot-agent.nix { })
   ];
 }
