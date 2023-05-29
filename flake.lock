@@ -366,11 +366,11 @@
         "whisper-api": "whisper-api"
       },
       "locked": {
-        "lastModified": 1682596327,
-        "narHash": "sha256-7qlCPoibNlffVhJxGuUqXIphU/aqO+HS5mRZosJW90o=",
+        "lastModified": 1685361537,
+        "narHash": "sha256-6cVJTduRQRuKrT51VhpG8y7qu4U4BSvwiBf5GMlEb5s=",
         "owner": "mayniklas",
         "repo": "nixos",
-        "rev": "4c45ac1f6448d573d8861d805c7abbe9ddf3a911",
+        "rev": "8aa0a281b39eb0fc7ad885f2baf67c7ed55bd70b",
         "type": "github"
       },
       "original": {
