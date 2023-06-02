@@ -28,6 +28,6 @@
   # set cpu frequency scaling_governor (schedutil reduces power consumption)
   powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
 
-  # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
+  # The option definition `hardware.video.hidpi.enable' no longer has any effect.
+  # Consider manually configuring fonts.fontconfig according to personal preference.
 }

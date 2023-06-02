@@ -52,7 +52,7 @@ in
           ansible
           cargo
           discord
-          dotnet-sdk_5
+          # dotnet-sdk_5 # Dotnet SDK 5.0 is EOL, please use 6.0 (LTS) or 7.0 (Current)
           element-desktop
           gcc
           gccStdenv
