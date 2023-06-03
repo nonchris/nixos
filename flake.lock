@@ -58,11 +58,11 @@
     "adblockStevenBlack": {
       "flake": false,
       "locked": {
-        "lastModified": 1685497130,
-        "narHash": "sha256-JXqpUgOBqfieSHgDmpT2i7zVSMImQKqhliGpRSneVDc=",
+        "lastModified": 1685762521,
+        "narHash": "sha256-MPBSGZes2bqjSi26cKjzZBs19QaPzroccW6PGVguuNE=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "8007e17d0a66bc9f43d79bb82a218f253d28797a",
+        "rev": "cbadab339ba40f6da9b1638cd6789b81269ec291",
         "type": "github"
       },
       "original": {
@@ -386,11 +386,11 @@
         "whisper-api": "whisper-api"
       },
       "locked": {
-        "lastModified": 1685737118,
-        "narHash": "sha256-M6h0NbcOLzF3oVboZchj18n5H5PatR9KxUu6186oEXo=",
+        "lastModified": 1685805467,
+        "narHash": "sha256-mif/KY/dLXlihVtoHDO3mn4RioMaik0yjtxqoA5EhHM=",
         "owner": "mayniklas",
         "repo": "nixos",
-        "rev": "f762a7f06bb3089d03819d28bb787664834e21ed",
+        "rev": "56ea08b8deaa5a24664fd902d0b63bf4a287d0e8",
         "type": "github"
       },
       "original": {
@@ -584,11 +584,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1685620773,
-        "narHash": "sha256-iQ+LmporQNdLz8uMJdP62TaAWeLUwl43/MYUBtWqulM=",
+        "lastModified": 1685716800,
+        "narHash": "sha256-b6RpYRRsv6Wwl9XG2sjLvqKdkPMvqQqgtiGJHAIyGSw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f0ba8235153dd2e25cf06cbf70d43efdd4443592",
+        "rev": "f3d743463920751eb092930d06e700981398332a",
         "type": "github"
       },
       "original": {

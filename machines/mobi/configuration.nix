@@ -63,11 +63,13 @@
   };
 
   mayniklas = {
+    cloud.netcup-x86 = {
+      enable = true;
+    };
     var.mainUser = "chris";
     docker.enable = true;
     locale.enable = true;
     openssh.enable = true;
-    kvm-guest.enable = true;
     user = {
       root.enable = true;
     };
