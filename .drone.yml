@@ -11,7 +11,6 @@ clone:
   depth: 1
 
 steps:
-
   - name: show flake show
     commands:
       - nix flake show
@@ -23,6 +22,14 @@ steps:
   - name: run flake checks
     commands:
       - nix flake check
+
+trigger:
+  branch:
+    - main
+  event:
+    - push
+    - cron
+    - pull_request
 
 ---
 kind: pipeline
@@ -37,48 +44,46 @@ clone:
   depth: 1
 
 steps:
+  - name: build desktop
+    commands:
+      - nix build '.#nixosConfigurations.desktop.config.system.build.toplevel' --out-link result-desktop
+      - nix path-info --closure-size -h $(readlink -f result-desktop)
 
-- name: build desktop
-  commands:
-  - nix build '.#nixosConfigurations.desktop.config.system.build.toplevel' --out-link result-desktop
-  - nix path-info --closure-size -h $(readlink -f result-desktop)
+  - name: build flap
+    commands:
+      - nix build '.#nixosConfigurations.flap.config.system.build.toplevel' --out-link result-flap
+      - nix path-info --closure-size -h $(readlink -f result-flap)
 
-- name: build flap
-  commands:
-  - nix build '.#nixosConfigurations.flap.config.system.build.toplevel' --out-link result-flap
-  - nix path-info --closure-size -h $(readlink -f result-flap)
+  - name: build mobi
+    commands:
+      - nix build '.#nixosConfigurations.mobi.config.system.build.toplevel' --out-link result-mobi
+      - nix path-info --closure-size -h $(readlink -f result-mobi)
 
-- name: build mobi
-  commands:
-  - nix build '.#nixosConfigurations.mobi.config.system.build.toplevel' --out-link result-mobi
-  - nix path-info --closure-size -h $(readlink -f result-mobi)
+  - name: build rick
+    commands:
+      - nix build '.#nixosConfigurations.rick.config.system.build.toplevel' --out-link result-rick
+      - nix path-info --closure-size -h $(readlink -f result-rick)
 
-- name: build rick
-  commands:
-  - nix build '.#nixosConfigurations.rick.config.system.build.toplevel' --out-link result-rick
-  - nix path-info --closure-size -h $(readlink -f result-rick)
-
-- name: upload to binary cache via s3
-  commands:
-  - nix run 'github:mayniklas/nixos'#s3uploader
-  environment:
-    AWS_ACCESS_KEY_ID:
-      from_secret: aws_key
-    AWS_SECRET_ACCESS_KEY:
-      from_secret: aws_secret
+  - name: upload to binary cache via s3
+    commands:
+      - nix run 'github:mayniklas/nixos'#s3uploader
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: aws_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: aws_secret
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - cron
-  - push
-  - pull_request
+    - cron
+    - push
 
 ---
 kind: pipeline
 type: exec
-name: nix flake update - amd64
+name: build hosts - amd64 (PR)
 
 platform:
   os: linux
@@ -88,33 +93,28 @@ clone:
   depth: 1
 
 steps:
+  - name: Build desktop
+    commands:
+      - nix build .#desktop --out-link result-desktop
+      - nix path-info --closure-size -h $(readlink -f result-desktop)
 
-- name: nix flake update
-  commands:
-  - nix flake update
+  - name: Build flap
+    commands:
+      - nix build .#flap --out-link result-flap
+      - nix path-info --closure-size -h $(readlink -f result-flap)
 
-- name: build desktop
-  commands:
-  - nix build '.#nixosConfigurations.desktop.config.system.build.toplevel' --out-link result-desktop
-  - nix path-info --closure-size -h $(readlink -f result-desktop)
+  - name: Build mobi
+    commands:
+      - nix build .#mobi --out-link result-mobi
+      - nix path-info --closure-size -h $(readlink -f result-mobi)
 
-- name: build flap
-  commands:
-  - nix build '.#nixosConfigurations.flap.config.system.build.toplevel' --out-link result-flap
-  - nix path-info --closure-size -h $(readlink -f result-flap)
-
-- name: build mobi
-  commands:
-  - nix build '.#nixosConfigurations.mobi.config.system.build.toplevel' --out-link result-mobi
-  - nix path-info --closure-size -h $(readlink -f result-mobi)
-
-- name: build rick
-  commands:
-  - nix build '.#nixosConfigurations.rick.config.system.build.toplevel' --out-link result-rick
-  - nix path-info --closure-size -h $(readlink -f result-rick)
+  - name: Build rick
+    commands:
+      - nix build .#rick --out-link result-rick
+      - nix path-info --closure-size -h $(readlink -f result-rick)
 
 trigger:
   branch:
-  - main
+    - main
   event:
-  - cron
+    - pull_request
