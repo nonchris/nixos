@@ -95,22 +95,22 @@ clone:
 steps:
   - name: Build desktop
     commands:
-      - nix build .#desktop --out-link result-desktop
+      - nix build '.#nixosConfigurations.desktop.config.system.build.toplevel' --out-link result-desktop
       - nix path-info --closure-size -h $(readlink -f result-desktop)
 
   - name: Build flap
     commands:
-      - nix build .#flap --out-link result-flap
+      - nix build '.#nixosConfigurations.flap.config.system.build.toplevel' --out-link result-flap
       - nix path-info --closure-size -h $(readlink -f result-flap)
 
   - name: Build mobi
     commands:
-      - nix build .#mobi --out-link result-mobi
+      - nix build '.#nixosConfigurations.mobi.config.system.build.toplevel' --out-link result-mobi
       - nix path-info --closure-size -h $(readlink -f result-mobi)
 
   - name: Build rick
     commands:
-      - nix build .#rick --out-link result-rick
+      - nix build '.#nixosConfigurations.rick.config.system.build.toplevel' --out-link result-rick
       - nix path-info --closure-size -h $(readlink -f result-rick)
 
 trigger:
