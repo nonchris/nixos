@@ -50,15 +50,10 @@ in {
 
         # binary cache -> build by DroneCI
         trusted-public-keys = mkIf (cfg.disable-cache != true) [
-          "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY="
+          "nix-cache:4FILs79Adxn/798F8qk2PC1U8HaTlaPqptwNJrXNA1g="
         ];
         substituters = mkIf (cfg.disable-cache != true) [
-          "https://cache.nixos.org"
-          "https://cache.lounge.rocks?priority=100"
-        ];
-        trusted-substituters = mkIf (cfg.disable-cache != true) [
-          "https://cache.nixos.org"
-          "https://cache.lounge.rocks"
+          "https://cache.lounge.rocks/nix-cache"
         ];
 
         # Users allowed to run nix
