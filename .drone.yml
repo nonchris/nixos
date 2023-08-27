@@ -44,34 +44,36 @@ clone:
   depth: 1
 
 steps:
+  - name: login into attic
+    commands:
+      - nix run 'github:zhaofengli/attic' -- login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default
+    environment:
+      ATTIC_KEY:
+        from_secret: attic_key
+
   - name: build desktop
     commands:
-      - nix build '.#nixosConfigurations.desktop.config.system.build.toplevel' --out-link result-desktop
-      - nix path-info --closure-size -h $(readlink -f result-desktop)
+      - nix build --print-out-paths '.#nixosConfigurations.desktop.config.system.build.toplevel'
+      - nix run 'github:zhaofengli/attic' -- push nix-cache result
+      - nix path-info --closure-size -h $(readlink -f result)
 
   - name: build flap
     commands:
-      - nix build '.#nixosConfigurations.flap.config.system.build.toplevel' --out-link result-flap
-      - nix path-info --closure-size -h $(readlink -f result-flap)
+      - nix build --print-out-paths '.#nixosConfigurations.flap.config.system.build.toplevel'
+      - nix run 'github:zhaofengli/attic' -- push nix-cache result
+      - nix path-info --closure-size -h $(readlink -f result)
 
   - name: build mobi
     commands:
-      - nix build '.#nixosConfigurations.mobi.config.system.build.toplevel' --out-link result-mobi
-      - nix path-info --closure-size -h $(readlink -f result-mobi)
+      - nix build --print-out-paths '.#nixosConfigurations.mobi.config.system.build.toplevel'
+      - nix run 'github:zhaofengli/attic' -- push nix-cache result
+      - nix path-info --closure-size -h $(readlink -f result)
 
   - name: build rick
     commands:
-      - nix build '.#nixosConfigurations.rick.config.system.build.toplevel' --out-link result-rick
-      - nix path-info --closure-size -h $(readlink -f result-rick)
-
-  - name: upload to binary cache via s3
-    commands:
-      - nix run 'github:mayniklas/nixos'#s3uploader
-    environment:
-      AWS_ACCESS_KEY_ID:
-        from_secret: aws_key
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: aws_secret
+      - nix build --print-out-paths '.#nixosConfigurations.rick.config.system.build.toplevel'
+      - nix run 'github:zhaofengli/attic' -- push nix-cache result
+      - nix path-info --closure-size -h $(readlink -f result)
 
 trigger:
   branch:
@@ -79,42 +81,3 @@ trigger:
   event:
     - cron
     - push
-
----
-kind: pipeline
-type: exec
-name: build hosts - amd64 (PR)
-
-platform:
-  os: linux
-  arch: amd64
-
-clone:
-  depth: 1
-
-steps:
-  - name: Build desktop
-    commands:
-      - nix build '.#nixosConfigurations.desktop.config.system.build.toplevel' --out-link result-desktop
-      - nix path-info --closure-size -h $(readlink -f result-desktop)
-
-  - name: Build flap
-    commands:
-      - nix build '.#nixosConfigurations.flap.config.system.build.toplevel' --out-link result-flap
-      - nix path-info --closure-size -h $(readlink -f result-flap)
-
-  - name: Build mobi
-    commands:
-      - nix build '.#nixosConfigurations.mobi.config.system.build.toplevel' --out-link result-mobi
-      - nix path-info --closure-size -h $(readlink -f result-mobi)
-
-  - name: Build rick
-    commands:
-      - nix build '.#nixosConfigurations.rick.config.system.build.toplevel' --out-link result-rick
-      - nix path-info --closure-size -h $(readlink -f result-rick)
-
-trigger:
-  branch:
-    - main
-  event:
-    - pull_request
