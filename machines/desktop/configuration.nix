@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, config, adblock-unbound, domain-check, ... }:
+{ pkgs, lib, config, adblock-unbound, domain-check, ... }:
 
 {
 
@@ -135,6 +135,8 @@
     networking.enable = true;
     user.chris.home-manager.desktop = true;
   };
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

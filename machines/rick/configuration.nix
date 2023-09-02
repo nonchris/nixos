@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, lib, ... }:
 
 {
   imports = [
@@ -38,6 +38,8 @@
     vmware-guest.enable = true;
     zsh.enable = true;
   };
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   system.stateVersion = "20.09";
 

@@ -96,8 +96,6 @@
             # allows to only pass what is needed to each module.
             specialArgs = { flake-self = self; } // inputs;
 
-            system = "x86_64-linux";
-
             modules = [
               (./machines + "/${x}/configuration.nix")
               {
