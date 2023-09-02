@@ -37,15 +37,12 @@ in
 
       home.packages =
         let
-          # pkgs-postman = import
-          #   (builtins.fetchTarball {
-          #     url = "https://github.com/johnrichardrinehart/nixpkgs/archive/7fe340e404b82e7890686e2a14990c465d06e797.tar.gz";
-          #     sha256 = "sha256:076hr2pp8sgdinvdjmd13m7757adxr0abfy8mf1a1w6406ilf92k";
-          #   })
-          #   {
-          #     system = "${pkgs.system}";
-          #     config.allowUnfree = true;
-          #   };
+          staruml = (import
+            (builtins.fetchTarball {
+              url = "https://github.com/MayNiklas/nixpkgs/archive/d1774357eb6573f38bc74b11b82897a0a5d3e4be.tar.gz";
+              sha256 = "sha256:1l4l7h7a0bbwlzzkhs95a6iblflrazykr0mr0n9c6qhvvzh0pcld";
+            })
+            { system = "${pkgs.system}"; config.allowUnfree = true; }).staruml;
         in
         with pkgs; [
           _1password-gui
@@ -78,8 +75,7 @@ in
           rustc
           signal-desktop
           spotify
-          # currently the download is broken
-          # staruml
+          staruml
           sublime-merge
           sublime3
           tdesktop
