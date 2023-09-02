@@ -78,7 +78,8 @@ in
           rustc
           signal-desktop
           spotify
-          staruml
+          # currently the download is broken
+          # staruml
           sublime-merge
           sublime3
           tdesktop
