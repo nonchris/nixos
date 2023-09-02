@@ -130,7 +130,13 @@
         };
       in
       rec {
+
         # Use nixpkgs-fmt for `nix fmt'
         formatter = pkgs.nixpkgs-fmt;
+
+        packages = {
+          woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline { inputs = inputs; flake-self = self; };
+        };
+
       });
 }

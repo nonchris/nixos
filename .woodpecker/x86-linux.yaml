@@ -1,0 +1,72 @@
+{
+  "labels": { "backend": "local" },
+  "platform": "linux/amd64",
+  "steps":
+    [
+      {
+        "commands":
+          [
+            "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default",
+          ],
+        "image": "bash",
+        "name": "Setup Attic",
+        "secrets": ["attic_key"],
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.desktop.config.system.build.toplevel' -o 'result-desktop'",
+          ],
+        "image": "bash",
+        "name": "Build desktop",
+      },
+      {
+        "commands": ["attic push lounge-rocks:nix-cache 'result-desktop'"],
+        "image": "bash",
+        "name": "Push desktop to Attic",
+        "secrets": ["attic_key"],
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.flap.config.system.build.toplevel' -o 'result-flap'",
+          ],
+        "image": "bash",
+        "name": "Build flap",
+      },
+      {
+        "commands": ["attic push lounge-rocks:nix-cache 'result-flap'"],
+        "image": "bash",
+        "name": "Push flap to Attic",
+        "secrets": ["attic_key"],
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.mobi.config.system.build.toplevel' -o 'result-mobi'",
+          ],
+        "image": "bash",
+        "name": "Build mobi",
+      },
+      {
+        "commands": ["attic push lounge-rocks:nix-cache 'result-mobi'"],
+        "image": "bash",
+        "name": "Push mobi to Attic",
+        "secrets": ["attic_key"],
+      },
+      {
+        "commands":
+          [
+            "nix build '.#nixosConfigurations.rick.config.system.build.toplevel' -o 'result-rick'",
+          ],
+        "image": "bash",
+        "name": "Build rick",
+      },
+      {
+        "commands": ["attic push lounge-rocks:nix-cache 'result-rick'"],
+        "image": "bash",
+        "name": "Push rick to Attic",
+        "secrets": ["attic_key"],
+      },
+    ],
+}
