@@ -55,10 +55,6 @@
       clean = "${pkgs.git}/bin/git clean -xdn";
       destroy = "${pkgs.git}/bin/git clean -xdf";
 
-      sm = "${pkgs.sublime-merge}/bin/smerge .";
-      pc = "${pkgs.jetbrains.pycharm-professional}/bin/pycharm-professional . 2> /dev/null 1> /dev/null &";
-
-
       # navigation
       cg = "cd ~/git/";
       cn = "cd ~/nixos/";
