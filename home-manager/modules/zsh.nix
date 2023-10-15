@@ -58,6 +58,7 @@
       # navigation
       cg = "cd ~/git/";
       cn = "cd ~/nixos/";
+      wm = "cd /home/chris/git/watchman-ubo-work-prototype";
 
       # nix
 
