@@ -10,7 +10,7 @@
     [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/bb6c26b8-476e-4f85-b0d0-3f211bc2ef10";
