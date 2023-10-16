@@ -120,35 +120,18 @@
 
   environment.systemPackages =
     with pkgs; [
-      (pkgs.writeShellScriptBin "lb" ''
-        ${pkgs.ddccontrol}/bin/ddccontrol dev:/dev/i2c-8 -r 0x10 -W -5
-        ${pkgs.ddccontrol}/bin/ddccontrol dev:/dev/i2c-9 -r 0x10 -W -5
-      '')
-
-      (pkgs.writeShellScriptBin "hb" ''
-        ${pkgs.ddccontrol}/bin/ddccontrol dev:/dev/i2c-8 -r 0x10 -W 5
-        ${pkgs.ddccontrol}/bin/ddccontrol dev:/dev/i2c-9 -r 0x10 -W 5
-      '')
-
-      (pkgs.writeShellScriptBin "sb" ''
-        ${pkgs.ddccontrol}/bin/ddccontrol dev:/dev/i2c-8 -r 0x10 -w $1
-        ${pkgs.ddccontrol}/bin/ddccontrol dev:/dev/i2c-9 -r 0x10 -w $1
-      '')
-  
       bash-completion
       git
       nixfmt
       ncurses
       wget
-      i2c-tools
     ];
 
   services.openssh.forwardX11 = true;
 
-  services.ddccontrol.enable = true;
-
   nonchris = {
     common.enable = true;
+    ddcci.enable = true;
     hosts.enable = true;
     networking.enable = true;
     user.chris.home-manager.desktop = true;

@@ -72,6 +72,7 @@
       # individual subdirectories and contain a default.nix file
       nixosModules = {
         # modules
+        ddcci = import ./modules/ddcci;
         hosts = import ./modules/hosts;
         networking = import ./modules/networking;
         nix-common = import ./modules/nix-common;
