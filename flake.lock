@@ -58,11 +58,11 @@
     "adblockStevenBlack": {
       "flake": false,
       "locked": {
-        "lastModified": 1698066884,
-        "narHash": "sha256-0GcBuv9ecO3Q8/RqarWN4jK0HIbTjrSuuJ5ofi+7OXU=",
+        "lastModified": 1701659536,
+        "narHash": "sha256-0+YQWbFFvVuK0QzDf7fNPwPP32AsMVgY6CoYpX6LbU0=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "05cdb4d0a2161aed9e83307c3cfe5c145460862d",
+        "rev": "4ee89fc68a7cd71b4def49d5f215e58ad3fae033",
         "type": "github"
       },
       "original": {
