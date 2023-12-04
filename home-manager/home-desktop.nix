@@ -36,14 +36,6 @@ in
       ];
 
       home.packages =
-        let
-          staruml = (import
-            (builtins.fetchTarball {
-              url = "https://github.com/MayNiklas/nixpkgs/archive/d1774357eb6573f38bc74b11b82897a0a5d3e4be.tar.gz";
-              sha256 = "sha256:1l4l7h7a0bbwlzzkhs95a6iblflrazykr0mr0n9c6qhvvzh0pcld";
-            })
-            { system = "${pkgs.system}"; config.allowUnfree = true; }).staruml;
-        in
         with pkgs; [
           _1password-gui
           ansible
