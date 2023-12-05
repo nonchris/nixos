@@ -1,4 +1,4 @@
-{ lib, pkgs, config, flake-self, nixpkgs-unstable, ... }:
+{ lib, pkgs, config, flake-self, ... }:
 with lib;
 let cfg = config.nonchris.user.chris.home-manager;
 
@@ -26,7 +26,7 @@ in
           nixpkgs.overlays = [
             flake-self.overlays.default
             (final: prev: {
-              unstable = import nixpkgs-unstable {
+              unstable = import flake-self.inputs.nixpkgs-unstable {
                 system = "${pkgs.system}";
                 config.allowUnfree = true;
               };

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, flake-self, nixpkgs, nixpkgs-unstable, ... }:
+{ config, pkgs, lib, flake-self, nixpkgs, ... }:
 with lib;
 let cfg = config.nonchris.common;
 in {
@@ -21,7 +21,7 @@ in {
     nixpkgs.overlays = [
       flake-self.overlays.default
       (final: prev: {
-        unstable = import nixpkgs-unstable {
+        unstable = import flake-self.inputs.nixpkgs-unstable {
           system = "${pkgs.system}";
           config.allowUnfree = true;
         };
