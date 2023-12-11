@@ -1,7 +1,10 @@
 { config, pkgs, ... }: {
 
   home.packages = with pkgs.jetbrains; [
-    jdk
+    # tmp fix - causes an collision:
+    # error: collision between `/nix/store/i14lzxz4yy041hxl2amqdkqyk3hsr7xz-zsh-5.9-man/share/man' and dangling symlink `/nix/store/p9yab7i19wvcaz4hyfx53315bzb3iahm-jetbrains-jdk-jcef-17.0.8-b1000.8/share/man'
+    # jdk
+
     clion
     # rider
     # ruby-mine
