@@ -166,26 +166,6 @@
     "disko": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1701905325,
-        "narHash": "sha256-lda63LmEIlDMeCgWfjr3/wb487XPllBByfrGRieyEk4=",
-        "owner": "nix-community",
-        "repo": "disko",
-        "rev": "1144887c6f4d2dcbb2316a24364ef53e25b0fcfe",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "disko",
-        "type": "github"
-      }
-    },
-    "disko_2": {
-      "inputs": {
-        "nixpkgs": [
           "mayniklas",
           "nixpkgs"
         ]
@@ -370,7 +350,7 @@
         "adblock-unbound": "adblock-unbound_2",
         "adblockStevenBlack": "adblockStevenBlack_2",
         "attic": "attic",
-        "disko": "disko_2",
+        "disko": "disko",
         "flake-utils": [
           "flake-utils"
         ],
@@ -388,11 +368,11 @@
         "wallpaper-generator": "wallpaper-generator"
       },
       "locked": {
-        "lastModified": 1702205635,
-        "narHash": "sha256-jd9z6MuR5SLdEpfWC9bRJz+KUQITBflZwejtUOrvK5I=",
+        "lastModified": 1702314902,
+        "narHash": "sha256-qACiHokzugIBqLxSECrf2HxyoS8EVAbX4j+SmOaS20g=",
         "owner": "mayniklas",
         "repo": "nixos",
-        "rev": "a9cf4ca80606f154a84f6c209bdcaf6688a30beb",
+        "rev": "5f94b760554ee9178abea32292fbaf95192fffd9",
         "type": "github"
       },
       "original": {
@@ -515,7 +495,6 @@
         "adblock-unbound": "adblock-unbound",
         "adblockStevenBlack": "adblockStevenBlack",
         "discord-bot-valorant": "discord-bot-valorant",
-        "disko": "disko",
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager",
         "mayniklas": "mayniklas",
