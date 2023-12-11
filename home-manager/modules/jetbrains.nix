@@ -13,7 +13,7 @@
     #
     # cd ~/.local/share/JetBrains/PyCharm2022.2/github-copilot-intellij/copilot-agent/bin
     # ln -s $(realpath $(which copilot-agent)) $(pwd)/copilot-agent-linux
-    (pkgs.callPackage ./copilot-agent.nix { })
+    pkgs.github-copilot-intellij-agent
   ];
 
   programs.zsh.shellAliases = {
