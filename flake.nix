@@ -47,14 +47,6 @@
       repo = "valorant-discord-bot";
     };
 
-    domain-check = {
-      url = "github:nonchris/domain-check";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
   };
 
   outputs = { self, ... }@inputs:

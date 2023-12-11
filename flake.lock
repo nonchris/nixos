@@ -163,29 +163,6 @@
         "type": "github"
       }
     },
-    "domain-check": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1653941814,
-        "narHash": "sha256-vGMep7V7JYxYMrhD0ltq+26T5ziu8llp340ZJTiHnEs=",
-        "owner": "nonchris",
-        "repo": "domain-check",
-        "rev": "b19ea2ebadbcaff6671f7f6c83db6b409a4e182f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nonchris",
-        "repo": "domain-check",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -497,7 +474,6 @@
         "adblock-unbound": "adblock-unbound",
         "adblockStevenBlack": "adblockStevenBlack",
         "discord-bot-valorant": "discord-bot-valorant",
-        "domain-check": "domain-check",
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager",
         "mayniklas": "mayniklas",

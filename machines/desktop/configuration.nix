@@ -1,14 +1,13 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, lib, config, adblock-unbound, domain-check, mayniklas, ... }:
+{ pkgs, lib, config, adblock-unbound, mayniklas, ... }:
 
 {
 
   nixpkgs.overlays = [
     (_self: _super: {
       adblock = adblock-unbound.packages.${pkgs.system};
-      domain-check = domain-check.packages.${pkgs.system}.domain-check;
     })
   ];
 
@@ -121,7 +120,7 @@
       direnv.enable = true;
     };
 
-    home.packages = with pkgs;[ domain-check ];
+    home.packages = with pkgs; [ ];
   };
 
   environment.systemPackages =
