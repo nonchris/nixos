@@ -59,7 +59,14 @@ in
           # obs-v4l2sink
           omnisharp-roslyn
           okular
-          postman
+
+          (import
+            (builtins.fetchTarball {
+              url = "https://github.com/nixos/nixpkgs/archive/7c9cc5a6e5d38010801741ac830a3f8fd667a7a0.tar.gz";
+              sha256 = "sha256:1f7nsfz327habs623k5sviafxvvvsjnarsvz3m99qsrw88zdd929";
+            })
+            { system = "${pkgs.system}"; config = { allowUnfree = true; }; }).postman
+
           pstree
           python3
           # python38Packages.ipykernel
