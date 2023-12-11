@@ -7,8 +7,6 @@ in
 self: super:
 {
   # packages from unstable
-  postman = self.unstable.postman;
-
 
   # Custom packages. Will be made available on all machines and used where
   # needed.

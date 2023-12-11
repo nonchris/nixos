@@ -20,12 +20,6 @@ in {
     nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
     nixpkgs.overlays = [
       flake-self.overlays.default
-      (final: prev: {
-        unstable = import flake-self.inputs.nixpkgs-unstable {
-          system = "${pkgs.system}";
-          config.allowUnfree = true;
-        };
-      })
     ];
 
     nixpkgs = { config.allowUnfree = true; };
