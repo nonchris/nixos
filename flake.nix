@@ -21,6 +21,13 @@
       };
     };
 
+    # https://github.com/nix-community/disko
+    # Format disks with nix-config
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Adblocking lists for Unbound DNS servers running on NixOS
     # https://github.com/MayNiklas/nixos-adblock-unbound
     adblock-unbound = {
