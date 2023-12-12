@@ -3,14 +3,34 @@
 
   inputs = {
 
+    # Nix Packages collection
+    # https://github.com/NixOS/nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # Pure Nix flake utility functions
+    # https://github.com/numtide/flake-utils
+    flake-utils.url = "github:numtide/flake-utils";
+
+    # Manage a user environment using Nix 
+    # https://github.com/nix-community/home-manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-utils.url = "github:numtide/flake-utils";
+    ### Tools for managing NixOS
+
+    # lollypops deployment tool
+    # https://github.com/pinpox/lollypops
+    lollypops = {
+      url = "github:pinpox/lollypops";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    ### User repositories
 
     mayniklas = {
       url = "github:mayniklas/nixos";
@@ -20,6 +40,8 @@
         flake-utils.follows = "flake-utils";
       };
     };
+
+    ### Applications
 
     # Adblocking lists for Unbound DNS servers running on NixOS
     # https://github.com/MayNiklas/nixos-adblock-unbound
@@ -90,8 +112,10 @@
             modules = [
               (./machines + "/${x}/configuration.nix")
               {
-                imports = builtins.attrValues self.nixosModules
-                ++ builtins.attrValues mayniklas.nixosModules;
+                imports =
+                  builtins.attrValues self.nixosModules ++
+                  builtins.attrValues mayniklas.nixosModules ++
+                  [ lollypops.nixosModules.lollypops ];
               }
               {
                 nixpkgs.overlays = [
@@ -148,6 +172,14 @@
                 attic push lounge-rocks:nix-cache ${all_outputs}
               fi
             '';
+
+        };
+
+        apps = {
+
+          lollypops = lollypops.apps.${pkgs.system}.default {
+            configFlake = self;
+          };
 
         };
 

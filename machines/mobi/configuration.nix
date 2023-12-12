@@ -1,6 +1,17 @@
 { pkgs, lib, config, discord-bot-valorant, ... }:
 
 {
+
+  # nix run .\#lollypops - mobi
+  lollypops.deployment = {
+    # build on your computer and copy the closure via ssh
+    local-evaluation = true;
+    ssh = {
+      user = "root";
+      host = "202.61.248.243";
+    };
+  };
+
   imports = [
 
     # Users

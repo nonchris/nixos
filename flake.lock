@@ -323,6 +323,29 @@
     "lollypops": {
       "inputs": {
         "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1700608492,
+        "narHash": "sha256-27YhcATLzYCHkIOSljKO0dUEaNwOhyuFwFu5eLcqQwo=",
+        "owner": "pinpox",
+        "repo": "lollypops",
+        "rev": "63164bb5856d92d776a90c701acd3114450cdd85",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pinpox",
+        "repo": "lollypops",
+        "type": "github"
+      }
+    },
+    "lollypops_2": {
+      "inputs": {
+        "flake-utils": [
           "mayniklas",
           "flake-utils"
         ],
@@ -357,7 +380,7 @@
         "home-manager": [
           "home-manager"
         ],
-        "lollypops": "lollypops",
+        "lollypops": "lollypops_2",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": [
           "nixpkgs"
@@ -497,6 +520,7 @@
         "discord-bot-valorant": "discord-bot-valorant",
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager",
+        "lollypops": "lollypops",
         "mayniklas": "mayniklas",
         "nixpkgs": "nixpkgs_5"
       }
