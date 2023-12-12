@@ -170,6 +170,8 @@
               if command -v attic &> /dev/null
               then
                 attic push lounge-rocks:nix-cache ${all_outputs}
+              else
+                echo "attic not available"
               fi
             '';
 
