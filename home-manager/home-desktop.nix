@@ -45,6 +45,7 @@ in
           htop
           hugo
           # linuxPackages.v4l2loopback
+          lutris
           maven
           mono
           mpv
@@ -72,8 +73,8 @@ in
           sublime-merge
           sublime3
           tdesktop
-          texstudio
           texlive.combined.scheme-full
+          texstudio
           thunderbird
           unzip
           vim
