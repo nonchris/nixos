@@ -132,6 +132,8 @@
       wget
     ];
 
+  programs.steam.enable = true;
+
   services.openssh.forwardX11 = true;
 
   nonchris = {
