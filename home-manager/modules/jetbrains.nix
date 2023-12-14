@@ -21,6 +21,7 @@
 
   programs.zsh.shellAliases = {
     pc = "${pkgs.jetbrains.pycharm-professional}/bin/pycharm-professional . 2> /dev/null 1> /dev/null &";
+    cl = "${pkgs.jetbrains.clion}/bin/clion . 2> /dev/null 1> /dev/null &";
   };
 
 }
