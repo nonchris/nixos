@@ -151,29 +151,11 @@
 
           woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline { inputs = inputs; flake-self = self; };
 
-          # nix run .#build_outputs
-          build_outputs =
-            let
-              all_outputs = (pkgs.writeShellScriptBin "all_outputs" ''
-                # NixOS systems
-                echo ${self.nixosConfigurations.desktop.config.system.build.toplevel}
-                echo ${self.nixosConfigurations.flap.config.system.build.toplevel}
-                echo ${self.nixosConfigurations.mobi.config.system.build.toplevel}
-                echo ${self.nixosConfigurations.rick.config.system.build.toplevel}
-              '');
-            in
-            pkgs.writeShellScriptBin "build_outputs" ''
-              # makes sure we don't garbage collect the build outputs
-              ln -sfn ${all_outputs} ~/.keep-nix-outputs-nonchris
-
-              # push outputs to attic when attic is available
-              if command -v attic &> /dev/null
-              then
-                attic push lounge-rocks:nix-cache ${all_outputs}
-              else
-                echo "attic not available"
-              fi
-            '';
+          build_outputs = pkgs.callPackage mayniklas.packages.${system}.build_outputs.override {
+            inherit self;
+            # build_hosts = [ "desktop" "mobi" ];
+            output_path = "~/.keep-nix-outputs-nonchris";
+          };
 
         };
 
