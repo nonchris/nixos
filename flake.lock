@@ -391,11 +391,11 @@
         "wallpaper-generator": "wallpaper-generator"
       },
       "locked": {
-        "lastModified": 1702314902,
-        "narHash": "sha256-qACiHokzugIBqLxSECrf2HxyoS8EVAbX4j+SmOaS20g=",
+        "lastModified": 1702560415,
+        "narHash": "sha256-KSzzLA5UigshD991UWr6sru7Uxs7o3n0w3WOek6zlUw=",
         "owner": "mayniklas",
         "repo": "nixos",
-        "rev": "5f94b760554ee9178abea32292fbaf95192fffd9",
+        "rev": "6857b28719c3220059477686da849d49a005aef1",
         "type": "github"
       },
       "original": {
