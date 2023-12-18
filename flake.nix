@@ -153,7 +153,7 @@
 
           build_outputs = pkgs.callPackage mayniklas.packages.${system}.build_outputs.override {
             inherit self;
-            # build_hosts = [ "desktop" "mobi" ];
+            build_hosts = [ "desktop" "mobi" ];
             output_path = "~/.keep-nix-outputs-nonchris";
           };
 
