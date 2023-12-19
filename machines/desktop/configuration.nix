@@ -37,6 +37,7 @@
     var.mainUser = "chris";
     bluetooth.enable = true;
     docker.enable = true;
+    gaming.enable = true;
     grub-luks = {
       enable = true;
       uuid = "b99b7086-f4ab-4953-8966-e720abcd6aa2";
@@ -131,8 +132,6 @@
       ncurses
       wget
     ];
-
-  programs.steam.enable = true;
 
   services.openssh.forwardX11 = true;
 

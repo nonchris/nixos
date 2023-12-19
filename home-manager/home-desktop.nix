@@ -45,7 +45,6 @@ in
           htop
           hugo
           # linuxPackages.v4l2loopback
-          lutris
           maven
           mono
           mpv
