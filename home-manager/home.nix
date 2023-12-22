@@ -33,7 +33,6 @@ in {
         nmap
         unzip
 
-        mayniklas.update-input
         mayniklas.vs-fix
       ];
 
