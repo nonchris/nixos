@@ -26,7 +26,7 @@
     [{ device = "/dev/disk/by-uuid/4fb10d7c-63e1-473d-924f-ae88f4f0d05b"; }];
 
   # set cpu frequency scaling_governor (schedutil reduces power consumption)
-  powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 
   # The option definition `hardware.video.hidpi.enable' no longer has any effect.
   # Consider manually configuring fonts.fontconfig according to personal preference.
