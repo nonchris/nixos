@@ -84,6 +84,7 @@ in
           zoom-us
 
           # mayniklas
+          mayniklas.set-performance
           mayniklas.vs-fix
         ];
 
