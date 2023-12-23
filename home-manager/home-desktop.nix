@@ -82,11 +82,14 @@ in
           youtube-dl
           zip
           zoom-us
-
-          # mayniklas
-          mayniklas.set-performance
-          mayniklas.vs-fix
-        ];
+        ]
+        # packages from MayNiklas overlay
+        # (https://github.com/MayNiklas/nixos/blob/main/overlays/mayniklas.nix)
+        ++ (with pkgs.mayniklas; [
+          pycharm-fix
+          set-performance
+          vs-fix
+        ]);
 
       programs.zsh.shellAliases = {
         sm = "${pkgs.sublime-merge}/bin/smerge .";
