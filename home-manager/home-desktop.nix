@@ -33,27 +33,36 @@ in
         with pkgs; [
           _1password-gui
           ansible
+          asciinema
           cargo
           discord
+          dnsutils
           # dotnet-sdk_5 # Dotnet SDK 5.0 is EOL, please use 6.0 (LTS) or 7.0 (Current)
           element-desktop
           gcc
           gccStdenv
+          gimp
+          glances
           gradle_6
           gnuplot
           gparted
+          h
           htop
           hugo
           # linuxPackages.v4l2loopback
+          libreoffice
           maven
           mono
           mpv
+          nil
+          nix-tree
+          nmap
           nvtop
           obs-studio
           # obs-v4l2sink
           omnisharp-roslyn
+          oneko
           okular
-
           (import
             (builtins.fetchTarball {
               url = "https://github.com/nixos/nixpkgs/archive/7c9cc5a6e5d38010801741ac830a3f8fd667a7a0.tar.gz";
@@ -67,11 +76,13 @@ in
           ruby
           rustc
           signal-desktop
+          speedtest-cli
           spotify
           staruml
           sublime-merge
           sublime3
           tdesktop
+
           texlive.combined.scheme-full
           texstudio
           thunderbird
@@ -80,6 +91,7 @@ in
           vlc
           whois
           youtube-dl
+          youtube-tui
           zip
           zoom-us
         ]
