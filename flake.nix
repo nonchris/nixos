@@ -49,7 +49,6 @@
       url = "github:MayNiklas/nixos-adblock-unbound";
       inputs = {
         adblockStevenBlack.follows = "adblockStevenBlack";
-        flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };
