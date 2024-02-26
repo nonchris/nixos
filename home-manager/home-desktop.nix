@@ -54,6 +54,7 @@ in
           maven
           mono
           mpv
+          neo-cowsay
           nil
           nix-tree
           nmap
@@ -98,6 +99,7 @@ in
         # packages from MayNiklas overlay
         # (https://github.com/MayNiklas/nixos/blob/main/overlays/mayniklas.nix)
         ++ (with pkgs.mayniklas; [
+          preview-update
           pycharm-fix
           set-performance
           vs-fix
