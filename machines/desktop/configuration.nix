@@ -81,7 +81,7 @@
         # For reference: https://github.com/MayNiklas/nixos-adblock-unbound
         # List being used: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
         include = [ "\"${pkgs.adblock.unbound-adblockStevenBlack}\"" ];
-        interface = [ "127.0.0.1" ];
+        interface = [ "::1" "127.0.0.1" ];
         access-control = [ "127.0.0.0/8 allow" ];
       };
       forward-zone = [{
