@@ -2,7 +2,7 @@
 
 {
 
-  # nix run .\#lollypops - mobi
+  # nix run .\#lollypops -- mobi
   lollypops.deployment = {
     # build on your computer and copy the closure via ssh
     local-evaluation = true;
@@ -44,6 +44,7 @@
     with pkgs; [
       bash-completion
       git
+      htop
       nixfmt
       wget
     ];
