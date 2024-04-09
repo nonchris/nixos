@@ -35,9 +35,9 @@ in {
         connect-timeout = 10
         # these log lines are only shown on a failed build
         log-lines = 25
-        # Free up to 10GiB whenever there is less than 5GiB left.
-        min-free = ${toString (5 * 1024 * 1024 * 1024)}
-        max-free = ${toString (10 * 1024 * 1024 * 1024)}
+        # Free up to 5GiB whenever there is less than 2GiB left.
+        min-free = ${toString (2 * 1024 * 1024 * 1024)}
+        max-free = ${toString (5 * 1024 * 1024 * 1024)}
       '';
 
       settings = {
