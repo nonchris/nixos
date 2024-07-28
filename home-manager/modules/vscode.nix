@@ -17,6 +17,8 @@
       # style
       "terminal.integrated.fontFamily" = "source code pro";
       "workbench.colorTheme" = "Dracula";
+      "workbench.tree.indent" = 16;
+
       
       # Copilot
        "github.copilot.enable" = {
