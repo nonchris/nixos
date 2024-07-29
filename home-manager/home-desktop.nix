@@ -85,8 +85,8 @@ in
           vim
           vlc
           whois
-          youtube-dl
           youtube-tui
+          yt-dlp
           zip
           zoom-us
         ]
