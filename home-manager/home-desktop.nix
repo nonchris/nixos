@@ -94,7 +94,6 @@ in
         # (https://github.com/MayNiklas/nixos/blob/main/overlays/mayniklas.nix)
         ++ (with pkgs.mayniklas; [
           preview-update
-          pycharm-fix
           set-performance
           vs-fix
         ]);

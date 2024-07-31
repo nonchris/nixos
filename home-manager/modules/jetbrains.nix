@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  nonchris-jetbrains-nixpkgs = (import
+  jetbrains-nixpkgs = (import
     (builtins.fetchTarball {
       url = "https://github.com/nonchris/nixpkgs/archive/c16900e39943577afbae120c6df5bf0f49878ddb.tar.gz";
       sha256 = "sha256:0x73sip0ac5v3iwkdincnkwdlm9f5rca2gn0s3c786fvqlfbp8i8";
@@ -17,14 +17,7 @@ in
     # rider
     # ruby-mine
     idea-ultimate
-    nonchris-jetbrains-nixpkgs.jetbrains.pycharm-professional
-
-    # see https://github.com/NixOS/nixpkgs/pull/201518
-    # see https://github.com/not-matthias/dotfiles-nix/issues/23
-    #
-    # cd ~/.local/share/JetBrains/PyCharm2022.2/github-copilot-intellij/copilot-agent/bin
-    # ln -s $(realpath $(which copilot-agent)) $(pwd)/copilot-agent-linux
-    nonchris-jetbrains-nixpkgs.github-copilot-intellij-agent
+    (jetbrains-nixpkgs.jetbrains.plugins.addPlugins jetbrains-nixpkgs.jetbrains.pycharm-professional [ "github-copilot" ])
   ];
 
   programs.zsh.shellAliases = {
