@@ -5,7 +5,7 @@
 
     # Nix Packages collection
     # https://github.com/NixOS/nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nonchris/nixpkgs/nixos-unstable";
 
     # Pure Nix flake utility functions
     # https://github.com/numtide/flake-utils
