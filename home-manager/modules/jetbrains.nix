@@ -1,13 +1,13 @@
 { config, pkgs, ... }:
-let
-  jetbrains-nixpkgs = (import
-    (builtins.fetchTarball {
-      url = "https://github.com/nonchris/nixpkgs/archive/c16900e39943577afbae120c6df5bf0f49878ddb.tar.gz";
-      sha256 = "sha256:0x73sip0ac5v3iwkdincnkwdlm9f5rca2gn0s3c786fvqlfbp8i8";
-    })
-    { system = "${pkgs.system}"; config = { allowUnfree = true; }; });
-in
 {
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      jetbrains = prev.jetbrains // {
+        pycharm-professional = (prev.jetbrains.plugins.addPlugins prev.jetbrains.pycharm-professional [ "github-copilot" ]);
+      };
+    })
+  ];
 
   home.packages = with pkgs.jetbrains; [
     jdk
@@ -17,7 +17,7 @@ in
     # rider
     # ruby-mine
     idea-ultimate
-    (jetbrains-nixpkgs.jetbrains.plugins.addPlugins jetbrains-nixpkgs.jetbrains.pycharm-professional [ "github-copilot" ])
+    pycharm-professional
   ];
 
   programs.zsh.shellAliases = {
