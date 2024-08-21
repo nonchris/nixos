@@ -13,7 +13,7 @@
 
       # style
       "terminal.integrated.fontFamily" = "source code pro";
-      "workbench.colorTheme" = "Dracula";
+      "workbench.colorTheme" = "Dracula Theme";
       "workbench.tree.indent" = 16;
 
       # Copilot
