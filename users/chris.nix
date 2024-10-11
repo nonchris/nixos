@@ -7,7 +7,7 @@
     openssh.authorizedKeys.keyFiles = [
       (builtins.fetchurl {
         url = "https://github.com/nonchris.keys";
-        sha256 = "sha256:11fg32mprjlkgxp3iy4wr1flzxc44s6ls2vxjdbcznl14n462m1x";
+        sha256 = "sha256:02352mgrlxm69gh742gpr1miciz7qj9ym6a3sg14bmbhz403ypfy";
       })
     ];
   };
