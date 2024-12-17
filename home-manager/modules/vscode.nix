@@ -7,6 +7,9 @@
     enableExtensionUpdateCheck = false;
 
     userSettings = {
+      # annoying
+      "explorer.autoReveal" = false;
+
       # privacy
       "telemetry.telemetryLevel" = "off";
       "redhat.telemetry.enabled" = false;
