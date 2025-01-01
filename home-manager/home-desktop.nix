@@ -43,7 +43,6 @@ in
           gccStdenv
           gimp
           glances
-          gradle_6
           gnuplot
           gparted
           h
@@ -81,6 +80,7 @@ in
           texlive.combined.scheme-full
           texstudio
           thunderbird
+          tree
           unzip
           vim
           vlc
