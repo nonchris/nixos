@@ -54,11 +54,6 @@
           "command" = "lualatex";
           "args" = [ "-synctex=1" "-interaction=nonstopmode" "-file-line-error" "-pdf" "%DOC%" ];
         }
-        {
-          "name" = "biber";
-          "command" = "biber";
-          "args" = [ "%DOCFILE%" ];
-        }
       ];
     };
 
