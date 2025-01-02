@@ -5,6 +5,14 @@
     (final: prev: {
       jetbrains = prev.jetbrains // {
         pycharm-professional = (prev.jetbrains.plugins.addPlugins prev.jetbrains.pycharm-professional [ "github-copilot" ]);
+        gateway = (import
+          (builtins.fetchGit {
+            name = "my-old-jetbrains-revision";
+            url = "https://github.com/NixOS/nixpkgs/";
+            ref = "refs/heads/nixos-unstable";
+            rev = "47c1824c261a343a6acca36d168a0a86f0e66292";
+          })
+          { }).pkgs.jetbrains.gateway;
       };
     })
   ];
