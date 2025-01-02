@@ -42,7 +42,7 @@
       enable = true;
       uuid = "b99b7086-f4ab-4953-8966-e720abcd6aa2";
     };
-    kde.enable = true;
+    # kde.enable = true;
     locale.enable = true;
     metrics = {
       node = {
@@ -62,6 +62,16 @@
       root.enable = true;
       nik = { enable = true; };
     };
+  };
+
+  # Enable the Plasma 6 Desktop Environment.
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.enable = true;
+
+  services.xserver = {
+    enable = true;
+    layout = "de";
+    xkbOptions = "eurosign:e";
   };
 
   # Unbound is a validating, recursive, and caching DNS resolver.
