@@ -5,14 +5,11 @@
     (final: prev: {
       jetbrains = prev.jetbrains // {
         pycharm-professional = (prev.jetbrains.plugins.addPlugins prev.jetbrains.pycharm-professional [ "github-copilot" ]);
-        gateway = (import
-          (builtins.fetchGit {
-            name = "my-old-jetbrains-revision";
-            url = "https://github.com/NixOS/nixpkgs/";
-            ref = "refs/heads/nixos-unstable";
-            rev = "47c1824c261a343a6acca36d168a0a86f0e66292";
-          })
-          { }).pkgs.jetbrains.gateway;
+        gateway = (import (builtins.fetchTarball { url = "https://github.com/NixOS/nixpkgs/archive/47c1824c261a343a6acca36d168a0a86f0e66292.tar.gz"; sha256 = "sha256:0wwsc4ywn9xp9y2pkbxq3kkmhm5gliwmh308bq4gvc7w1mds19mn"; })
+          {
+            config.allowUnfree = true;
+            system = pkgs.system;
+          }).jetbrains.gateway;
       };
     })
   ];
