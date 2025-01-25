@@ -5,12 +5,14 @@ let
   inherit inputs;
 in
 self: super:
-{
+let system = super.system; in {
   # packages from unstable
 
   # Custom packages. Will be made available on all machines and used where
   # needed.
 
   # custom packages
+
+  discord = (import inputs.nixpkgs-master { inherit system; }).discord;
 
 }

@@ -419,6 +419,23 @@
         "type": "github"
       }
     },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1737813507,
+        "narHash": "sha256-DmDJKe3uLne4HdKrtEcLt5J8OMygRx1BEU/y36/6PvM=",
+        "ref": "master",
+        "rev": "9273f70044fa801aa3195a9040d07d9ab441b949",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/NixOS/nixpkgs"
+      },
+      "original": {
+        "ref": "master",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/NixOS/nixpkgs"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1733038015,
@@ -566,7 +583,8 @@
         "home-manager": "home-manager",
         "lollypops": "lollypops",
         "mayniklas": "mayniklas",
-        "nixpkgs": "nixpkgs_6"
+        "nixpkgs": "nixpkgs_6",
+        "nixpkgs-master": "nixpkgs-master"
       }
     },
     "shelly-exporter": {
