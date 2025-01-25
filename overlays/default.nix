@@ -5,7 +5,14 @@ let
   inherit inputs;
 in
 self: super:
-let system = super.system; in {
+let
+  system = super.system;
+  pkgs-master = (import inputs.nixpkgs-master {
+    inherit system;
+    config = { allowUnfree = true; };
+  });
+in
+{
   # packages from unstable
 
   # Custom packages. Will be made available on all machines and used where
@@ -13,6 +20,6 @@ let system = super.system; in {
 
   # custom packages
 
-  discord = (import inputs.nixpkgs-master { inherit system; }).discord;
+  discord = pkgs-master.discord;
 
 }
