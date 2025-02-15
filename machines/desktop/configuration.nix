@@ -64,17 +64,6 @@
     };
   };
 
-  # KDE Plasma
-  # services.desktopManager.plasma6.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.displayManager.sddm.enable = true;
-
-  services.xserver = {
-    enable = true;
-    layout = "de";
-    xkbOptions = "eurosign:e";
-  };
-
   # Unbound is a validating, recursive, and caching DNS resolver.
   # It won't use any noticable ressources.
   # By using a DNS server running on the same host, 
@@ -150,6 +139,7 @@
     common.enable = true;
     ddcci.enable = true;
     hosts.enable = true;
+    kde.enable = true;
     networking.enable = true;
     user.chris.home-manager.desktop = true;
   };

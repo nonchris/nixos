@@ -86,6 +86,7 @@
         # modules
         ddcci = import ./modules/ddcci;
         hosts = import ./modules/hosts;
+        kde = import ./modules/kde;
         networking = import ./modules/networking;
         nix-common = import ./modules/nix-common;
         thelounge = import ./modules/thelounge;
