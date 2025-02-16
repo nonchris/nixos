@@ -10,8 +10,8 @@ in
 
   config = mkIf cfg.enable {
 
-    services.desktopManager.plasma6.enable = false;
-    services.xserver.desktopManager.plasma5.enable = true;
+    services.desktopManager.plasma6.enable = true;
+    # services.xserver.desktopManager.plasma5.enable = true;
 
     services.displayManager.sddm.enable = true;
 
