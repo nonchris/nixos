@@ -1,12 +1,16 @@
 { config, pkgs, ... }:
+let
+  jetbrains-pkgs = (import (builtins.fetchTarball { url = "https://github.com/NixOS/nixpkgs/archive/2ff53fe64443980e139eaa286017f53f88336dd0.tar.gz"; sha256 = "sha256:0ms5nbr2vmvhbr531bxvyi10nz9iwh5cry12pl416gyvf0mxixpv"; }) {
+    config.allowUnfree = true;
+    system = pkgs.system;
+  });
+in
 {
 
   nixpkgs.overlays = [
     (final: prev: {
       jetbrains = prev.jetbrains // {
-        pycharm-professional = (import (builtins.fetchTarball { url = "https://github.com/NixOS/nixpkgs/archive/2ff53fe64443980e139eaa286017f53f88336dd0.tar.gz"; sha256 = "sha256:0ms5nbr2vmvhbr531bxvyi10nz9iwh5cry12pl416gyvf0mxixpv"; }
-          prev.jetbrains.plugins.addPlugins
-          prev.jetbrains.pycharm-professional [ "github-copilot" ]));
+        pycharm-professional = (jetbrains-pkgs.jetbrains.plugins.addPlugins jetbrains-pkgs.jetbrains.pycharm-professional [ "github-copilot" ]);
         gateway = (import (builtins.fetchTarball { url = "https://github.com/NixOS/nixpkgs/archive/47c1824c261a343a6acca36d168a0a86f0e66292.tar.gz"; sha256 = "sha256:0wwsc4ywn9xp9y2pkbxq3kkmhm5gliwmh308bq4gvc7w1mds19mn"; })
           {
             config.allowUnfree = true;
