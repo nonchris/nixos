@@ -57,7 +57,7 @@ in
           nil
           nix-tree
           nmap
-          nvtop
+          nvtopPackages.nvidia
           obs-studio
           # obs-v4l2sink
           omnisharp-roslyn
