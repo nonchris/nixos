@@ -17,9 +17,7 @@ let
         url = "https://github.com/NixOS/nixpkgs/archive/28ace32529a63842e4f8103e4f9b24960cf6c23a.tar.gz";
         sha256 = "sha256:1zphnsa5dhwgi4dsqza15cjvpi7kksidfmjkjymjninqpv04wgfc";
       })
-      {
-        inherit system;
-      });
+      { inherit system; });
 in
 {
   # packages from unstable
