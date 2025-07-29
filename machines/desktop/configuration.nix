@@ -37,7 +37,7 @@
     var.mainUser = "chris";
     bluetooth.enable = true;
     docker.enable = true;
-    gaming.enable = true;
+    # gaming.enable = true;
     grub-luks = {
       enable = true;
       uuid = "b99b7086-f4ab-4953-8966-e720abcd6aa2";
@@ -121,7 +121,9 @@
       direnv.enable = true;
     };
 
-    home.packages = with pkgs; [ ];
+    home.packages = with pkgs; [
+      prismlauncher
+    ];
   };
 
   environment.systemPackages =
@@ -134,6 +136,12 @@
     ];
 
   services.openssh.forwardX11 = true;
+
+  programs.steam.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+  };
 
   nonchris = {
     common.enable = true;
