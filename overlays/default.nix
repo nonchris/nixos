@@ -11,13 +11,6 @@ let
     inherit system;
     config = { allowUnfree = true; };
   });
-  prismlauncher-pkgs = (
-    import
-      (builtins.fetchTarball {
-        url = "https://github.com/NixOS/nixpkgs/archive/28ace32529a63842e4f8103e4f9b24960cf6c23a.tar.gz";
-        sha256 = "sha256:1zphnsa5dhwgi4dsqza15cjvpi7kksidfmjkjymjninqpv04wgfc";
-      })
-      { inherit system; });
 in
 {
   # packages from unstable
@@ -28,6 +21,14 @@ in
   # custom packages
 
   discord = pkgs-master.discord;
-  prismlauncher = prismlauncher-pkgs.prismlauncher;
+
+  prismlauncher = (import
+    (builtins.fetchGit {
+      name = "nixpkgs-prismlauncher-7.2";
+      url = "https://github.com/NixOS/nixpkgs/";
+      ref = "refs/heads/nixos-unstable";
+      rev = "e1ee359d16a1886f0771cc433a00827da98d861c";
+    })
+    { inherit system; }).prismlauncher;
 
 }
