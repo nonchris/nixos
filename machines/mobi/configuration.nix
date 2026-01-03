@@ -1,4 +1,10 @@
-{ pkgs, lib, config, discord-bot-valorant, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  discord-bot-valorant,
+  ...
+}:
 
 {
 
@@ -48,16 +54,34 @@
         }
       ];
     };
+    firewall.allowedTCPPorts = [
+      80
+      443
+    ];
   };
 
-  environment.systemPackages =
-    with pkgs; [
-      bash-completion
-      git
-      htop
-      nixfmt
-      wget
-    ];
+  services.nginx.virtualHosts = {
+    "wrapped.cyber-chris.de" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://localhost:8005";
+        # nix-shell --packages apacheHttpd --run 'htpasswd -B -c FILENAME USERNAME'
+        basicAuthFile = "/var/src/secrets/wrapped/basicauth.htpasswd";
+      };
+    };
+  };
+
+  security.acme.defaults.email = "$git@chris-ge.de";
+  security.acme.acceptTerms = true;
+
+  environment.systemPackages = with pkgs; [
+    bash-completion
+    git
+    htop
+    nixfmt
+    wget
+  ];
 
   # nix flake lock --update-input discord-bot-valorant
   services = {
