@@ -60,14 +60,18 @@
     ];
   };
 
-  services.nginx.virtualHosts = {
-    "wrapped.cyber-chris.de" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://localhost:8005";
-        # nix-shell --packages apacheHttpd --run 'htpasswd -B -c FILENAME USERNAME'
-        basicAuthFile = "/var/src/secrets/wrapped/basicauth.htpasswd";
+  services.nginx = {
+    enable = true;
+    virtualHosts = {
+      "wrapped.cyber-chris.de" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          recommendedProxySettings = true;
+          proxyPass = "http://localhost:8005";
+          # nix-shell --packages apacheHttpd --run 'htpasswd -B -c FILENAME USERNAME'
+          basicAuthFile = "/var/src/secrets/wrapped/basicauth.htpasswd";
+        };
       };
     };
   };
