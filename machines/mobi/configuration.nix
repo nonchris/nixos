@@ -68,7 +68,7 @@
         enableACME = true;
         locations."/" = {
           recommendedProxySettings = true;
-          proxyPass = "http://localhost:8005";
+          proxyPass = "http://localhost:13675";
           # nix-shell --packages apacheHttpd --run 'htpasswd -B -c FILENAME USERNAME'
           basicAuthFile = "/var/src/secrets/wrapped/basicauth.htpasswd";
         };
