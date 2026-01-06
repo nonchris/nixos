@@ -15,15 +15,17 @@
       "commands": [
         "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
       ],
+      "environment": {
+        "ATTIC_KEY": {
+          "from_secret": "attic_key"
+        }
+      },
       "image": "bash",
-      "name": "Setup Attic",
-      "secrets": [
-        "attic_key"
-      ]
+      "name": "Setup Attic"
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.desktop.config.system.build.toplevel' -o 'result-desktop'"
+        "nix build --print-out-paths '.#nixosConfigurations.desktop.config.system.build.toplevel' -o 'result-desktop'"
       ],
       "image": "bash",
       "name": "Build desktop"
@@ -44,7 +46,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.flap.config.system.build.toplevel' -o 'result-flap'"
+        "nix build --print-out-paths '.#nixosConfigurations.flap.config.system.build.toplevel' -o 'result-flap'"
       ],
       "image": "bash",
       "name": "Build flap"
@@ -65,7 +67,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.mobi.config.system.build.toplevel' -o 'result-mobi'"
+        "nix build --print-out-paths '.#nixosConfigurations.mobi.config.system.build.toplevel' -o 'result-mobi'"
       ],
       "image": "bash",
       "name": "Build mobi"
@@ -86,7 +88,7 @@
     },
     {
       "commands": [
-        "nix build '.#nixosConfigurations.rick.config.system.build.toplevel' -o 'result-rick'"
+        "nix build --print-out-paths '.#nixosConfigurations.rick.config.system.build.toplevel' -o 'result-rick'"
       ],
       "image": "bash",
       "name": "Build rick"
@@ -104,6 +106,16 @@
       ],
       "image": "bash",
       "name": "Push rick to Attic"
+    }
+  ],
+  "when": [
+    {
+      "branch": "main",
+      "event": "push"
+    },
+    {
+      "branch": "update_flake_lock_action",
+      "event": "push"
     }
   ]
 }
