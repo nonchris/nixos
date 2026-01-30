@@ -73,6 +73,15 @@
           basicAuthFile = "/var/src/secrets/wrapped/basicauth.htpasswd";
         };
       };
+      "johanna.cyber-chris.de" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          recommendedProxySettings = true;
+          proxyPass = "http://localhost:10202";
+          basicAuthFile = "/var/src/secrets/johanna/basicauth.htpasswd";
+        };
+      };
     };
   };
 
