@@ -62,6 +62,7 @@
 
   services.nginx = {
     enable = true;
+    recommendedTlsSettings = true;
     virtualHosts = {
       "wrapped.cyber-chris.de" = {
         forceSSL = true;
