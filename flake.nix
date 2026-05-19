@@ -68,6 +68,12 @@
       repo = "valorant-discord-bot";
     };
 
+    # Visual Studio Code Server support in NixOS
+    # https://github.com/msteen/nixos-vscode-server
+    vscode-server = {
+      url = "github:msteen/nixos-vscode-server";
+    };
+
   };
 
   outputs = { self, ... }@inputs:
@@ -104,6 +110,9 @@
         nix-common = import ./modules/nix-common;
         thelounge = import ./modules/thelounge;
         home-manager = { pkgs, ... }: {
+          home-manager.extraSpecialArgs = {
+            vscode-server = self.inputs.vscode-server;
+          };
           imports = [ ./home-manager/home.nix ./home-manager/home-desktop.nix ];
         };
 

@@ -1,6 +1,14 @@
-{ lib, pkgs, config, flake-self, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  flake-self,
+  vscode-server,
+  ...
+}:
 with lib;
-let cfg = config.nonchris.user.chris.home-manager;
+let
+  cfg = config.nonchris.user.chris.home-manager;
 
 in
 {
@@ -15,8 +23,17 @@ in
 
     home-manager.users.chris = {
 
+      services.vscode-server = {
+        enable = true;
+        installPath = [
+          "$HOME/.cursor-server"
+          "$HOME/.vscode-server"
+        ];
+      };
+
       # Imports
       imports = [
+        vscode-server.homeModules.default
         ./modules/alacritty.nix
         ./modules/chromium.nix
         ./modules/firefox.nix
@@ -30,7 +47,8 @@ in
       ];
 
       home.packages =
-        with pkgs; [
+        with pkgs;
+        [
           _1password-gui
           ansible
           asciinema
