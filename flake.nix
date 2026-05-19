@@ -72,6 +72,20 @@
 
   outputs = { self, ... }@inputs:
     with inputs;
+    let
+      supportedSystems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      checkHostsBySystem = {
+        aarch64-linux = [ ];
+        x86_64-linux = [
+          "desktop"
+          "mobi"
+        ];
+      };
+    in
     {
 
       # Expose overlay to flake outputs, to allow using it from other flakes.
@@ -149,7 +163,14 @@
 
         packages = {
 
-          woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline { inputs = inputs; flake-self = self; };
+          woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline {
+            hostMeta = builtins.mapAttrs
+              (name: cfg: {
+                system = cfg.pkgs.stdenv.hostPlatform.system;
+                inChecks = builtins.elem name (checkHostsBySystem.${cfg.pkgs.stdenv.hostPlatform.system} or [ ]);
+              })
+              self.nixosConfigurations;
+          };
 
           build_outputs = pkgs.callPackage mayniklas.packages.${system}.build_outputs.override {
             inherit self;

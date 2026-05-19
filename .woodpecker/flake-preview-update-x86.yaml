@@ -1,0 +1,27 @@
+{
+  "labels": {
+    "backend": "local",
+    "platform": "linux/amd64"
+  },
+  "steps": [
+    {
+      "commands": [
+        "nix run .#flake-preview-update -- -all -systems x86_64-linux"
+      ],
+      "image": "bash",
+      "name": "Run flake-preview-update"
+    },
+    {
+      "commands": [
+        "cat diff_lists/summary.txt"
+      ],
+      "image": "bash",
+      "name": "Show diff summary"
+    }
+  ],
+  "when": [
+    {
+      "event": "manual"
+    }
+  ]
+}

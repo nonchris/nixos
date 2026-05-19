@@ -6,13 +6,6 @@
   "steps": [
     {
       "commands": [
-        "nix flake show"
-      ],
-      "image": "bash",
-      "name": "Nix flake show"
-    },
-    {
-      "commands": [
         "attic login lounge-rocks https://cache.lounge.rocks $ATTIC_KEY --set-default"
       ],
       "environment": {
@@ -25,90 +18,76 @@
     },
     {
       "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.desktop.config.system.build.toplevel' -o 'result-desktop'"
+        "nix-fast-build --no-nom --skip-cached --attic-cache lounge-rocks:nix-cache --flake \".#checks.x86_64-linux\""
+      ],
+      "failure": "ignore",
+      "image": "bash",
+      "name": "Build all outputs for this architecture"
+    },
+    {
+      "commands": [
+        "test -e 'result-desktop'",
+        "test -e 'result-mobi'",
+        "echo 'All builds succeeded.'"
       ],
       "image": "bash",
-      "name": "Build desktop"
+      "name": "Verify all builds succeeded"
+    },
+    {
+      "commands": [
+        "nix build --print-out-paths '.#nixosConfigurations.desktop.config.system.build.toplevel' -o 'result-desktop'"
+      ],
+      "failure": "ignore",
+      "image": "bash",
+      "name": "Rebuild desktop (diagnostic)",
+      "when": {
+        "status": "failure"
+      }
     },
     {
       "commands": [
         "nix path-info --closure-size -h $(readlink -f 'result-desktop')"
       ],
+      "failure": "ignore",
       "image": "bash",
-      "name": "Show desktop info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-desktop'"
-      ],
-      "image": "bash",
-      "name": "Push desktop to Attic"
-    },
-    {
-      "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.flap.config.system.build.toplevel' -o 'result-flap'"
-      ],
-      "image": "bash",
-      "name": "Build flap"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-flap')"
-      ],
-      "image": "bash",
-      "name": "Show flap info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-flap'"
-      ],
-      "image": "bash",
-      "name": "Push flap to Attic"
+      "name": "Show desktop info",
+      "when": {
+        "status": [
+          "failure",
+          "success"
+        ]
+      }
     },
     {
       "commands": [
         "nix build --print-out-paths '.#nixosConfigurations.mobi.config.system.build.toplevel' -o 'result-mobi'"
       ],
+      "failure": "ignore",
       "image": "bash",
-      "name": "Build mobi"
+      "name": "Rebuild mobi (diagnostic)",
+      "when": {
+        "status": "failure"
+      }
     },
     {
       "commands": [
         "nix path-info --closure-size -h $(readlink -f 'result-mobi')"
       ],
+      "failure": "ignore",
       "image": "bash",
-      "name": "Show mobi info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-mobi'"
-      ],
-      "image": "bash",
-      "name": "Push mobi to Attic"
-    },
-    {
-      "commands": [
-        "nix build --print-out-paths '.#nixosConfigurations.rick.config.system.build.toplevel' -o 'result-rick'"
-      ],
-      "image": "bash",
-      "name": "Build rick"
-    },
-    {
-      "commands": [
-        "nix path-info --closure-size -h $(readlink -f 'result-rick')"
-      ],
-      "image": "bash",
-      "name": "Show rick info"
-    },
-    {
-      "commands": [
-        "attic push lounge-rocks:nix-cache 'result-rick'"
-      ],
-      "image": "bash",
-      "name": "Push rick to Attic"
+      "name": "Show mobi info",
+      "when": {
+        "status": [
+          "failure",
+          "success"
+        ]
+      }
     }
   ],
   "when": [
+    {
+      "event": "manual"
+    },
     {
       "branch": "main",
       "event": "push"
