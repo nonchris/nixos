@@ -75,7 +75,7 @@ in
           staruml
           sublime-merge
           sublime3
-          tdesktop
+          telegram-desktop
 
           texlive.combined.scheme-full
           texstudio
