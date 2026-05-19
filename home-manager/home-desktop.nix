@@ -20,7 +20,7 @@ in
         ./modules/alacritty.nix
         ./modules/chromium.nix
         ./modules/firefox.nix
-        ./modules/jetbrains.nix
+        # ./modules/jetbrains.nix # todo: error: 'jetbrains.idea-ultimate' has been renamed to/replaced by 'jetbrains.idea'
         ./modules/vscode.nix
         {
           nixpkgs.overlays = [
