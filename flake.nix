@@ -142,6 +142,14 @@
           };
         })
         (builtins.attrNames (builtins.readDir ./machines)));
+
+      checks =
+        let
+          hostsForSystem =
+            system: names:
+            nixpkgs.lib.genAttrs names (name: self.nixosConfigurations.${name}.config.system.build.toplevel);
+        in
+        nixpkgs.lib.mapAttrs hostsForSystem checkHostsBySystem;
     }
 
     //
