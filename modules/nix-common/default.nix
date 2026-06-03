@@ -42,12 +42,13 @@ in {
 
       settings = {
 
-        # binary cache -> build by DroneCI
         trusted-public-keys = mkIf (cfg.disable-cache != true) [
           "nix-cache:4FILs79Adxn/798F8qk2PC1U8HaTlaPqptwNJrXNA1g="
+          "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
         ];
         substituters = mkIf (cfg.disable-cache != true) [
           "https://cache.lounge.rocks/nix-cache"
+          "https://cache.nixos-cuda.org"
         ];
 
         # Users allowed to run nix
