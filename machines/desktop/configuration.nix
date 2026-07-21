@@ -122,6 +122,7 @@
     };
 
     home.packages = with pkgs; [
+      claude-code
       prismlauncher
     ];
   };
@@ -147,7 +148,7 @@
     common.enable = true;
     ddcci.enable = true;
     hosts.enable = true;
-    kde.enable = true;
+    # kde.enable = true;
     networking.enable = true;
     user.chris.home-manager.desktop = true;
   };
