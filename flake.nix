@@ -12,7 +12,7 @@
     # https://github.com/numtide/flake-utils
     flake-utils.url = "github:numtide/flake-utils";
 
-    # Manage a user environment using Nix 
+    # Manage a user environment using Nix
     # https://github.com/nix-community/home-manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -74,6 +74,10 @@
       url = "github:msteen/nixos-vscode-server";
     };
 
+    nixos-vscode-claude = {
+      url = "github:MayNiklas/nixos-vscode-claude";
+    };
+
   };
 
   outputs = { self, ... }@inputs:
@@ -109,12 +113,15 @@
         networking = import ./modules/networking;
         nix-common = import ./modules/nix-common;
         thelounge = import ./modules/thelounge;
-        home-manager = { pkgs, ... }: {
-          home-manager.extraSpecialArgs = {
-            vscode-server = self.inputs.vscode-server;
-          };
+        home-manager =
+          { pkgs, ... }:
+          {
+            home-manager.extraSpecialArgs = {
+              nixos-vscode-claude = self.inputs.nixos-vscode-claude;
+              vscode-server = self.inputs.vscode-server;
+            };
           imports = [ ./home-manager/home.nix ./home-manager/home-desktop.nix ];
-        };
+          };
 
       };
 
@@ -163,47 +170,47 @@
 
     //
 
-    # flake-utils is used for this part to make each package available for each
-    # system. This works as all packages are compatible with all architectures
+      # flake-utils is used for this part to make each package available for each
+      # system. This works as all packages are compatible with all architectures
     (flake-utils.lib.eachSystem [ "aarch64-linux" "x86_64-linux" ]) (system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
+          let
+            pkgs = import nixpkgs {
+              inherit system;
           overlays = [ self.overlays.default mayniklas.overlays.mayniklas ];
           config = { allowUnfree = true; };
-        };
-      in
-      rec {
+            };
+          in
+          rec {
 
-        # Use nixpkgs-fmt for `nix fmt'
-        formatter = pkgs.nixpkgs-fmt;
+            # Use nixpkgs-fmt for `nix fmt'
+            formatter = pkgs.nixpkgs-fmt;
 
-        packages = {
+            packages = {
 
-          woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline {
+              woodpecker-pipeline = pkgs.callPackage ./pkgs/woodpecker-pipeline {
             hostMeta = builtins.mapAttrs
               (name: cfg: {
-                system = cfg.pkgs.stdenv.hostPlatform.system;
-                inChecks = builtins.elem name (checkHostsBySystem.${cfg.pkgs.stdenv.hostPlatform.system} or [ ]);
+                  system = cfg.pkgs.stdenv.hostPlatform.system;
+                  inChecks = builtins.elem name (checkHostsBySystem.${cfg.pkgs.stdenv.hostPlatform.system} or [ ]);
               })
               self.nixosConfigurations;
-          };
+              };
 
-          build_outputs = pkgs.callPackage mayniklas.packages.${system}.build_outputs.override {
-            inherit self;
+              build_outputs = pkgs.callPackage mayniklas.packages.${system}.build_outputs.override {
+                inherit self;
             build_hosts = [ "desktop" "mobi" ];
-            output_path = "~/.keep-nix-outputs-nonchris";
-          };
+                output_path = "~/.keep-nix-outputs-nonchris";
+              };
 
-        };
+            };
 
-        apps = {
+            apps = {
 
-          lollypops = lollypops.apps.${pkgs.system}.default {
-            configFlake = self;
-          };
+              lollypops = lollypops.apps.${pkgs.system}.default {
+                configFlake = self;
+              };
 
-        };
+            };
 
       });
 }

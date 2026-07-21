@@ -429,6 +429,21 @@
         "type": "github"
       }
     },
+    "nixos-vscode-claude_2": {
+      "locked": {
+        "lastModified": 1774989395,
+        "narHash": "sha256-Tnt6xpX8kDlXAMiOETAJNwJ+hEpAxOWTRspZGuQF9RQ=",
+        "owner": "MayNiklas",
+        "repo": "nixos-vscode-claude",
+        "rev": "ab29c4d1195e3749bbca488d35b12f608dc28094",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MayNiklas",
+        "repo": "nixos-vscode-claude",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1694183432,
@@ -544,6 +559,7 @@
         "home-manager": "home-manager",
         "lollypops": "lollypops",
         "mayniklas": "mayniklas",
+        "nixos-vscode-claude": "nixos-vscode-claude_2",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-master": "nixpkgs-master",
         "vscode-server": "vscode-server_2"

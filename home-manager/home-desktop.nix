@@ -4,6 +4,7 @@
   config,
   flake-self,
   vscode-server,
+  nixos-vscode-claude,
   ...
 }:
 with lib;
@@ -23,6 +24,8 @@ in
 
     home-manager.users.chris = {
 
+      services.nixos-vscode-claude.enable = true;
+
       services.vscode-server = {
         enable = true;
         # installPath = [
@@ -34,6 +37,7 @@ in
       # Imports
       imports = [
         vscode-server.homeModules.default
+        nixos-vscode-claude.homeModules.default
         ./modules/alacritty.nix
         ./modules/chromium.nix
         ./modules/firefox.nix
