@@ -25,10 +25,10 @@ in
 
       services.vscode-server = {
         enable = true;
-        installPath = [
-          "$HOME/.cursor-server"
-          "$HOME/.vscode-server"
-        ];
+        # installPath = [
+        #   "$HOME/.cursor-server"
+        #   "$HOME/.vscode-server"
+        # ];
       };
 
       # Imports
