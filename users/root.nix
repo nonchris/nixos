@@ -8,7 +8,7 @@
       })
       (builtins.fetchurl {
         url = "https://github.com/mayniklas.keys";
-        sha256 = "sha256:0kvm82rbw8ilmzyhkm9xrw0wj7y9nmhxnxw9rzpm17j2509jvwgs";
+        sha256 = "sha256:1bnkwi3wmizj2xmz8djqjkfdwcz3c72jr583wiplayvmwnv74467";
       })
     ];
   };
