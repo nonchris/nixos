@@ -20,6 +20,7 @@ in
 
   # custom packages
 
+  claude-code = pkgs-master.claude-code;
   discord = pkgs-master.discord;
 
   prismlauncher = (import
