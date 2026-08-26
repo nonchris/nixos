@@ -122,6 +122,7 @@
     };
 
     home.packages = with pkgs; [
+      claude-code
       prismlauncher
     ];
   };
